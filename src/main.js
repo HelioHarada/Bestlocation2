@@ -1,6 +1,5 @@
 import Vue from 'vue'
-//  teste
-
+// teste git
 new Vue({
   el: '#app',
   render: h => h(App)
