@@ -1,6 +1,13 @@
 import Vue from 'vue'
-// teste git
+import Header from './Header.vue'
+import Index from './Index.vue'
+
 new Vue({
-  el: '#app',
-  render: h => h(App)
+  el: '#header',
+  render: h => h(Header)
+})
+
+new Vue({
+  el: '#index',
+  render: h => h(Index)
 })
