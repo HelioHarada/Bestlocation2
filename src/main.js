@@ -4,11 +4,20 @@ import Index from './Index.vue'
 import Footer from './Footer.vue'
 import { routes } from './routes'
 
-const router = new VueRouter({ routes })
-
 // Vue router
 import VueRouter from 'vue-router';
 Vue.use(VueRouter)
+
+// Vue resource
+import VueResource from 'vue-resource';
+Vue.use(VueResource);
+
+const router = new VueRouter({ 
+  routes,
+  mode : 'history'
+})
+
+
 
 new Vue({
   el: '#index',

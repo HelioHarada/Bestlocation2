@@ -27,19 +27,19 @@
 
         <div class="row funcionalidade">
           <div class="col-md-4 text-center">
-              <img src="./png/011-building.png" alt="">
+              <img src="../../png/011-building.png" alt="">
               <h2>Encontre o lugar ideal para sua empresa</h2>
               <p>Busque escritórios ou estabelecimento para seu négócio a bestlocation te ajuda
                 a buscar o melhor local de acordo com seu publico alvo. </p>
           </div>
           <div class="col-md-4 text-center">
-            <img src="./png/004-money.png" alt="">
+            <img src="../../png/004-money.png" alt="">
               <h2>Gaste apenas o necessário</h2>
               <p>Saiba de nossos planos e gaste apenas caso queira impulsonar suas vendas
                 o restante das funcionalidades é grátis  </p>
           </div>
           <div class="col-md-4 text-center">
-              <img src="./png/021-search-1.png" alt="">            
+              <img src="../../png/021-search-1.png" alt="">            
               <h2>Encontre seu imóvel perfeito</h2>
               <p>É possível buscar seu novo lar através dos filtros de palavra-chave, características e 
                 valor total de aluguel que a bestlocation mostra para você. </p>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import Busca from './components/shared/campo/Busca.vue'
+import Busca from '../shared/campo/Busca.vue'
 export default {
     components: {
         'input-busca' : Busca

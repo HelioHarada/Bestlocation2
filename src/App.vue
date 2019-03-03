@@ -18,7 +18,7 @@
     </ul>
   </div>
 </template>
-// teste
+
 <script>
 export default {
   name: 'app',
