@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <router-view></router-view>
-    </div>
+    <h2>lista</h2>
 </template>
 
 <script>
@@ -13,4 +11,3 @@ export default {
 <style>
 
 </style>
-
