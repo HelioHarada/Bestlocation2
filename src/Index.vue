@@ -50,7 +50,11 @@
 </template>
 
 <script>
+import Busca from './components/shared/campo/Busca.vue'
 export default {
+    components: {
+        'input-busca' : Busca
+    }
   
 }
 </script>
