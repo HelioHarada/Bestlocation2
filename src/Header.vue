@@ -1,7 +1,8 @@
 <template>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        
   <!-- Logo -->
-  <a class="navbar-brand" href="index.html">
+  <a class="navbar-brand" href="/#/">
      <img class="img-logo" src="src/img/Logobranca.png">
     </a>
 
@@ -12,10 +13,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto navbar-right">
       <li class="nav-item">
-        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/#/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="lista.html">Lista de Imóveis</a>
+        
+        <a class="nav-link" href="/lista">Lista de Imóveis</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -28,15 +30,16 @@
             Admin
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="cadastrar.html">Cadastrar</a>
+            <a class="dropdown-item" href="/cadastrar">Cadastrar</a>
             <a class="dropdown-item" href="usuario.html">Lista de usuário</a>
             <a class="dropdown-item" href="deletar.html">Deletar</a>
             <a class="dropdown-item" href="perfil.html">Descobrindo Perfil</a>
-
+    
           </div>
         </li> 
     </ul>
   </div>
+
 </nav>
 </template>
 

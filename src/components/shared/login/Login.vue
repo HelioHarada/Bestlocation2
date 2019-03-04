@@ -68,24 +68,23 @@
            <form @submit.prevent="cadastrar">
 
             <div class="form-group">
-              <!-- <input type="text" class="form-control input-grey" v-model="username"  id="name" placeholder="Nome"> -->
-              <input type="text" class="form-control input-grey"   id="name" placeholder="Nome">
+              <input type="text" class="form-control input-grey" v-model="username"  id="name" placeholder="Nome">
+             
             </div>
            
              <div class="form-group">
-               <!-- <input type="email" class="form-control input-grey" v-model="email" id="email" aria-describedby="emailHelp" placeholder="Digite e-mail"> -->
-                <input type="email" class="form-control input-grey"  id="email" aria-describedby="emailHelp" placeholder="Digite e-mail">
+               <input type="email" class="form-control input-grey" v-model="email" id="email" aria-describedby="emailHelp" placeholder="Digite e-mail">
+                
              </div>
              
             <div class="form-group">
-               <!-- <input type="password" class="form-control input-grey" v-model="password" id="password" placeholder="Digite a senha"> -->
-               <input type="password" class="form-control input-grey"  id="password" placeholder="Digite a senha">
+               <input type="password" class="form-control input-grey" v-model="password" id="password" placeholder="Digite a senha">
+              
             </div>
 
              <div class="form-group">
-               <!-- <input type="password" class="form-control input-grey" v-model="password2" id="confirm password" placeholder="Confirme a senha"> -->
-               <input type="password" class="form-control input-grey"  id="confirm password" placeholder="Confirme a senha">
-
+               <input type="password" class="form-control input-grey" v-model="password2" id="confirm password" placeholder="Confirme a senha">
+             
             </div>
             <!-- 
             <div class="form-check">
@@ -110,6 +109,11 @@ export default {
     data(){
         return{
             errors: [],
+            username: '',
+            email: '',
+            password: '',
+            password2: '',
+            isAdmin: 'false',
         }
     }
 }

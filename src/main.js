@@ -2,7 +2,11 @@ import Vue from 'vue'
 import Header from './Header.vue'
 import Index from './Index.vue'
 import Footer from './Footer.vue'
+import money from './components/cadastrar/v-money'
+
 import { routes } from './routes'
+Vue.use(money, {precision: 2})
+
 
 // Vue router
 import VueRouter from 'vue-router';
@@ -27,6 +31,7 @@ new Vue({
 
 new Vue({
   el: '#header',
+  router,
   render: h => h(Header)
 })
 
