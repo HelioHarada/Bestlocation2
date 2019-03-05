@@ -30,7 +30,7 @@ export default function initBotApp () {
                 }
             }).then(function (res){
                 var name = res.value;
-                botui.message.add({content: 'Olá '+ name+ " prazer em conhece-lo"})
+                botui.message.add({content: 'Olá '+ name+ " prazer em conhece-lo!"})
             })
       });
   })
