@@ -33,7 +33,7 @@
             <a class="dropdown-item" href="/cadastrar">Cadastrar</a>
             <a class="dropdown-item" href="usuario.html">Lista de usuário</a>
             <a class="dropdown-item" href="deletar.html">Deletar</a>
-            <a class="dropdown-item" href="perfil.html">Descobrindo Perfil</a>
+            <a class="dropdown-item" href="/find">Descobrindo Perfil</a>
     
           </div>
         </li> 

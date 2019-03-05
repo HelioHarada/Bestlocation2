@@ -4,6 +4,8 @@ import Index from './Index.vue'
 import Footer from './Footer.vue'
 import money from './components/cadastrar/v-money'
 
+Vue.config.productionTip = false;
+
 import { routes } from './routes'
 Vue.use(money, {precision: 2})
 
