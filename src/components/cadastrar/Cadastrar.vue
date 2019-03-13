@@ -58,7 +58,7 @@
 </template>
 
 <script>
-  import {Money} from '/home/helio/bestlocation/src/components/cadastrar/v-money.js' 
+  import {Money} from './v-money.js' 
 
 export default {
 

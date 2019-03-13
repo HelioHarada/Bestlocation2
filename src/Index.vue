@@ -9,7 +9,7 @@
 
 <script>
 
-import Login from '/home/helio/bestlocation/src/components/shared/login/Login.vue'
+import Login from './components/shared/login/Login.vue'
 
 export default {
     components: {
