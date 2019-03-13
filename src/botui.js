@@ -21,7 +21,7 @@ export default function initBotApp () {
       });
   }).then(function(){
     botui.message.add({
-        delay: 4000,
+        delay: 5000,
         content: 'Qual é o seu nome?'
       }).then(function(){
             botui.action.text({
@@ -31,7 +31,23 @@ export default function initBotApp () {
             }).then(function (res){
                 var name = res.value;
                 botui.message.add({content: 'Olá '+ name+ " prazer em conhece-lo!"})
-            })
+            }).then(function(){
+                botui.message.add({
+                    delay: 2000,
+                    content : name+' precisamos agora saber lugares importante como trabalho, faculdade etc...'
+                })
+            }).then(function(){
+                botui.message.add({
+                    delay: 3000,
+                    content : name+'Digite o endereço do ponto mais importante para você?'
+                })
+            }).then(function(){
+                    botui.action.text({
+                        action:{
+                            placeholder: 'Endereço'
+                        }
+                    })
+                });
       });
   })
 

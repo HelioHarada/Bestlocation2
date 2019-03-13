@@ -20,7 +20,7 @@
                   <h5 class="subtitulo_descobrir">venha descobrir o seu perfil para escolher imovel</h5>
                 </div>
                 <div class="place_button_perfil">
-                  <a href="perfil.html"><button class="btn button_descobrir">descobrir!</button></a>
+                  <a href="/find"><button class="btn button_descobrir">descobrir!</button></a>
                 </div>
             </div>
          </div>

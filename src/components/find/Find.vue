@@ -1,7 +1,7 @@
 <template>
-        <div class="botui-app-container" id="my-botui-app">
-            <bot-ui></bot-ui>
-        </div>
+    <div class="botui-app-container" id="my-botui-app">
+        <bot-ui></bot-ui>
+    </div>
 </template>
 <script>
   import initBotApp from '../../../src/botui'
