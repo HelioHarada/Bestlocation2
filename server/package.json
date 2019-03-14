@@ -37,7 +37,7 @@
     "node": "^8.11.1"
   },
   "scripts": {
-    "start": "node ../server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "node --nolazy --inspect-brk=9229 myProgram.js"
   },
