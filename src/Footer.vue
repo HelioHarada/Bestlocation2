@@ -20,7 +20,6 @@
 
 <script>
 export default {
-    
 }
 </script>
 
@@ -28,6 +27,7 @@ export default {
 
 .footer{
     background-color: #343A40;
+    clear: both;
 }
 
 
@@ -51,9 +51,9 @@ export default {
 
 /* Footer Mobile */
 @media screen and (max-width: 990px){
-
-
-
+    .footer{
+      display: none;
+    }
     .footer img{
         margin-left : 25%;
     }
