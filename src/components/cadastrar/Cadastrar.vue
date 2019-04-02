@@ -1,7 +1,7 @@
 <template>
 
 <div class="container">
-     <form ref="form">
+     <form ref="form"  @submit.prevent="handleSubmit">
 
 
     <!-- <div class="alert alert-danger" id ="message-errors" role="alert"  v-if="errors.length" >
@@ -85,9 +85,32 @@ data(){
         precision: 2,
         masked: true
       }
-    }
+    }    
+},
+methods:{
+   handleSubmit(){
+    console.log("teste")
+  
+    alert("yeah")
 
-    
+    let promise = this.$http.post('http://localhost:8080/api/imoveis',
+      {
+      titulo : this.titulo,
+      status : this.status,
+      endereco : this.endereco,
+      cidade : this.cidade,
+      descricao :  this.descricao,
+      numBanheiros : this.numBanheiros,
+      numQuartos : this.numQuartos,
+      preco : this.preco
+      }
+    );
+    promise.then(function(res) {
+        console.log(res.body);
+    });
+
+  }
 }
+
 }
 </script>
