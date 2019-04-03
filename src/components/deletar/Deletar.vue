@@ -62,7 +62,7 @@ export default {
             let promise = this.$http.delete('http://localhost:8080/api/imoveis/'+id);
 
             promise.then(function(res){
-            
+               location.reload(); 
             });
      
                 console.log(Deletar)

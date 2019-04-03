@@ -22,6 +22,10 @@
     </div>
 
     <div class="form-group">
+      <input type="text" class="form-control input-grey" id="cep" v-model="cep" placeholder="CEP">
+    </div>
+
+    <div class="form-group">
       <input type="text" class="form-control input-grey" id="endereco" v-model="endereco" placeholder="Endereço">
     </div>
 
@@ -30,8 +34,12 @@
     </div>
 
     <div class="form-group">
-        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="Detalhes do imóvel (Sala, Cozinha, Garagem, área de trabalho etc..">
-      </div>
+        <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="Detalhes do imóvel">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control input-grey" id="area" v-model="area" placeholder="area">
+    </div>
 
       <div class="form-group">
       <input type="number" class="form-control input-grey" v-model="numQuartos" id="numQuartos" aria-describedby="emailHelp" placeholder="Número de quartos">
@@ -76,6 +84,8 @@ data(){
       numBanheiros: '',
       preco: '',
       numQuartos: '',
+      cep : '',
+      area : '',
       // === Money === //
       money: {
         decimal: ',',
@@ -98,7 +108,10 @@ methods:{
       descricao :  this.descricao,
       numBanheiros : this.numBanheiros,
       numQuartos : this.numQuartos,
-      preco : this.preco
+      preco : this.preco,
+      area : this.area,
+      cep  : this.cep
+
       }
     );
     promise.then(function(res) {
@@ -112,6 +125,10 @@ methods:{
             this.numBanheiros = ""
             this.numQuartos = ""
             this.preco = ""
+            this.cep = ""
+            this.area = ""
+            
+            
     });
 
   }

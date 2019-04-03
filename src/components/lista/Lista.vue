@@ -11,8 +11,10 @@
          <p class="card-text">
          <img src="/../src/img/bed.png">   {{imovel.numQuartos}}
          /
-        <img src="/../src/img/banheiro.png"> {{imovel.numBanheiros}}</p>
-         <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.cidade}}</p>
+        <img src="/../src/img/banheiro.png"> {{imovel.numBanheiros}}
+        /
+        <img src="/../src/img/size.png"> {{imovel.area}}</p>
+         <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.cidade}} - {{imovel.cep}}</p>
          <!-- <p class="card-text">id: {{imovel._id}}</p> --> 
          <a class="btn button-plus" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
         </div>
@@ -35,6 +37,7 @@ export default {
 
     let promise = this.$http.get('http://localhost:8080/api/imoveis');
     promise .then(function(res) {
+      console.log(res)
          this.imoveis = res.body;
     });
   }
