@@ -51,7 +51,9 @@ imovelController.updateImovel = (req, res) => {
         else {
             imovel.titulo = req.body.titulo;
             imovel.status = req.body.status;
+            imovel.area = req.body.area;
             imovel.descricao = req.body.descricao;
+            imovel.cep = req.body.cep;
             imovel.endereco = req.body.endereco;
             imovel.cidade = req.body.cidade;
             imovel.numQuartos = req.body.numQuartos;
@@ -76,6 +78,8 @@ imovelController.newImovel = (req, res) => {
         status: req.body.status,
         endereco: req.body.endereco,
         cidade: req.body.cidade,
+        cep: req.body.cep,
+        area: req.body.area,
         descricao: req.body.descricao,
         numQuartos: req.body.numQuartos,
         numBanheiros: req.body.numBanheiros,

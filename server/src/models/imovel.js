@@ -37,6 +37,14 @@ const imovelSchema = new Schema ({
     preco: {
         type: String,
         default: '0.00'
+    },
+    area: {
+        type: Number,
+        default: ''
+    },
+    cep: {
+        type: String,
+        default: ''
     }
 });
 
