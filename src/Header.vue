@@ -32,7 +32,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/cadastrar">Cadastrar</a>
             <a class="dropdown-item" href="/usuario">Lista de usuário</a>
-            <a class="dropdown-item" href="deletar.html">Deletar</a>
+            <a class="dropdown-item" href="/deletar">Deletar</a>
             <a class="dropdown-item" href="/find">Descobrindo Perfil</a>
     
           </div>

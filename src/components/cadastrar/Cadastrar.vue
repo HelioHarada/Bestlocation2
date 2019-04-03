@@ -89,10 +89,6 @@ data(){
 },
 methods:{
    handleSubmit(){
-    console.log("teste")
-  
-    alert("yeah")
-
     let promise = this.$http.post('http://localhost:8080/api/imoveis',
       {
       titulo : this.titulo,
@@ -107,6 +103,15 @@ methods:{
     );
     promise.then(function(res) {
         console.log(res.body);
+        alert("criado com sucesso");
+            this.titulo = ""
+            this.status = ""
+            this.endereco = ""
+            this.cidade = ""
+            this.descricao = ""
+            this.numBanheiros = ""
+            this.numQuartos = ""
+            this.preco = ""
     });
 
   }

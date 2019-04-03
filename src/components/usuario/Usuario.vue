@@ -13,7 +13,7 @@
    </tr>
  </thead>
  <tbody>
-   <tr v-for="(usuario, index) in usuarios" v-bind:key="usuario" >
+   <tr v-for="(usuario, index) in usuarios" v-bind:key="index" >
      <th scope="row">{{index}}</th>
      <td>{{usuario.username}}</td>
      <td>{{usuario.email}}</td>
@@ -37,18 +37,30 @@ export default {
         }
   },
 
-  created() {
-
+methods:{
+  getUser(){
     let promise = this.$http.get('http://localhost:8080/api/users');
     promise .then(function(res) {
         console.log(res.body[3]);
-         this.usuarios = res.body
+          this.usuarios = res.body
     });
   },
 
-  deletar(id){
-    console.log(id);
-    let promise = this
+    deletarUser(id){
+      console.log(id);
+       let promise = this.$http.delete('http://localhost:8080/api/users/'+id);
+
+            promise.then(function(res){
+
+         
+                // location.reload;
+                location.reload();
+            });
+    },
+},
+
+  created() {
+    this.getUser();
   }
 
 }

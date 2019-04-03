@@ -55,12 +55,12 @@
       
         <!-- ============================= Register =================================== -->
         <!-- mensagem de erro -->
-        <!-- <div class="alert alert-danger" role="alert"  v-if="errors.length" >
+        <div class="alert alert-danger" role="alert"  v-if="errors.length" >
           <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
           <ul>
-            <li v-for="error in errors">{{ error }}</li>
+            <li v-for="(error , index) in errors" :key="index">{{ error }}</li>
           </ul>
-        </div> -->
+        </div>
   
         
          <div class="tab-pane fade" id="register-tab" role="tabpanel" aria-labelledby="register-link">
@@ -115,6 +115,59 @@ export default {
             password2: '',
             isAdmin: 'false',
         }
+    },
+    methods:{
+      cadastrar(){
+              // Validação
+      this.errors = [];
+
+      if (!this.username) {
+        this.errors.push('O Nome é obrigatório.');
+      }
+      if(this.username == "love")
+      {
+        alert("Patricia Criado você é o amor da minha vida e sempre vou te amar Ass: HaradaHelio")
+      }
+      if (!this.email) {
+        this.errors.push('O email é obrigatório.');
+      }
+
+      if (!this.password) {
+        this.errors.push('O senha é obrigatório.');
+      }
+
+      if (this.password != this.password2) {
+        this.errors.push('senha não correspodem')
+        console.log("erro password")
+      }
+
+      if (!this.errors.length) {
+
+         let promise = this.$http.post('http://localhost:8080/api/users',{
+          username: this.username,
+          email: this.email,
+          password: this.password,
+          password2: this.password2,
+          isAdmin: this.isAdmin
+         })
+         promise.then(function(res) {
+           console.log("foi");
+            this.username = ""
+            this.email = ""
+            this.password = ""
+            this.password2 = ""
+    
+      
+
+            alert("Cadastrado com sucesso");
+             console.log(res.body);
+             $('#login-modal').modal('hide');
+              return true;
+          });
+        // Post
+
+      }
+      }
     }
 }
 </script>
