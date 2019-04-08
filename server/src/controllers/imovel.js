@@ -55,6 +55,8 @@ imovelController.updateImovel = (req, res) => {
             imovel.descricao = req.body.descricao;
             imovel.cep = req.body.cep;
             imovel.endereco = req.body.endereco;
+            imovel.bairro = req.body.bairro;
+            imovel.uf = req.body.uf;
             imovel.cidade = req.body.cidade;
             imovel.numQuartos = req.body.numQuartos;
             imovel.numBanheiros = req.body.numBanheiros;

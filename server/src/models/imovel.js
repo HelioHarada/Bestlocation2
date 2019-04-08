@@ -45,6 +45,14 @@ const imovelSchema = new Schema ({
     cep: {
         type: String,
         default: ''
+    },
+    bairro: {
+        type: String,
+        default: ''
+    },
+    uf: {
+        type: String,
+        default: ''
     }
 });
 

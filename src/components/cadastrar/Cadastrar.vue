@@ -18,24 +18,37 @@
   </div>
 
     <div class="form-group">
-      <input type="text" class="form-control input-grey" v-model="status" id="status" aria-describedby="emailHelp" placeholder="Tipo da venda (Venda, Aluguel)">
+      <select name="tipo" id="status" v-model="status" class="form-control input-grey"  >
+        <option value="venda" selected >Venda</option>
+        <option value="aluguel">Aluguel</option>
+      </select>
+      <!-- <input type="text" class="form-control input-grey" v-model="status" id="status" aria-describedby="emailHelp" placeholder="Tipo da venda (Venda, Aluguel)"> -->
     </div>
 
     <div class="form-group">
-      <input type="text" class="form-control input-grey" id="cep" v-model="cep" placeholder="CEP">
+      <input type="text" class="form-control input-grey" id="cep" v-model="cep" placeholder="CEP" @keyup="buscarCEP">
     </div>
 
     <div class="form-group">
-      <input type="text" class="form-control input-grey" id="endereco" v-model="endereco" placeholder="Endereço">
+      <input type="text" class="form-control input-grey" id="endereco" v-model="rua" placeholder="Endereço">
+    </div>
+
+    <div class="form-group">
+      <input type="text" class="form-control input-grey" id="Bairro" v-model="bairro" placeholder="Bairro">
     </div>
 
     <div class="form-group">
       <input type="text" class="form-control input-grey" id="cidade" v-model="cidade" placeholder="Cidade">
     </div>
 
+       <div class="form-group">
+      <input type="text" class="form-control input-grey" id="estado" v-model="uf" placeholder="Estado">
+    </div>
+
     <div class="form-group">
         <input type="textarea" class="form-control input-grey" id="descricao" v-model="descricao" placeholder="Detalhes do imóvel">
     </div>
+
 
     <div class="form-group">
       <input type="text" class="form-control input-grey" id="area" v-model="area" placeholder="area">
@@ -76,9 +89,10 @@ data(){
     return{
       imoveis: [],
       errors: [],
-      status: '',
+      status: 'venda',
       titulo: '',
-      endereco: '',
+      endereco: {},
+      rua : '',
       cidade: '',
       descricao: '',
       numBanheiros: '',
@@ -86,6 +100,8 @@ data(){
       numQuartos: '',
       cep : '',
       area : '',
+      uf : '',
+      bairro : '',
       // === Money === //
       money: {
         decimal: ',',
@@ -97,14 +113,45 @@ data(){
       }
     }    
 },
+  mounted: function () {
+    $("#cep").mask("00000-000");
+  },
 methods:{
+  buscarCEP(){
+    console.log("key")
+          var self = this;
+
+           self.naoLocalizado = false;
+            if(/^[0-9]{5}-[0-9]{3}$/.test(this.cep)){
+            $.getJSON("https://viacep.com.br/ws/" + this.cep + "/json/", function(endereco){
+              console.log(endereco)
+            if(endereco.erro){
+                  self.endereco = {};
+                  $("#inputLogradouro").focus();
+                  self.naoLocalizado = true;
+                  return;
+                }
+                    self.endereco = endereco;
+                    self.cidade = endereco.localidade;
+                    self.uf = endereco.uf;
+                    self.bairro = endereco.bairro;
+                    self.rua = endereco.logradouro;
+                     console.log( self.cidade)
+            })
+            }
+  },
    handleSubmit(){
+     console.log( this.cidade)
+     console.log(cidade)
+     console.log(endereco.localidade)
     let promise = this.$http.post('http://localhost:8080/api/imoveis',
       {
       titulo : this.titulo,
       status : this.status,
-      endereco : this.endereco,
+      endereco : this.rua,
       cidade : this.cidade,
+      bairro : this.bairro,
+      uf     : this.uf,
       descricao :  this.descricao,
       numBanheiros : this.numBanheiros,
       numQuartos : this.numQuartos,
@@ -115,7 +162,7 @@ methods:{
       }
     );
     promise.then(function(res) {
-        console.log(res.body);
+      
         alert("criado com sucesso");
             this.titulo = ""
             this.status = ""

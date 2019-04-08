@@ -10,10 +10,10 @@
          <p class="card-text">Descrição: {{imovel.descricao}} </p>
          <p class="card-text">
          <img src="/../src/img/bed.png">   {{imovel.numQuartos}}
-         /
+         -
         <img src="/../src/img/banheiro.png"> {{imovel.numBanheiros}}
-        /
-        <img src="/../src/img/size.png"> {{imovel.area}}</p>
+        -
+        <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
          <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.cidade}} - {{imovel.cep}}</p>
          <!-- <p class="card-text">id: {{imovel._id}}</p> --> 
          <a class="btn button-plus" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
