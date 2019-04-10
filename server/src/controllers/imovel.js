@@ -81,6 +81,8 @@ imovelController.newImovel = (req, res) => {
         endereco: req.body.endereco,
         cidade: req.body.cidade,
         cep: req.body.cep,
+        bairro : req.body.bairro,
+        uf : req.body.uf,
         area: req.body.area,
         descricao: req.body.descricao,
         numQuartos: req.body.numQuartos,
