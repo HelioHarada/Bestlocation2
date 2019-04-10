@@ -7,6 +7,10 @@ var bodyParser = require('body-parser');
 module.exports = () => {
     var app = express();
 
+    app.use(express.static(__dirname + "/dist/"));
+    
+    app.get
+
     app.use(function (req, res, next) {
 
         // Website you wish to allow to connect
