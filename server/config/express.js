@@ -37,9 +37,9 @@ module.exports = () => {
 
     // injeção e autoload dos nossos scripts na nossa intância
     consign({cwd: 'server'})
-            .include('../models')
-            .include('../controllers')
-            .then('../routes')
+            .include('../server/src/models')
+            .include('../server/src/controllers')
+            .then('../server/src/routes')
 
         .into(app);
 
