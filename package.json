@@ -12,6 +12,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "bcrypt": "^3.0.5",
     "botui": "^0.3.8",
     "consign": "^0.1.6",
     "express": "^4.16.4",
