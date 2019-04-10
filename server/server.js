@@ -1,20 +1,13 @@
 
 // importa configuração do Express e do banco de dados
 const app = require('./config/express')();
-var path = require('path')
-var serveStatic = require('serve-static')
+const serveStatic = require("serve-static");
+const path = require('path');
 require('./config/database');
 
 require('dotenv').config()
 
-app.use(express.static(__dirname + "/dist/"));
-    
-app.get(/.*/, function(req, res){
-    res.sendfile(__dirname + "/dist/index.html")
-})
-
-var app = express()
-app.use(serveStatic(path.join(__dirname, 'dist')))
+app.use(serveStatic(path.join(__dirname, 'dist')));
 
 // passa a porta definida no Express e levantamento do servidor
 app.listen(app.get('port'), () => {
