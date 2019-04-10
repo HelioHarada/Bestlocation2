@@ -8,8 +8,6 @@ module.exports = () => {
     var app = express();
 
     app.use(express.static(__dirname + "/dist/"));
-    
-    app.get
 
     app.use(function (req, res, next) {
 
