@@ -14,6 +14,7 @@ app.get(/.*/, function(req, res){
 })
 
 app.use(serveStatic(path.join(__dirname, 'dist')))
+ 
 
 // passa a porta definida no Express e levantamento do servidor
 app.listen(app.get('port'), () => {
