@@ -35,8 +35,8 @@ export default {
   },
 
   created() {
-
-    let promise = this.$http.get('http://localhost:8080/api/imoveis');
+    console.log(this.$http.get('http://bestlocation.com.br/api/users'))
+    let promise = this.$http.get('http://bestlocation.com.br/api/imoveis');
     promise .then(function(res) {
       console.log(res.body)
          this.imoveis = res.body;
