@@ -13,7 +13,7 @@ require('dotenv').config()
 //     res.sendfile(__dirname + "dist/index.html")
 // })
 app.get('*', function (req, res) {
-    const index = path.join(__dirname, '../../bestolocation', 'index.html');
+    const index = path.join(__dirname, '../../bestlocation', 'index.html');
     res.sendFile(index);
   });
 
