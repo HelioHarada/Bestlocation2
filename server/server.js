@@ -9,7 +9,7 @@ require('dotenv').config()
 
 
     
-app.get(/.*/, function(req, res){
+app.get('*', function(req, res){
     res.sendFile(__dirname + "../../bestlocation/index.html")
 })
 // app.get('*', function (req, res) {
