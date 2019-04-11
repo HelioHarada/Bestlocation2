@@ -9,9 +9,9 @@ require('dotenv').config()
 
 
     
-app.get(/.*/, function(req, res){
-    res.sendfile(__dirname + "../index.html")
-})
+// app.get(/.*/, function(req, res){
+//     res.sendfile(__dirname + "../index.html")
+// })
 
 app.use(serveStatic(path.join(__dirname, 'dist')))
 
