@@ -8,9 +8,9 @@ require('./config/database');
 require('dotenv').config()
 
 
-// app.get('*', function(req, res){
-//     res.sendFile(__dirname + "../../bestlocation/dist/index.html")
-// })
+app.get('*', function(req, res){
+    res.sendFile('index.html', {root : path.join(__dirname + "../../bestlocation/dist")})
+})
 app.use('/',serveStatic(path.join(__dirname + "/dist")));
 
 // app.get('*', function(req, res){
