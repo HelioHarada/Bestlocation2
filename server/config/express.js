@@ -7,11 +7,9 @@ var bodyParser = require('body-parser');
 module.exports = () => {
     var app = express();
 
-    app.use(express.static(__dirname + "/dist/"));
+    // app.use(express.static(__dirname + "/dist/"));
 
-    app.get('*', function(req, res){
-        res.sendFile(__dirname + "../../bestlocation/dist/index.html")
-    })
+
 
     app.use(function (req, res, next) {
 
