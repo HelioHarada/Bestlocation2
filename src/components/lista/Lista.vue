@@ -35,10 +35,10 @@ export default {
   },
 
   created() {
-    console.log(this.$http.get('http://bestlocation.com.br/api/users'))
+
     let promise = this.$http.get('http://bestlocation.com.br/api/imoveis');
     promise .then(function(res) {
-      console.log(res.body)
+      console.log(res)
          this.imoveis = res.body;
     });
   }

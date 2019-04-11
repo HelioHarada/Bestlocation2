@@ -49,7 +49,7 @@ export default {
     methods:{
     
         getImoveis(){
-            let promise = this.$http.get('http://localhost:8080/api/imoveis');
+            let promise = this.$http.get('http://bestlocation.com.br/api/imoveis');
             promise .then(function(res) {
                 console.log(res.body);
                 this.imoveis = res.body
@@ -59,7 +59,7 @@ export default {
         deletarImovel(id){
 
             // console.log(id)
-            let promise = this.$http.delete('http://localhost:8080/api/imoveis/'+id);
+            let promise = this.$http.delete('http://bestlocation.com.br/api/imoveis/'+id);
 
             promise.then(function(res){
                location.reload(); 
