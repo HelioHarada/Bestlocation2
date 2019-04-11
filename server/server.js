@@ -10,7 +10,7 @@ require('dotenv').config()
 
     
 app.get(/.*/, function(req, res){
-    res.sendfile(__dirname + "/bestlocation/index.html")
+    res.sendfile(__dirname + "../index.html")
 })
 
 app.use(serveStatic(path.join(__dirname, 'dist')))
