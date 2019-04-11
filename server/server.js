@@ -13,7 +13,12 @@ app.get(/.*/, function(req, res){
     res.sendfile(__dirname + "/dist/index.html")
 })
 
-app.use(serveStatic(path.join(__dirname, 'dist')))
+app.use(serveStatic(path.join(__dirname, 'bestlocation')))
+
+// app.get('*', function (req, res) {
+//     const index = path.join(__dirname, 'build', 'index.html');
+//     res.sendFile(index);
+//   });
  
 
 // passa a porta definida no Express e levantamento do servidor
