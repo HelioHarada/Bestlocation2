@@ -8,12 +8,11 @@ require('./config/database');
 require('dotenv').config()
 
 
-    
 // app.get('*', function(req, res){
 //     res.sendFile(__dirname + "../../bestlocation/dist/index.html")
 // })
-
-app.use(serveStatic(path.join(__dirname, 'dist')))
+app.use(serveStatic(__dirname + "/dist"));
+// app.use(serveStatic(path.join(__dirname, 'dist')))
 
 // app.get('*', function (req, res) {
 //     const index = path.join(__dirname, '../../bestlocation', 'index.html');

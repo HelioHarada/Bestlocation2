@@ -17,7 +17,7 @@
       </li>
       <li class="nav-item">
         
-        <a class="nav-link" href="/lista">Lista de Imóveis</a>
+        <a class="nav-link" href="/lista">Catálogo de imóveis</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
