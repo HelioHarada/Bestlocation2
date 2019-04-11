@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BestLocation</title>
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link rel="icon" type="image/png" href="/src/png/Fav.png" /> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+ 
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+
+
+    <!-- font awsome icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script  src="https://code.jquery.com/jquery-2.2.4.min.js"  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.js"></script>
+   
+    <!-- <script src="main.js"></script> -->
+
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+ <style>
+ #loadPage{
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    margin-top: 0px;
+    top: 0px;
+}
+
+/*  Media query loadingPage */
+
+#loading-center-absolute {
+ 
+ margin-top: 30px;
+ display: flex;
+ flex-direction: column;
+ justify-content:center;
+ align-items:center;
+}
+@media screen and (max-width: 990px){
+
+    #loading-center-absolute {
+        margin-top: 100px;
+
+    }
+    .img-logo-loader{
+        z-index: 1000;
+        height: 250px;
+        width: 500px;
+    }
+}
+
+.img-logo-loader{
+    z-index: 1000;
+    height: 125px;
+    width: 250px;
+}
+
+.img-loader{
+    margin-top: -50px;
+    height: 300px;
+    width: 400px;
+
+}
+
+/* Fim loading Page */
+
+ </style>
+  </head>
+  <body>
+
+      <!-- LoaderPage -->
+  <script>
+      $(window).load(function (){
+        console.log("load");
+        $('#loadPage').delay(1000).fadeOut( "slow" );
+      })    
+  
+      $( document ).ready(function() {
+        setTimeout(function(){
+          $('#loadPage').delay(500).fadeOut( "slow" );
+          }, 2000);
+      });
+    </script>
+  
+      <div id="loadPage">
+        <div id="loading-center-absolute">
+          <img class="img-logo-loader" src="/src/img/BestLocation-logo.jpg" alt="">
+          <img class="img-loader" src="/src/img/loader_new.gif" alt="">
+        </div>
+      </div>
+      
+      <router-view></router-view>
+    <div id="header"></div>
+    <div id="index"></div>
+    <div id="footer"></div>
+
+    <script src="/dist/build.js"></script>
+
+  </body>
+</html>

@@ -9,9 +9,9 @@ require('dotenv').config()
 
 
     
-// app.get(/.*/, function(req, res){
-//     res.sendfile(__dirname + "bestlocation")
-// })
+app.get(/.*/, function(req, res){
+    res.sendfile(__dirname + "dist")
+})
 
 app.use(serveStatic(path.join(__dirname, 'dist')))
 
