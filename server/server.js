@@ -12,7 +12,9 @@ require('dotenv').config()
 // app.get(/.*/, function(req, res){
 //     res.sendfile(__dirname + "../index.html")
 // })
-
+app.get('/', function(req, res){
+    res.redirect('/bestlocation');
+ });
 app.use(serveStatic(path.join(__dirname, 'dist')))
 
 // app.get('*', function (req, res) {
