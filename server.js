@@ -1,9 +1,9 @@
 
 // importa configuração do Express e do banco de dados
-const app = require('./config/express')();
+const app = require('./server/config/express')();
 var path = require('path')
 var serveStatic = require('serve-static')
-require('./config/database');
+require('./server/config/database');
 
 require('dotenv').config()
 
