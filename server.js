@@ -7,7 +7,7 @@ require('./server/config/database');
 
 require('dotenv').config()
 
-app.use(serveStatic(__dirname + "/dist"));
+app.use(serveStatic(__dirname + "/bestlocation"));
 
 app.get('*', function(req, res){
     const index = path.join(__dirname, 'index.html');
