@@ -8,7 +8,7 @@ module.exports = () => {
     var app = express();
 
     // app.use(express.static(__dirname + "/dist/"));
-
+    app.use(express.static('bestlocation'));
 
 
     app.use(function (req, res, next) {
