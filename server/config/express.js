@@ -11,6 +11,7 @@ module.exports = () => {
     app.use(express.static('bestlocation'));
 
 
+    
     app.use(function (req, res, next) {
 
         // Website you wish to allow to connect
