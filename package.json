@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "postinstall": "npm run build",
-    "start": "npm run dev",
+    "start": "npm run build",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
