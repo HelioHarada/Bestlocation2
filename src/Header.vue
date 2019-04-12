@@ -1,5 +1,5 @@
 <template>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav id="header" class="navbar navbar-expand-lg navbar-dark bg-dark ">
         
   <!-- Logo -->
   <a class="navbar-brand" href="/#/">
@@ -44,12 +44,37 @@
 </template>
 
 <script>
+  // tamanho da tela do usuáro 
+  var width = $( window ).width();
+  // Verificar resize
+  $(window).resize(checkWidth);
+
+  function checkWidth(){
+
+    width = $( window ).width();
+
+      if(width <= 975){
+        console.log("mobile")
+        setTimeout(function(){
+              $('#header').addClass("fixed-bottom");
+        }, 1000);
+      }
+      if(width > 975){
+        (console.log("desktop"))
+        setTimeout(function(){
+              $('#header').removeClass("fixed-bottom");
+        }, 1000);
+      }
+  }
 export default {
     
 }
+
+
 </script>
 
 <style>
+
 
 /* Bootstrap */
 #loading-center-absolute {
@@ -69,7 +94,6 @@ export default {
 
 .nav-bl{
     justify-content: flex-end;
-
 }
 
 .ml-auto .dropdown-menu {
