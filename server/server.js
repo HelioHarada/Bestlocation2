@@ -7,10 +7,11 @@ require('./config/database');
 
 require('dotenv').config()
 
+app.use(express.static('bestlocation'));
 
-app.get('*', function(req, res){
-    res.sendFile('index.html', {root : path.resolve(__dirname + "../../../")})
-})
+// app.get('*', function(req, res){
+//     res.sendFile('index.html', {root : path.resolve(__dirname + "../../../")})
+// })
 // app.use('/',serveStatic(path.join(__dirname + "/dist")));
 
 // app.get('*', function(req, res){
