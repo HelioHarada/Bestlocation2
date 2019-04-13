@@ -208,7 +208,7 @@ export default {
       console.log(this.cidade);
       console.log(cidade);
       console.log(endereco.localidade);
-      let promise = this.$http.post("http://bestlocation.com.br/api/imoveis", {
+      let promise = this.$http.post("https://bestlocation.com.br/api/imoveis", {
         titulo: this.titulo,
         status: this.status,
         endereco: this.rua,
