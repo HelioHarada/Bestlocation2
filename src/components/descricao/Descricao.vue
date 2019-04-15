@@ -1,7 +1,8 @@
 <template>
   <div class="row container-fluid card-left">
     <div class="col-md-6 ">
-       <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
+      <slide></slide>
+       <!-- <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap"> -->
     </div>
     <div class="col-md-6">
       <div class="card-body card-imovel">
@@ -33,7 +34,11 @@
 <script>
 
 import routes from '../../routes'
+import Slider from '../shared/slider/Slider.vue'
 export default {
+      components: {
+        'slide' : Slider
+    },
   data(){
     return{
       id : '',
