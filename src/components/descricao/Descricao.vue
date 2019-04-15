@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-6">
       <div class="card-body card-imovel">
-            <h4 class="card-title" > R${{imovel.preco}}</h4>
+            <h2 class="card-title" > R${{imovel.preco}}</h2>
             <h6 class="card-title" >{{imovel.status}} : {{imovel.titulo}}</h6>
             <p class="card-text">Descrição: {{imovel.descricao}} </p>
             <p class="card-text">
@@ -16,11 +16,19 @@
             <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
             <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.bairro}},
                 {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
+                <button class="btn button-plus" data-toggle="tooltip" title="Favoritos" ><i class="far fa-heart"></i></button>
+                <button class="btn button-plus" data-toggle="tooltip" title="Compartilhar" ><i class="fas fa-share-alt"></i></button>
                 <button class="btn button-plus btn-contato">Contato</button>
+             
       </div>
+      
     </div>
-
+    <div align="center" class="maps">
+      <h3>Maps</h3>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14772.848850018188!2d-49.967845!3d-22.2320257!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18636cf8fd387b35!2sUNIVEM!5e0!3m2!1spt-BR!2sbr!4v1555356629592!5m2!1spt-BR!2sbr" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
   </div>
+  
 </template>
 <script>
 
@@ -62,9 +70,19 @@ export default {
   border: 1px solid #ccc;
 
 }
+.card-body {
+  margin-top: 10px;
+}
 
 .btn-contato{
+  margin-top: 100px;
   width: 100%;
   height: 50px;
+}
+
+.maps{
+  margin-top: 30px;
+  margin-left: 20px;
+  width: 100%;
 }
 </style>
