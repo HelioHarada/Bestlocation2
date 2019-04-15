@@ -17,7 +17,8 @@
           <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.bairro}},
               {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
           <!-- <p class="card-text">id: {{imovel._id}}</p> --> 
-          <a class="btn button-plus" @click="getId(imovel._id)"  data-toggle="modal" data-target="#desc-modal" >Mais+</a>
+          <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
+          <!-- <a class="btn button-plus" @click="getId(imovel._id)" :meu_id="imovel._id"  data-toggle="modal" data-target="#desc-modal" >Mais+</a> -->
           </div>
       </div>
     </div>
@@ -26,11 +27,14 @@
 </template>
 
 <script>
+
+import EventBus from '../../eventBus'
 export default {
 
   data(){
         return{
             imoveis: [],
+            id: ''
         }
   },
 
@@ -53,8 +57,9 @@ export default {
   methods:{
     getId(id){
       console.log(id)
-      this.$emit("chamou");
+          EventBus.$emit('DATA_PUBLISHED', id)
     }
+    
   }
 
 }
