@@ -39,27 +39,13 @@ export default {
 
   created() {
 
-
     let promise = this.$http.get('https://bestlocation.com.br/api/imoveis');
     promise .then(function(res) {
       // console.log(res)
          this.imoveis = res.body;
     });
 
-    // let test = this.$http.get('https://bestlocation.com.br/api/imoveis/5caf7ae75216d200176dc0ba');
-    //     test .then(function(res) {
-    //   console.log(res)
-    //      this.imoveis = res.body;
-    // });
-
   },
-  methods:{
-    getId(id){
-      console.log(id)
-          EventBus.$emit('DATA_PUBLISHED', id)
-    }
-    
-  }
 
 }
 </script>

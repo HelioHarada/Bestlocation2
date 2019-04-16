@@ -14,23 +14,6 @@ app.get('*', function(req, res){
     console.log(index);
     res.sendFile(index)
 })
-// app.use('/',serveStatic(path.join(__dirname + "/dist")));
-
-// app.get('*', function(req, res){
-//     res.sendFile(__dirname + "/dist/index.html")
-// })
-// app.use(serveStatic(path.join(__dirname, 'dist')))
-
-// app.get('*', function (req, res) {
-//     const index = path.join(__dirname, '../../bestlocation', 'index.html');
-//     res.sendFile(index);
-//   });
-
-// app.get('*', function (req, res) {
-//     const index = path.join(__dirname, 'build', 'index.html');
-//     res.sendFile(index);
-//   });
- 
 
 // passa a porta definida no Express e levantamento do servidor
 app.listen(app.get('port'), () => {

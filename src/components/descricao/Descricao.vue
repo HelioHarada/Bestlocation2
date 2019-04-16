@@ -1,7 +1,8 @@
 <template>
   <div class="row container-fluid card-left">
+    <contato-modal :imovel="imovel"></contato-modal>
     <div class="col-md-6 ">
-      <slide></slide>
+      <slide ></slide>
        <!-- <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap"> -->
     </div>
     <div class="col-md-6">
@@ -19,7 +20,8 @@
                 {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
                 <button class="btn button-plus" data-toggle="tooltip" title="Favoritos" ><i class="far fa-heart"></i></button>
                 <button class="btn button-plus" data-toggle="tooltip" title="Compartilhar" ><i class="fas fa-share-alt"></i></button>
-                <button class="btn button-plus btn-contato">Contato</button>
+                <button class="btn button-plus btn-contato" data-toggle="modal" data-target="#contato-modal" >Contato</button>
+                           
              
       </div>
       
@@ -35,9 +37,12 @@
 
 import routes from '../../routes'
 import Slider from '../shared/slider/Slider.vue'
+import Contato from '../shared/contato/Contato.vue'
+
 export default {
       components: {
-        'slide' : Slider
+        'slide' : Slider,
+        'contato-modal' : Contato
     },
   data(){
     return{
