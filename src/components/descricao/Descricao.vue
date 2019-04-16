@@ -58,7 +58,7 @@ export default {
     },
 
     getImovel: function(){
-        let promise = this.$http.get('https://bestlocation.com.br/api/imoveis/'+this.id);
+        let promise = this.$http.get('http://bestlocation.com.br/api/imoveis/'+this.id);
         promise .then(function(res) {
           console.log(res)
             this.imovel = res.body;
