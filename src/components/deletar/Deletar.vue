@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="container-fluid ">
       <form ref="form" >
         <h2 align="center">Deletar Ímovel</h2>
           <div class="form-group">
@@ -8,7 +8,8 @@
           <button class="btn button-delete"  @click.prevent="deletar()">Delete</button>
       </form>
       <hr>
-      <table class="table">
+    <div class="table-responsive">
+      <table class="table table-hover table-striped table-dark">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -34,6 +35,7 @@
     
       </tbody>
     </table>
+    </div>
   </div>
 </template>
 

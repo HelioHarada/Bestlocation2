@@ -1,7 +1,7 @@
 <template>
 <div class="container-fluid">
- <div class="row " >
- <table class="table">
+ <div class="table-responsive " >
+ <table class="table table-hover table-striped table-dark">
  <thead>
    <tr>
      <th scope="col">#</th>
