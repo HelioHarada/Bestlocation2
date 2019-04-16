@@ -39,9 +39,9 @@ export default {
 
   created() {
 
-    let promise = this.$http.get('https://bestlocation.com.br/api/imoveis');
+    let promise = this.$http.get('http://bestlocation.com.br/api/imoveis');
     promise .then(function(res) {
-      // console.log(res)
+      console.log(res)
          this.imoveis = res.body;
     });
 
