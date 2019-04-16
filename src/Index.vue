@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="index">
         <router-view></router-view>
         
         <input-busca></input-busca>
@@ -20,6 +20,8 @@ export default {
 </script>
 
 <style>
-
+.index{
+      margin-bottom: 65px;
+}
 </style>
 

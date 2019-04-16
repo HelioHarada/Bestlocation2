@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <form ref="form" @submit.prevent="handleSubmit">
       <!-- <div class="alert alert-danger" id ="message-errors" role="alert"  v-if="errors.length" >
       <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
