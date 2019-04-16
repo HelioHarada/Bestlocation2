@@ -58,7 +58,12 @@
       if(width <= 975){
         console.log("mobile")
         setTimeout(function(){
-              $('#header').addClass("fixed-bottom");
+              // $('#header')
+              // .css({
+              //   'display':  'flex',
+              // 'align-items:' : 'flex-end'
+              // })
+              // .addClass("fixed-bottom");
         }, 1000);
       }
       if(width > 975){
