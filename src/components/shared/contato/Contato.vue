@@ -79,6 +79,17 @@ export default {
 
 
 <style>
+@media screen and (max-width: 990px){
+    .contato-dialog{
+        width: auto;
+    }
+
+    .modal-contato{
+        position: relative;
+        width: auto!important;
+    }
+}
+
 .contato-dialog{
   max-width: 600px;
 }
