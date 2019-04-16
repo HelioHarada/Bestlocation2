@@ -7,8 +7,8 @@ import Deletar from './components/deletar/Deletar.vue'
 import Descricao from './components/descricao/Descricao.vue'
 
 export const routes  = [
-    {path: '', component : Home},
-    {path : '/lista', component: Lista },
+    {path: '', name:'home' ,component : Home},
+    {path : '/lista', name:'lista' ,component: Lista },
     {path : '/cadastrar', component : Cadastrar},
     {path : '/Usuario', component : Usuario},
     {path : '/Deletar', component : Deletar},

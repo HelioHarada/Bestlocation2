@@ -13,11 +13,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto navbar-right">
       <li class="nav-item">
-        <a class="nav-link" href="/#/">Home <span class="sr-only">(current)</span></a>
+         <router-link class="router" :to="{ name: 'home'}">  <a class="nav-link" href="/#/">Home <span class="sr-only">(current)</span></a></router-link>
+      
       </li>
       <li class="nav-item">
         
-        <a class="nav-link" href="/lista">Catálogo de imóveis</a>
+        
+        <router-link class="router" :to="{ name: 'lista'}"><a class="nav-link" >Catálogo de imóveis</a></router-link>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -112,6 +114,9 @@ export default {
     font-size: 82px;
     text-shadow: 2px 2px 2px #ccc;
     margin: 100px 0px 0px 140px;
+}
+.router:hover{
+  text-decoration: none;
 }
 </style>
 
