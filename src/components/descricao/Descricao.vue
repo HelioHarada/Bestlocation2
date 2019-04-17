@@ -18,8 +18,8 @@
             <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
             <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.bairro}},
                 {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
-                <button class="btn button-plus" data-toggle="tooltip" title="Favoritos" ><i class="far fa-heart"></i></button>
-                <button class="btn button-plus" @click="shareface()"  data-toggle="tooltip" title="Compartilhar" ><i class="fas fa-share-alt"></i></button>
+                <button class="btn button-plus btn-icon" data-toggle="tooltip" title="Favoritos" ><i class="far fa-heart"></i></button>
+                <button class="btn button-plus btn-icon" @click="shareface()"  data-toggle="tooltip" title="Compartilhar" ><i class="fab fa-facebook-f"></i></button>
                 <button class="btn button-plus btn-contato" data-toggle="modal" data-target="#contato-modal" >Contato</button>
                            
              
@@ -87,6 +87,10 @@ export default {
 }
 .card-body {
   margin-top: 10px;
+}
+
+.btn-icon{
+  width: 40px;
 }
 
 .btn-contato{
