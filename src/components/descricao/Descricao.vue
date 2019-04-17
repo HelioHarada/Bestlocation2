@@ -19,7 +19,7 @@
             <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.bairro}},
                 {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
                 <button class="btn button-plus" data-toggle="tooltip" title="Favoritos" ><i class="far fa-heart"></i></button>
-                <button class="btn button-plus" data-toggle="tooltip" title="Compartilhar" ><i class="fas fa-share-alt"></i></button>
+                <button class="btn button-plus" @click="shareface()"  data-toggle="tooltip" title="Compartilhar" ><i class="fas fa-share-alt"></i></button>
                 <button class="btn button-plus btn-contato" data-toggle="modal" data-target="#contato-modal" >Contato</button>
                            
              
@@ -58,11 +58,17 @@ export default {
     },
 
     getImovel: function(){
+      
         let promise = this.$http.get('http://bestlocation.com.br/api/imoveis/'+this.id);
         promise .then(function(res) {
           console.log(res)
             this.imovel = res.body;
         });
+    },
+    shareface: function(){
+        var url = window.location.host+window.location.pathname
+        console.log(url)
+        window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'_blank');
     }
 
   },

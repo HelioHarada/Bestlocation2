@@ -41,7 +41,7 @@
                </textarea>
              </div>
            
-             <button type="submit" class="btn button-grey">Enviar</button>
+             <button type="submit"  class="btn button-grey">Enviar</button>
            </form>
 
          </div>
@@ -71,6 +71,12 @@ export default {
 
 
    props: ['imovel'],
+
+   methods:{
+      send: function(){
+          this.load('mail.js');
+      }
+   }
 
 
 }
