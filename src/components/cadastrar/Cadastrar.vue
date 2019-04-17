@@ -1,12 +1,12 @@
 <template>
   <div class="container-fluid">
     <form ref="form" @submit.prevent="handleSubmit">
-      <!-- <div class="alert alert-danger" id ="message-errors" role="alert"  v-if="errors.length" >
+    <div class="alert alert-danger" id ="message-errors" role="alert"  v-if="errors.length" >
       <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
       <ul>
-        <li v-for="error in errors">{{ error }}</li>
+        <li v-for="(error , index ) in errors" :key="index">{{ error }}</li>
       </ul>
-      </div>-->
+   </div>
 
       <h2 align="center">Cadastrar Ímovel</h2>
 
@@ -131,10 +131,6 @@
         ></money>
       </div>
 
-      <!--      <div class="form-group">
-        <input type="file" class="form-control input-grey"  placeholder="descrição do Imovel">
-      </div>
-      -->
       <button type="submit" class="btn button-grey">Cadastrar</button>
       <br>
       <br>
@@ -205,39 +201,61 @@ export default {
       }
     },
     handleSubmit() {
-      console.log(this.cidade);
-      console.log(cidade);
-      console.log(endereco.localidade);
-      let promise = this.$http.post("http://bestlocation.com.br/api/imoveis", {
-        titulo: this.titulo,
-        status: this.status,
-        endereco: this.rua,
-        cidade: this.cidade,
-        bairro: this.bairro,
-        uf: this.uf,
-        descricao: this.descricao,
-        numBanheiros: this.numBanheiros,
-        numQuartos: this.numQuartos,
-        preco: this.preco,
-        area: this.area,
-        cep: this.cep
-      });
-      promise.then(function(res) {
-        console.log(res);
-        alert("criado com sucesso");
-        this.titulo = "";
-        this.status = "";
-        this.endereco = "";
-        this.cidade = "";
-        this.uf = "";
-        this.bairro = "";
-        this.descricao = "";
-        this.numBanheiros = "";
-        this.numQuartos = "";
-        this.preco = "";
-        this.cep = "";
-        this.area = "";
-      });
+      this.errors = [];
+
+      if (!this.titulo) {
+        this.errors.push('O titulo é obrigatório.');
+      }
+
+      if (!this.endereco) {
+        this.errors.push('O endereco é obrigatório.');
+      }
+
+      if (!this.descricao) {
+        this.errors.push('O descricao é obrigatório.');
+      }
+      if (!this.cidade) {
+        this.errors.push('A cidade é obrigatório.');
+      }
+      if (!this.preco) {
+        this.errors.push('O preco é obrigatório.');
+      }
+      if (!this.errors.length)
+      {
+          let promise = this.$http.post("http://bestlocation.com.br/api/imoveis", {
+            titulo: this.titulo,
+            status: this.status,
+            endereco: this.rua,
+            cidade: this.cidade,
+            bairro: this.bairro,
+            uf: this.uf,
+            descricao: this.descricao,
+            numBanheiros: this.numBanheiros,
+            numQuartos: this.numQuartos,
+            preco: this.preco,
+            area: this.area,
+            cep: this.cep
+          });
+          promise.then(function(res) {
+            console.log(res);
+            alert("criado com sucesso");
+            this.titulo = "";
+            this.status = "";
+            this.endereco = "";
+            this.cidade = "";
+            this.uf = "";
+            this.bairro = "";
+            this.descricao = "";
+            this.numBanheiros = "";
+            this.numQuartos = "";
+            this.preco = "";
+            this.cep = "";
+            this.area = "";
+          });
+      }else{
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+      }
+
     }
   }
 };

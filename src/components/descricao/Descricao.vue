@@ -67,7 +67,6 @@ export default {
     },
     shareface: function(){
         var url = window.location.host+window.location.pathname
-        console.log(url)
         window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'_blank');
     }
 
