@@ -1,11 +1,19 @@
 
 // importa configuração do Express e do banco de dados
 const app = require('./server/config/express')();
-var path = require('path')
-var serveStatic = require('serve-static')
+var path = require('path');
+var serveStatic = require('serve-static');
+
 require('./server/config/database');
 
-require('dotenv').config()
+//require('dotenv').config();
+  app.use((req, res, next) => {
+    if (req.session.user) {
+      next();
+    } else {
+      res.status(401).send('Authrization failed! Please login');
+    }
+  });
 
 app.use(serveStatic(__dirname));
 

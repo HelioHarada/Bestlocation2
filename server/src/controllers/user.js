@@ -103,47 +103,71 @@ userController.deleteUser = (req, res) => {
     modelUser.findByIdAndRemove(req.params.user_id, (err, user) => {
         if (err) return res.status(500).send(err);
 
-            const response = {
-                message : "Usuário removido com sucesso",
-                id: user.id
-            };
-            return res.status(200).send(response);
+        const response = {
+            message: "Usuário removido com sucesso",
+            id: user.id
+        };
+        return res.status(200).send(response);
     });
 }
 
 // UPDATE
- userController.updateUser = (req, res) => {
-     const id = req.params.user_id;
+userController.updateUser = (req, res) => {
+    const id = req.params.user_id;
 
-     modelUser.findById(id, (err, user) => {
-     if(err) {
-         res.status(500).json({
-             message: "Erro ao encontrar o usuário: ID incorreto"
-         });
-     }
-     else if (user == null) {
-         res.status(400).json({
-             message: "Usuário não encontrado"
-         });
-     }
-     else {
-         user.titulo = req.body.username;
-         user.password = req.body.password;
-         user.email = req.body.email;
-         user.isAdmin = req.body.isAdmin;
+    modelUser.findById(id, (err, user) => {
+        if (err) {
+            res.status(500).json({
+                message: "Erro ao encontrar o usuário: ID incorreto"
+            });
+        }
+        else if (user == null) {
+            res.status(400).json({
+                message: "Usuário não encontrado"
+            });
+        }
+        else {
+            user.titulo = req.body.username;
+            user.password = req.body.password;
+            user.email = req.body.email;
+            user.isAdmin = req.body.isAdmin;
 
-         user.save(function (error) {
-             if (error)
-                 res.send("Erro ao atualizar o usuário: " + error);
+            user.save(function (error) {
+                if (error)
+                    res.send("Erro ao atualizar o usuário: " + error);
 
-             res.status(200).json({
-                 message: "Usuário atualizado com sucesso"
-             });
-         });
-     }
- });
- }
+                res.status(200).json({
+                    message: "Usuário atualizado com sucesso"
+                });
+            });
+        }
+    });
+}
 
+// LOGIN
+userController.loginUser = (req, res) => {
+    let {email, password} = req.body;
+    modelUser.findOne({email: email}, 'username email password', (err, userData) => {
+    	if (!err) {
+        	let passwordCheck = bcrypt.compareSync(password, userData.password);
+        	if (passwordCheck) { // usando o bcrypt para verificar o hash da senha do banco de dados em relação à senha fornecida pelo usuário
+                req.session.user = {
+                  email: userData.email,
+                  username: userData.username,
+                  id: userData._id
+                }; // salvando os dados de alguns usuários na sessão do usuário
+                req.session.user.expires = new Date(
+                  Date.now() + 3 * 24 * 3600 * 1000 // seção expira em 3 dias
+                );
+                res.status(200).send('Você está logado, bem vindo!');
+            } else {
+            	res.status(401).send('Senha incorreta');
+            }
+        } else {
+        	res.status(401).send('Credenciais de login inválidas!')
+        }
+    });
+}
 
 // exporta o módulo
 module.exports = userController;

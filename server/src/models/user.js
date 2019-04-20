@@ -5,24 +5,52 @@ var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // objeto instância do Schema
-const UserSchema = new Schema({
+let UserSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        unique: true,
+        lowercase: true
     },
     isAdmin: {
         type: Boolean,
         default: false
+    },
+    passResetKey: String,
+    passKeyExpires: Number,
+    createdAt: {
+        type: Date,
+        required: false
+    },
+    updateAt: {
+        type: Number,
+        required: false
     }
-});
+// 'runSettersOnQuery' is used to implement the specifications in our model schema such as the 'trim' option.
+}, {runSttersOnQuery: true} );
+
+UserSchema.pre('save', function (next) {
+    this.email = this
+      .email
+      .toLowerCase(); // ensure email are in lowercase
+  
+    var currentDate = new Date().getTime();
+    this.updatedAt = currentDate;
+    if (!this.created_at) {
+      this.createdAt = currentDate;
+    }
+    next();
+  })
 
 // registrando model utilizando objeto criado
 mongoose.model('User', UserSchema);

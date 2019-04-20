@@ -48,7 +48,7 @@
                <input type="password" class="form-control input-grey" id="exampleInputPassword2" placeholder="Senha">
              </div>
            
-             <button type="submit" class="btn button-grey">Entrar</button>
+             <button  @click.prevent="logar()" class="btn button-grey">Entrar</button>
            </form>
 
          </div>
@@ -138,7 +138,7 @@ export default {
 
       if (this.password != this.password2) {
         this.errors.push('senha não correspodem')
-        console.log("erro password")
+        console.log("Erro password")
       }
 
       if (!this.errors.length) {
@@ -167,6 +167,18 @@ export default {
         // Post
 
       }
+      },
+      logar() {
+
+        let promise = this.$http.post('http://localhost:8080/api/users/login',{
+          email: this.email,
+          password: this.password
+         })
+         promise.then(function(res) {
+           console.log(res);
+            this.email = ""
+            this.password = ""
+      })
       }
     }
 }
