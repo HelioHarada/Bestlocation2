@@ -7,12 +7,12 @@ var serveStatic = require('serve-static');
 require('./server/config/database');
 
 //require('dotenv').config();
-  app.use((req, res, next) => {
-    if (req.session.user) {
-      next();
-    } 
-    }
-  );
+// app.use((req, res, next) => {
+//     if (req.session.user) {
+//       next();
+//     } 
+//     }
+//   );
 
 app.use(serveStatic(__dirname));
 
