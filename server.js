@@ -10,10 +10,9 @@ require('./server/config/database');
   app.use((req, res, next) => {
     if (req.session.user) {
       next();
-    } else {
-      res.status(401).send('Authrization failed! Please login');
+    } 
     }
-  });
+  );
 
 app.use(serveStatic(__dirname));
 
