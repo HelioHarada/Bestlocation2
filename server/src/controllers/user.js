@@ -158,7 +158,7 @@ userController.loginUser = (req, res) => {
                 }; // salvando os dados de alguns usuários na sessão do usuário
                 req.session.user.expires = new Date(
                   Date.now() + 3 * 24 * 3600 * 1000 // seção expira em 3 dias
-                );
+                );            
                 res.status(200).send('Você está logado, bem vindo!');
             } else {
             	res.status(401).send('Senha incorreta');

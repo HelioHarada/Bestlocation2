@@ -137,13 +137,13 @@ export default {
       }
 
       if (this.password != this.password2) {
-        this.errors.push('senha não correspodem')
+        this.errors.push('Senha não correspodem')
         console.log("Erro password")
       }
 
       if (!this.errors.length) {
 
-         let promise = this.$http.post('http://localhost:8080/api/users',{
+         let promise = this.$http.post('http://bestlocation.com.br/api/users',{
           username: this.username,
           email: this.email,
           password: this.password,
@@ -170,13 +170,14 @@ export default {
       },
       logar() {
 
-        let promise = this.$http.post('http://localhost:8080/api/users/login',{
+        let promise = this.$http.post('http://bestlocation.com.br/api/users/login',{
           email: this.email,
           password: this.password
          })
          promise.then(function(res) {
            console.log(res);
-            this.email = ""
+           alert("VOCÊ ESTÁ LOGADO! (O que rima com Falco Viado!)");
+           this.email = ""
             this.password = ""
       })
       }
