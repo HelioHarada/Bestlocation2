@@ -7,6 +7,7 @@ import Deletar from './components/deletar/Deletar.vue'
 import Descricao from './components/descricao/Descricao.vue'
 import Meu_imovel from './components/meu_imovel/Meu_imovel.vue'
 
+
 export const routes  = [
     {path: '', name:'home' ,component : Home},
     {path : '/lista', name:'lista' ,component: Lista },
@@ -17,3 +18,4 @@ export const routes  = [
     {path : '/Descricao/:id', name:'desc',component : Descricao},
     {path : '/Meu_imovel', name:'meu_imovel',component : Meu_imovel},
 ];
+
