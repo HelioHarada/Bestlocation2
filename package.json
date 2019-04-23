@@ -9,7 +9,8 @@
     "postinstall": "npm run build",
     "start": "node server.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "debug": "node --nolazy --inspect-brk=9229 myProgram.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.5",
@@ -17,6 +18,7 @@
     "consign": "^0.1.6",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
     "mongoose": "^5.5.0",
     "nodemailer": "^6.1.0",
     "v-money": "^0.8.1",

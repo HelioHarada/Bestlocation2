@@ -13,4 +13,8 @@ module.exports = (app) => {
         .get(userController.detailsUser)
         .delete(userController.deleteUser)
         .put(userController.updateUser);
+
+    app.route('/api/users/login')
+        .post(userController.loginUser);
+        
 }
