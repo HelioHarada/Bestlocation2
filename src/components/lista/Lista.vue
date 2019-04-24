@@ -43,6 +43,10 @@ export default {
     promise .then(function(res) {
       console.log(res)
          this.imoveis = res.body;
+    },function(){
+      console.log("tentando acessar https")
+      promise = this.$http.get('https://bestlocation.com.br/api/imoveis');
+      promise .then(function(res) { this.imoveis = res.body;});
     });
 
   },
