@@ -2,17 +2,11 @@
 
 > The project of Bestlocation build in Vue
 
-## Build Setup
+## O que é a Bestlocation
 
 ``` bash
-# install dependencies
-npm install
+A bestlocation é uma startup que visa solucionar problemas relacionado a busca e venda de imóveis.
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
+Focada em encontrar o melhor imóvel para o consumidor
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
