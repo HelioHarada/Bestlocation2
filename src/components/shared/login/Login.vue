@@ -39,13 +39,13 @@
             
              <div class="form-group">
               <!-- <label for="exam2pleInputEmail1">Email address</label> -->
-               <input type="email" class="form-control input-grey" id="exampleInputE2mail1" aria-describedby="emailHelp" placeholder="Digite e-mail">
+               <input type="emailLogar" class="form-control input-grey" v-model="emailLogar" id="exampleInputE2mail1" aria-describedby="emailHelp" placeholder="Digite e-mail">
               
              </div>
 
              <div class="form-group">
                <!-- <label for="exampleInputPassword1">Password</label> -->
-               <input type="password" class="form-control input-grey" id="exampleInputPassword2" placeholder="Senha">
+               <input type="passwordLogar" class="form-control input-grey" v-model="passwordLogar" id="exampleInputPassword2" placeholder="Senha">
              </div>
            
              <button  @click.prevent="logar()" class="btn button-grey">Entrar</button>
@@ -114,6 +114,8 @@ export default {
             password: '',
             password2: '',
             isAdmin: 'false',
+            userLogar: '',
+            passwordLogar: ''
         }
     },
     methods:{
@@ -143,7 +145,7 @@ export default {
 
       if (!this.errors.length) {
 
-         let promise = this.$http.post('http://bestlocation.com.br/api/users',{
+         let promise = this.$http.post('http://localhost:8080/api/users',{
           username: this.username,
           email: this.email,
           password: this.password,
@@ -170,15 +172,14 @@ export default {
       },
       logar() {
 
-        let promise = this.$http.post('http://bestlocation.com.br/api/users/login',{
-          email: this.email,
-          password: this.password
+        let promise = this.$http.post('http://localhost:8080/api/users/login',{
+          emailLogar: this.emailLogar,
+          passwordLogar: this.passwordLogar
          })
          promise.then(function(res) {
-           console.log(res);
            alert("VOCÊ ESTÁ LOGADO! (O que rima com Falco Viado!)");
-           this.email = ""
-            this.password = ""
+           this.emailLogar = ""
+            this.passwordLogar = ""
       })
       }
     }

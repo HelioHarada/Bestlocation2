@@ -42,6 +42,13 @@ module.exports = () => {
 
     app.set('port', (process.env.PORT || 8080));
 
+    // app.use((req, res, next) => {
+    //     if (req.session.user) {
+    //       next();
+    //     } else {
+    //       res.status(401).send('Authrization failed! Please login');
+    //     }
+    //   });
 
     app.use(bodyParser.urlencoded({ extended: true }));    // parse application/x-www-form-urlencoded
     app.use(bodyParser.json());     // parse application/json
