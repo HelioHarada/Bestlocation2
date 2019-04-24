@@ -11,10 +11,10 @@ import Meu_imovel from './components/meu_imovel/Meu_imovel.vue'
 export const routes  = [
     {path: '', name:'home' ,component : Home},
     {path : '/lista', name:'lista' ,component: Lista },
-    {path : '/cadastrar', component : Cadastrar},
-    {path : '/Usuario', component : Usuario},
-    {path : '/Deletar', component : Deletar},
-    {path : '/find', component : Find, name : find},
+    {path : '/cadastrar',name:'cadastrar', component : Cadastrar},
+    {path : '/Usuario', name:'usuario', component : Usuario},
+    {path : '/Deletar', name:'deletar', component : Deletar},
+    {path : '/find', name : 'find', component : Find, },
     {path : '/Descricao/:id', name:'desc',component : Descricao},
     {path : '/Meu_imovel', name:'meu_imovel',component : Meu_imovel},
 ];

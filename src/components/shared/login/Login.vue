@@ -114,7 +114,7 @@ export default {
             password: '',
             password2: '',
             isAdmin: 'false',
-            userLogar: '',
+            emailLogar: '',
             passwordLogar: ''
         }
     },
@@ -145,7 +145,7 @@ export default {
 
       if (!this.errors.length) {
 
-         let promise = this.$http.post('http://localhost:8080/api/users',{
+         let promise = this.$http.post('http://bestlocation.com.br/api/users',{
           username: this.username,
           email: this.email,
           password: this.password,
