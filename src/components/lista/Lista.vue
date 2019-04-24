@@ -17,7 +17,7 @@
           <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.bairro}},
               {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
           <!-- <p class="card-text">id: {{imovel._id}}</p> --> 
-          <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
+          <router-link @click.native="closeMenu()" class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
           <!-- <a class="btn button-plus" @click="getId(imovel._id)" :meu_id="imovel._id"  data-toggle="modal" data-target="#desc-modal" >Mais+</a> -->
           </div>
       </div>
@@ -29,6 +29,11 @@
 <script>
 
 export default {
+           methods: {
+            closeMenu() {
+                $('.navbar-collapse').collapse('hide');
+            }
+        },
 
   data(){
         return{
