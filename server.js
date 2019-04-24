@@ -17,13 +17,13 @@ app.get('*', function(req, res){
 })
 
 //require('dotenv').config();
-app.use((req, res, next) => {
-  if (req.session.user) {
-    next();
-  } else {
-    res.status(401).send('Authorization failed! Please login');
-  }
-});
+// app.use((req, res, next) => {
+//   if (req.session.user) {
+//     next();
+//   } else {
+//     res.status(401).send('Authorization failed! Please login');
+//   }
+// });
 
 // passa a porta definida no Express e levantamento do servidor
 app.listen(app.get('port'), () => {

@@ -48,7 +48,7 @@ methods:{
 
     deletarUser(id){
       console.log(id);
-       let promise = this.$http.delete('http://bestlocation.com.br/api/users'+id);
+       let promise = this.$http.delete('http://bestlocation.com.br/api/users/'+id);
 
             promise.then(function(res){
 
