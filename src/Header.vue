@@ -13,13 +13,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto navbar-right">
       <li class="nav-item">
-         <router-link class="router" :to="{ name: 'home'}">  <a class="nav-link" href="/#/">Home <span class="sr-only">(current)</span></a></router-link>
+         <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'home'}">  <a class="nav-link" href="/#/">Home <span class="sr-only">(current)</span></a></router-link>
       
       </li>
       <li class="nav-item">
         
         
-        <router-link class="router" :to="{ name: 'lista'}"><a class="nav-link" >Catálogo de imóveis</a></router-link>
+        <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'lista'}"><a class="nav-link" >Catálogo de imóveis</a></router-link>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -74,7 +74,11 @@
       }
   }
 export default {
-    
+         methods: {
+            closeMenu() {
+                $('.navbar-collapse').collapse('hide');
+            }
+        }
 }
 
 
