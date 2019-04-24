@@ -172,7 +172,7 @@ export default {
       },
       logar() {
 
-        let promise = this.$http.post('http://localhost:8080/api/users/login',{
+        let promise = this.$http.post('http://bestlocation.com.br/api/users/login',{
           emailLogar: this.emailLogar,
           passwordLogar: this.passwordLogar
          })
