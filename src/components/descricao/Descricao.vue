@@ -1,7 +1,7 @@
 <template>
   <div class="row container-fluid card-left">
     <contato-modal :imovel="imovel"></contato-modal>
-    <div class="col-md-6 ">
+    <div class="col-md-6 slide">
       <slide ></slide>
        <!-- <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap"> -->
     </div>
@@ -82,9 +82,22 @@ export default {
 .card-left{
   margin-top: 20px;
   margin-bottom: 200px;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
+}
+
+@media screen and (max-width: 990px){
+    .card-left{
+        width: auto;
+    }
+
+  .slide{
+    padding-right: 0px;
+    padding-left: 0px;
+  }
 
 }
+
+
 .card-body {
   margin-top: 10px;
 }
@@ -94,7 +107,6 @@ export default {
 }
 
 .btn-contato{
-  margin-top: 100px;
   width: 100%;
   height: 50px;
 }

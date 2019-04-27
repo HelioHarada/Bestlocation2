@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid">
+<div class="container-fluid catalago">
   <div class="row content-lista">
     <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
       <div class="card">
@@ -59,4 +59,8 @@ export default {
 }
 </script>
 
-
+<style>
+.catalago{
+  margin-top: 20px;
+}
+</style>
