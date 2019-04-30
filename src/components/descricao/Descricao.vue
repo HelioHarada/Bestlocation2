@@ -1,5 +1,6 @@
 <template>
-  <div class="row container-fluid card-left">
+  <div class="container-fluid card-left">
+    <div class="row">
     <contato-modal :imovel="imovel"></contato-modal>
     <div class="col-md-6 slide">
       <slide ></slide>
@@ -29,6 +30,7 @@
     <div align="center" class="maps">
       <h3>Maps</h3>
       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14772.848850018188!2d-49.967845!3d-22.2320257!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18636cf8fd387b35!2sUNIVEM!5e0!3m2!1spt-BR!2sbr!4v1555356629592!5m2!1spt-BR!2sbr" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
     </div>
   </div>
   
@@ -82,13 +84,11 @@ export default {
 .card-left{
   margin-top: 20px;
   margin-bottom: 200px;
-  /* border: 1px solid #ccc; */
+  border: 1px solid #ccc;
 }
 
 @media screen and (max-width: 990px){
-    .card-left{
-        /* width: auto; */
-    }
+
 
   .slide{
     padding-right: 0px;
