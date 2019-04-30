@@ -87,7 +87,7 @@ export default {
 
 @media screen and (max-width: 990px){
     .card-left{
-        width: auto;
+        /* width: auto; */
     }
 
   .slide{
