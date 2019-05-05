@@ -151,14 +151,14 @@ userController.loginUser = (req, res) => {
     	if (!err) {
         	let passwordCheck = bcrypt.compareSync(password, userData.password);
         	if (passwordCheck) { // usando o bcrypt para verificar o hash da senha do banco de dados em relação à senha fornecida pelo usuário
-                req.session.user = {
-                  email: userData.email,
-                  username: userData.username,
-                  id: userData._id
-                }; // salvando os dados de alguns usuários na sessão do usuário
-                req.session.user.expires = new Date(
-                  Date.now() + 3 * 24 * 3600 * 1000 // seção expira em 3 dias
-                );            
+                 req.session.user = {
+                   email: userData.email,
+                   username: userData.username,
+                   id: userData._id
+                 }; // salvando os dados de alguns usuários na sessão do usuário
+                 req.session.user.expires = new Date(
+                   Date.now() + 3 * 24 * 3600 * 1000 // seção expira em 3 dias
+                 );            
                 res.status(200).send('Você está logado, bem vindo!');
             } else {
             	res.status(401).send('Senha incorreta');
