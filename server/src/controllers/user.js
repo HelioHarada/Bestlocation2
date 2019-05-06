@@ -146,13 +146,13 @@ userController.updateUser = (req, res) => {
 
 // LOGIN
 userController.loginUser = (req, res) => {
-    let {email, password} = req.body;
-    modelUser.findOne({email: email}, 'username email password', (err, userData) => {
+    let {emailLogar, passwordLogar} = req.body;
+    modelUser.findOne({email: emailLogar}, 'email password', (err, userData) => {
     	if (!err) {
-        	let passwordCheck = bcrypt.compareSync(password, userData.password);
+        	let passwordCheck = bcrypt.compareSync(passwordLogar, userData.password);
         	if (passwordCheck) { // usando o bcrypt para verificar o hash da senha do banco de dados em relação à senha fornecida pelo usuário
                  req.session.user = {
-                   email: userData.email,
+                   emailLogar: userData.email,
                    username: userData.username,
                    id: userData._id
                  }; // salvando os dados de alguns usuários na sessão do usuário

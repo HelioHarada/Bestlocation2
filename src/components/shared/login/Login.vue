@@ -35,7 +35,7 @@
 
          <div class="tab-pane fade show active" id="login-tab">
              <!-- Form login -->
-           <form>
+           <form @submit.prevent="logar">
             
              <div class="form-group">
               <!-- <label for="exam2pleInputEmail1">Email address</label> -->
@@ -48,7 +48,7 @@
                <input type="passwordLogar" class="form-control input-grey" v-model="passwordLogar" id="exampleInputPassword2" placeholder="Senha">
              </div>
            
-             <button  @click.prevent="logar()" class="btn button-grey">Entrar</button>
+             <button type="submit" class="btn button-grey">Entrar</button>
            </form>
 
          </div>
@@ -167,17 +167,15 @@ export default {
               return true;
           });
         // Post
-
       }
       },
       logar() {
-
         let promise = this.$http.post('http://bestlocation.com.br/api/users/login',{
           emailLogar: this.emailLogar,
           passwordLogar: this.passwordLogar
          })
          promise.then(function(res) {
-           alert("VOCÊ ESTÁ LOGADO! (O que rima com Falco Viado!)");
+           alert("VOCÊ ESTÁ LOGADO!");
            this.emailLogar = ""
             this.passwordLogar = ""
       })
