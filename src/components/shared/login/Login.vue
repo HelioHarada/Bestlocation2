@@ -128,7 +128,7 @@ export default {
       }
       if(this.username == "love")
       {
-        alert("Patricia Criado você é o amor da minha vida e sempre vou te amar Ass: HaradaHelio")
+        alert("Patricia Criado você é o amor da minha vida e sempre vou te amar Ass: HaradaHelio (Zé do Gado)")
       }
       if (!this.email) {
         this.errors.push('O email é obrigatório.');
