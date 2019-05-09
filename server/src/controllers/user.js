@@ -161,7 +161,10 @@ userController.loginUser = (req, res) => {
                  );            
                 res.status(200).send('Você está logado, bem vindo!');
             } else {
-            	res.status(401).send('Senha incorreta');
+            	res.status(401).json({
+                    success: false,
+                    message: 'Senha incorreta',
+                    statusCode: 401});
             }
         } else {
         	res.status(401).send('Credenciais de login inválidas!')

@@ -158,8 +158,6 @@ export default {
             this.email = ""
             this.password = ""
             this.password2 = ""
-    
-      
 
             alert("Cadastrado com sucesso");
              console.log(res.body);
@@ -174,11 +172,17 @@ export default {
           emailLogar: this.emailLogar,
           passwordLogar: this.passwordLogar
          })
-         promise.then(function(res) {
-           alert("VOCÊ ESTÁ LOGADO!");
+         promise
+         .then(function(res) {
+           alert("VOCÊ ESTÁ LOGADO! (O que rima com Falco Viado!)");
            this.emailLogar = ""
-            this.passwordLogar = ""
-      })
+           this.passwordLogar = ""
+        })
+          .catch(function(err) {
+              console.log(err);
+              // when you throw error this will also fetch error.
+              throw err;
+         })
       }
     }
 }
