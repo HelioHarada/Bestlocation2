@@ -145,7 +145,7 @@ export default {
 
       if (!this.errors.length) {
 
-         let promise = this.$http.post('http://bestlocation.com.br/api/users',{
+         let promise = this.$http.post('http://bestlocation.com.br/api/users/crud',{
           username: this.username,
           email: this.email,
           password: this.password,

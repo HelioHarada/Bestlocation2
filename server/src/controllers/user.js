@@ -146,30 +146,40 @@ userController.updateUser = (req, res) => {
 
 // LOGIN
 userController.loginUser = (req, res) => {
-    let {emailLogar, passwordLogar} = req.body;
-    modelUser.findOne({email: emailLogar}, 'email password', (err, userData) => {
-    	if (!err) {
-        	let passwordCheck = bcrypt.compareSync(passwordLogar, userData.password);
-        	if (passwordCheck) { // usando o bcrypt para verificar o hash da senha do banco de dados em relação à senha fornecida pelo usuário
-                 req.session.user = {
-                   emailLogar: userData.email,
-                   username: userData.username,
-                   id: userData._id
-                 }; // salvando os dados de alguns usuários na sessão do usuário
-                 req.session.user.expires = new Date(
-                   Date.now() + 3 * 24 * 3600 * 1000 // seção expira em 3 dias
-                 );            
+    let { emailLogar, passwordLogar } = req.body;
+    modelUser.findOne({ email: emailLogar }, 'email password', (err, userData) => {
+        if (!err) {
+            let passwordCheck = bcrypt.compareSync(passwordLogar, userData.password);
+            if (passwordCheck) { // usando o bcrypt para verificar o hash da senha do banco de dados em relação à senha fornecida pelo usuário
+                req.session.user = {
+                    emailLogar: userData.email,
+                    username: userData.username,
+                    id: userData._id
+                }; // salvando os dados de alguns usuários na sessão do usuário
+                req.session.user.expires = new Date(
+                    Date.now() + 3 * 24 * 3600 * 1000 // seção expira em 3 dias
+                );
                 res.status(200).send('Você está logado, bem vindo!');
             } else {
-            	res.status(401).json({
+                res.status(401).json({
                     success: false,
                     message: 'Senha incorreta',
-                    statusCode: 401});
+                    statusCode: 401
+                });
             }
         } else {
-        	res.status(401).send('Credenciais de login inválidas!')
+            res.status(401).send('Credenciais de login inválidas!')
         }
     });
+}
+
+// LOGOUT 
+userController.logoutUser = (req, res) => {
+    if (req.session) {
+        delete req.session.user; // qualquer um desses trabalhos
+        req.session.destroy(); // qualquer um desses trabalhos
+        res.status(200).send('Logout successful')
+    }
 }
 
 // exporta o módulo
