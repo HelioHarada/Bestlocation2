@@ -45,7 +45,7 @@
 
              <div class="form-group">
                <!-- <label for="exampleInputPassword1">Password</label> -->
-               <input type="passwordLogar" class="form-control input-grey" v-model="passwordLogar" id="exampleInputPassword2" placeholder="Senha">
+               <input type="password" class="form-control input-grey" v-model="passwordLogar" id="exampleInputPassword2" placeholder="Senha">
              </div>
            
              <button type="submit" class="btn button-grey">Entrar</button>
