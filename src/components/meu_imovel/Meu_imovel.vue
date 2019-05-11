@@ -14,7 +14,7 @@
           <img src="/../src/img/banheiro.png"> {{imovel.numBanheiros}}
           -
           <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
-          <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.bairro}},
+          <p class="card-text">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
               {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
           <!-- <p class="card-text">id: {{imovel._id}}</p> --> 
           <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>

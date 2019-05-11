@@ -8,9 +8,20 @@ const Schema = mongoose.Schema;
 const imovelSchema = new Schema ({
     titulo: {
         type: String,
+        required: true,
         default: ''
     },
     endereco: {
+        type: String,
+        required: true,
+        default: ''
+    },
+    numEndereco: {
+        type: String,
+        required: true,
+        default: ''
+    },
+    complementoEndereco: {
         type: String,
         default: ''
     },

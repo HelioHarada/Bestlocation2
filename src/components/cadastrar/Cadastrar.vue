@@ -54,6 +54,26 @@
         <input
           type="text"
           class="form-control input-grey"
+          id="numEndereco"
+          v-model="numEndereco"
+          placeholder="Número"
+        >
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control input-grey"
+          id="complementoEndereco"
+          v-model="complementoEndereco"
+          placeholder="Complemento"
+        >
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control input-grey"
           id="Bairro"
           v-model="bairro"
           placeholder="Bairro"
@@ -152,6 +172,8 @@ export default {
       titulo: "",
       endereco: {},
       rua: "",
+      numEndereco: "",
+      complementoEndereco: "",
       cidade: "",
       descricao: "",
       numBanheiros: "",
@@ -226,6 +248,8 @@ export default {
             titulo: this.titulo,
             status: this.status,
             endereco: this.rua,
+            numEndereco: this.numEndereco,
+            complementoEndereco: this.complementoEndereco,
             cidade: this.cidade,
             bairro: this.bairro,
             uf: this.uf,
@@ -242,6 +266,8 @@ export default {
             this.titulo = "";
             this.status = "";
             this.endereco = "";
+            this.numEndereco = "";
+            this.complementoEndereco = "";
             this.cidade = "";
             this.uf = "";
             this.bairro = "";

@@ -17,7 +17,7 @@
             <img src="/../src/img/banheiro.png"> {{imovel.numBanheiros}}
             -
             <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
-            <p class="card-text">Endereço: {{imovel.endereco}} - {{imovel.bairro}},
+            <p class="card-text">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
                 {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
                 <button class="btn button-plus btn-icon" data-toggle="tooltip" title="Favoritos" ><i class="far fa-heart"></i></button>
                 <button class="btn button-plus btn-icon" @click="shareface()"  data-toggle="tooltip" title="Compartilhar" ><i class="fab fa-facebook-f"></i></button>
