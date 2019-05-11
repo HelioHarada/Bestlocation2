@@ -6,14 +6,25 @@ const Schema = mongoose.Schema;
 
 // objeto instância do Schema
 let UserSchema = new Schema({
-    username: {
+    firstName: {
         type: String,
         required: true,
         trim: true
     },
-    password: {
+    lastName: {
+        type: String,
+        trim: true
+    },
+    cpf: {
         type: String,
         required: true,
+        unique: true,
+        trim: true
+    },
+    tipo: {
+        type: String,
+        required: true,
+        trim: true
     },
     email: {
         type: String,
@@ -21,6 +32,10 @@ let UserSchema = new Schema({
         trim: true,
         unique: true,
         lowercase: true
+    },
+    password: {
+        type: String,
+        required: true,
     },
     isAdmin: {
         type: Boolean,

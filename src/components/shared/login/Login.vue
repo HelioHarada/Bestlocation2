@@ -54,7 +54,7 @@
          </div>
       
         <!-- ============================= Register =================================== -->
-        <!-- mensagem de erro -->
+        <!-- Mensagem de erro -->
         <div class="alert alert-danger" role="alert"  v-if="errors.length" >
           <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
           <ul>

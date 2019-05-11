@@ -19,18 +19,20 @@ userController.allUsers = (req, res) => {
 // POST
 userController.newUser = (req, res) => {
 
-    if (req.body.username && req.body.password) {
+    if (req.body.cpf && req.body.email && req.body.password) {
         if (req.body.password2 && req.body.password == req.body.password2) {
 
-            modelUser.findOne({ 'username': req.body.username })
+            modelUser.findOne({ $or : [
+                {'cpf': req.body.cpf },
+                {'email': req.body.email }
+            ]})
                 .then(user => {
 
                     if (user) {
                         res.json({
                             success: false,
-                            message: 'Nome de usuário indisponível'
+                            message: 'CPF ou email indisponível'
                         });
-
                     } else {
 
                         // método hash --> senha enviada no corpo da req e número inteiro usado para encriptá-la
@@ -42,9 +44,13 @@ userController.newUser = (req, res) => {
 
                                 // objeto que representa modelo de usuário
                                 let newUser = new modelUser({
-                                    username: req.body.username,
-                                    password: encryptedPassword,
+                                    firstName: req.body.firstName,
+                                    lastName: req.body.lastName,
+                                    cpf: req.body.cpf,
+                                    telefone: req.body.telefone,
+                                    tipo: req.body.tipo,
                                     email: req.body.email,
+                                    password: encryptedPassword,
                                     isAdmin: req.body.isAdmin
                                 });
 
@@ -83,7 +89,7 @@ userController.newUser = (req, res) => {
 
         res.json({
             success: false,
-            message: 'Usuário e Senha são obrigatórios',
+            message: 'CPF, email e senha são obrigatórios',
             statusCode: 400
         });
     }
@@ -127,7 +133,11 @@ userController.updateUser = (req, res) => {
             });
         }
         else {
-            user.titulo = req.body.username;
+            user.firstName = req.body.firstName;
+            user.lastName = req.body.lastName;
+            user.cpf = req.body.cpf;
+            user.telefone = req.body.telefone;
+            user.tipo = req.body.tipo;
             user.password = req.body.password;
             user.email = req.body.email;
             user.isAdmin = req.body.isAdmin;
@@ -153,7 +163,7 @@ userController.loginUser = (req, res) => {
             if (passwordCheck) { // usando o bcrypt para verificar o hash da senha do banco de dados em relação à senha fornecida pelo usuário
                 req.session.user = {
                     emailLogar: userData.email,
-                    username: userData.username,
+                    cpf: userData.cpf,
                     id: userData._id
                 }; // salvando os dados de alguns usuários na sessão do usuário
                 req.session.user.expires = new Date(
