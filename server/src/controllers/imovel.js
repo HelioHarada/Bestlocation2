@@ -107,5 +107,16 @@ imovelController.newImovel = (req, res) => {
         }));
 }
 
+imovelController.searchImovel = (req, res, next) => {
+    var searchParams = req.query.query;
+    modelImovel.find({ cidade: { $regex: '.*'+searchParams+'.*' }}, function (e, docs) {
+        res.json({ 
+            results: true, 
+            search: req.query.query, 
+            list: docs
+        });
+    });
+}
+
 // exporta o módulo
 module.exports = imovelController;

@@ -13,4 +13,7 @@ module.exports = (app) => {
         .get(imovelController.detailsImovel)
         .delete(imovelController.deleteImovel)
         .put(imovelController.updateImovel);
+
+    app.route('/api/searchimovel')
+        .get(imovelController.searchImovel);
 }
