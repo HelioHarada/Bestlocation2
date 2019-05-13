@@ -112,7 +112,8 @@ imovelController.searchImovel = (req, res, next) => {
     modelImovel.find({ cidade: { $regex: '.*'+searchParams+'.*' }}, function (e, docs) {
         res.json({ 
             results: true, 
-            search: req.query.query, 
+            search: req.query.query,
+            searchParams: req.query.query,
             list: docs
         });
     });
