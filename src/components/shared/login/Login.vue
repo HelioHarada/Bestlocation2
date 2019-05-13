@@ -72,9 +72,12 @@
              
             </div>
            
+            <div class="form-group">
+               <input type="number" class="form-control input-grey" v-model="cpf" id="cpf" aria-describedby="emailHelp" placeholder="CPF">
+             </div>
+
              <div class="form-group">
                <input type="email" class="form-control input-grey" v-model="email" id="email" aria-describedby="emailHelp" placeholder="Digite e-mail">
-                
              </div>
              
             <div class="form-group">
@@ -110,6 +113,7 @@ export default {
         return{
             errors: [],
             username: '',
+            cpf: '',
             email: '',
             password: '',
             password2: '',
@@ -128,7 +132,10 @@ export default {
       }
       if(this.username == "love")
       {
-        alert("Patricia Criado você é o amor da minha vida e sempre vou te amar Ass: HaradaHelio (Zé do Gado)")
+        alert("Patricia Criado você é o amor da minha vida e sempre vou te amar Ass: HaradaHelio")
+      }
+      if (!this.cpf) {
+        this.errors.push('O cpf é obrigatório.');
       }
       if (!this.email) {
         this.errors.push('O email é obrigatório.');
@@ -146,8 +153,10 @@ export default {
       if (!this.errors.length) {
 
          let promise = this.$http.post('http://bestlocation.com.br/api/users/crud',{
-          username: this.username,
+          firstName: this.username,
           email: this.email,
+          cpf: this.cpf,
+          tipo: 'comprador',
           password: this.password,
           password2: this.password2,
           isAdmin: this.isAdmin
@@ -156,6 +165,7 @@ export default {
            console.log("foi");
             this.username = ""
             this.email = ""
+              this.cpf = ""
             this.password = ""
             this.password2 = ""
 
@@ -174,7 +184,8 @@ export default {
          })
          promise
          .then(function(res) {
-           alert("VOCÊ ESTÁ LOGADO! (O que rima com Falco Viado!)");
+           alert("Logado com sucesso");
+           console.log(res)
            this.emailLogar = ""
            this.passwordLogar = ""
         })

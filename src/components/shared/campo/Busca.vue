@@ -1,14 +1,31 @@
 <template>
   <form>
   <div class="place-input">
-    <input placeholder="Digite a cidade..." class="input-principal">
-    <button onclick="window.location.href='lista.html'" class="btn-enviar"><i class="fas fa-search icon-serach"></i></button>
+    <input placeholder="Digite a cidade..." class="input-principal" v-model="query">
+    <button @click.prevent="buscar(query)" class="btn-enviar"><i class="fas fa-search icon-serach"></i></button>
+    
   </div>
 </form>
 </template>
 
 <script>
 export default {
+
+    data(){
+        return{
+            query : ""
+        }
+    },
+    methods:{
+    buscar(query){
+        console.log(query)
+        let promise = this.$http.get('http://bestlocation.com.br/api/searchimovel');
+        promise .then(function(res) {
+          console.log(res)
+            this.imovel = res.body;
+        });
+    }
+    }
     
 }
 </script>
