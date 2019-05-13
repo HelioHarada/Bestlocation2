@@ -114,6 +114,7 @@ imovelController.searchImovel = (req, res, next) => {
             results: true, 
             search: req.query.query,
             searchParams: req.query.query,
+            message: 'Docs: ' +docs+ " serach: " +req.query.query ,
             list: docs
         });
     });
