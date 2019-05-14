@@ -38,6 +38,9 @@
     
           </div>
         </li> 
+         <li class="nav-item">
+            <a class="nav-link" href="formchat.html">chat</a>
+        </li>
     </ul>
   </div>
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google-site-verification" content="rPzf4yv2ZzjpE3erFYZMO7U01lUXmWrV6vyoYx5WwoA" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#343a40">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#343a40">
+    <meta name="msapplication-navbutton-color" content="#343a40">
+    <title>BestLocation</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="icon" type="image/png" href="/src/img/Fav.png" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+ 
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+
+    <!-- chat -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/space10-community/conversational-form@0.9.90/dist/conversational-form.min.js" crossorigin></script> -->
+    <script type="text/javascript" src="https://rawgit.com/space10-community/conversational-form/master/dist/conversational-form.min.js" crossorigin></script>
+    <!-- font awsome icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script  src="https://code.jquery.com/jquery-2.2.4.min.js"  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.js"></script>
+   
+<!-- Hotjar Tracking Code for http://bestlocation.com.br/ -->
+
+
+    <!-- <script src="main.js"></script> -->
+
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+ <style>
+
+#form{
+  background-color: red;
+  margin-top: 400px;
+}
+
+ </style>
+  </head>
+  <body>
+
+
+
+      <div class="container-fluid altura">
+          <form id="form" >
+              <label for="name">What's your name?</label>
+              <fieldset>
+                  <label for="name">What's your name?</label>
+                  <input required cf-questions="Hi there! What's your name? 😊" type="text" class="form-control" name="name" id="name" />
+                </fieldset>
+
+          </form>
+          <div id="cf-context" class="dark-theme" role="cf-context" cf-context></div>
+      </div>
+
+
+      <script src="/dist/build.js"></script>
+  </body>
+
+
+
+  <script>
+new cf.ConversationalForm({
+  formEl: document.getElementById("form"),
+  userImage: "https://img.icons8.com/color/420/pikachu-pokemon.png"
+});
+  </script>
+</html>

@@ -19,7 +19,7 @@ export default {
     methods:{
     buscar(query){
         console.log(query)
-        let promise = this.$http.get('http://bestlocation.com.br/api/searchimovel/'+query);
+        let promise = this.$http.get('http://bestlocation.com.br/api/searchimovel/?query='+query);
         promise .then(function(res) {
           console.log(res)
             this.imovel = res.body;

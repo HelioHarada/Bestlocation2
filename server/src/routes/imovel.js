@@ -14,6 +14,6 @@ module.exports = (app) => {
         .delete(imovelController.deleteImovel)
         .put(imovelController.updateImovel);
 
-    app.route('/api/searchimovel/:query')
+    app.route('/api/searchimovel')
         .get(imovelController.searchImovel);
 }
