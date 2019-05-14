@@ -2,13 +2,15 @@
   <form>
   <div class="place-input">
     <input placeholder="Digite a cidade..." class="input-principal" v-model="query">
-    <button @click.prevent="buscar(query)" class="btn-enviar"><i class="fas fa-search icon-serach"></i></button>
-    
+
+    <router-link tag="button"  class="btn-enviar" @click.native="closeMenu()" :to="{ name: 'lista', params: { query: query} }"><i class="fas fa-search icon-serach"></i></router-link>
   </div>
 </form>
 </template>
 
 <script>
+// import routes from '../../routes'
+
 export default {
 
     data(){
@@ -21,10 +23,14 @@ export default {
         console.log(query)
         let promise = this.$http.get('http://bestlocation.com.br/api/searchimovel/?query='+query);
         promise .then(function(res) {
-          console.log(res)
-            this.imovel = res.body;
+          console.log(res.body.list)
+
+  
         });
-    }
+    },
+        closeMenu() {
+                $('.navbar-collapse').collapse('hide');
+            }
     }
     
 }

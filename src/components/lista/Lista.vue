@@ -1,5 +1,8 @@
 <template>
 <div class="container-fluid catalago">
+          <div class="alert alert-danger" role="alert"  v-if="error" >
+          <b>Imóvel não encontrado</b>
+        </div>
   <div class="row content-lista">
     <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
       <div class="card">
@@ -27,6 +30,7 @@
 </template>
 
 <script>
+import routes from '../../routes'
 
 export default {
            methods: {
@@ -38,22 +42,57 @@ export default {
   data(){
         return{
             imoveis: [],
-            id: ''
+            id: '',
+            query: '',
+            error : false
         }
+  },
+  methods:{
+    listaGeral:function(){
+          let promise = this.$http.get('http://bestlocation.com.br/api/imoveis');
+          promise .then(function(res) {
+            console.log(res)
+              this.imoveis = res.body;
+          },function(){
+            console.log("tentando acessar https")
+            promise = this.$http.get('https://bestlocation.com.br/api/imoveis');
+            promise .then(function(res) { this.imoveis = res.body;});
+          });
+    },
+    setQuery: function (){
+    this.query = this.$route.params.query;
+    return this.query 
+    },
+
+      listaQuery:function(){
+    console.log(this.query)
+      let promise = this.$http.get('http://bestlocation.com.br/api/searchimovel/?query='+this.query);
+      promise .then(function(res) {
+        console.log(res)
+          this.imoveis = res.body.list;
+          if(res.body.list == ""){
+            console.log("busca vazia")
+            this.error = true;
+          }
+          
+      },function(){
+        console.log("tentando acessar https")
+        promise = this.$http.get('https://bestlocation.com.br/api/imoveis');
+        promise .then(function(res) { this.imoveis = res.body;});
+      });
+  },
   },
 
   created() {
-
-    let promise = this.$http.get('http://bestlocation.com.br/api/imoveis');
-    promise .then(function(res) {
-      console.log(res)
-         this.imoveis = res.body;
-    },function(){
-      console.log("tentando acessar https")
-      promise = this.$http.get('https://bestlocation.com.br/api/imoveis');
-      promise .then(function(res) { this.imoveis = res.body;});
-    });
-
+     this.setQuery() 
+     if(typeof this.setQuery() == "undefined" || this.setQuery() == ""){
+       this.listaGeral();
+     }else{
+       this.listaQuery();
+     }
+     
+     
+   
   },
 
 }
