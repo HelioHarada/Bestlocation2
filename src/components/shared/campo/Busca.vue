@@ -1,7 +1,7 @@
 <template>
   <form>
   <div class="place-input">
-    <input placeholder="Digite a cidade..." class="input-principal" v-model="query">
+    <input placeholder="Digite a cidade..." autocomplete="off" class="input-principal" id="cidade" v-model="query">
 
     <router-link tag="button"  class="btn-enviar" @click.native="closeMenu()" :to="{ name: 'lista', params: { query: query} }"><i class="fas fa-search icon-serach"></i></router-link>
   </div>
@@ -10,6 +10,8 @@
 
 <script>
 // import routes from '../../routes'
+
+
 
 export default {
 
@@ -30,8 +32,31 @@ export default {
     },
         closeMenu() {
                 $('.navbar-collapse').collapse('hide');
-            }
-    }
+            },
+        autocomplete(){
+            console.log("autocomplete")
+                    $(function(){
+                        var cidades = [
+                        "Marília",
+                        "Assis",
+                        "Bauru",
+                        "Tupã"
+                    ];
+                    $("#cidade").autocomplete({
+                        source: cidades,
+                                    change: function (event, ui) {
+                                    if(!ui.item){
+                                        $("#tags").val("");
+                                    }
+                                }
+                    });
+                    
+                    })
+        }
+    },
+ created(){
+     this.autocomplete();
+ }
     
 }
 </script>

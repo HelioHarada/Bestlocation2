@@ -1,7 +1,7 @@
 <template>
 <div class="container-fluid catalago">
           <div class="alert alert-danger" role="alert"  v-if="error" >
-          <b>Imóvel não encontrado</b>
+          <b>Imóvel não encontrado! Cidade {{query}} não encontrada</b>
         </div>
   <div class="row content-lista">
     <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
@@ -71,7 +71,7 @@ export default {
         console.log(res)
           this.imoveis = res.body.list;
           if(res.body.list == ""){
-            console.log("busca vazia")
+            console.log("busca vazia. "+ this.query + "Não encontrado")
             this.error = true;
           }
           
