@@ -262,7 +262,7 @@ export default {
           });
           promise.then(function(res) {
             console.log(res);
-            alert("criado com sucesso");
+            $.growl({ title: "Notificação", style:"notice", message: "Cadastrado com sucesso!" });
             this.titulo = "";
             this.status = "";
             this.endereco = "";

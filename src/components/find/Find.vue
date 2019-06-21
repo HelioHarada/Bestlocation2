@@ -4,6 +4,7 @@
     </div>
 </template>
 <script>
+
   import initBotApp from '../../../src/botui'
 
   export default {

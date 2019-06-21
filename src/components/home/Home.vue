@@ -4,7 +4,7 @@
          <!-- ### INPUT FORM ### -->
          <div class="row banner-begin">
             <div class="offset-md-3 col-md-6 form-search" id="form-busca">
-              <h2 align="center" class="title-form ">Busque o seu imovel</h2>
+              <h2 align="center" class="title-form ">Busque o seu imóvel</h2>
 
               <div id="placeBuscar">
                 <input-busca></input-busca>
@@ -17,7 +17,7 @@
             <div class="find_perfil_place col-md-12">
                 <div class="title_descobrir_place">
                   <h2 class="titulo_descobrir">Descubra seu perfil</h2>
-                  <h5 class="subtitulo_descobrir">venha descobrir o seu perfil para escolher imovel</h5>
+                  <h5 class="subtitulo_descobrir">venha descobrir o seu perfil para escolher imóvel</h5>
                 </div>
                 <div class="place_button_perfil">
                   <a href="/find"><button class="btn button_descobrir">descobrir!</button></a>

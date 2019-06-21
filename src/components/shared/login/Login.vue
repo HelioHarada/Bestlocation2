@@ -169,7 +169,7 @@ export default {
             this.password = ""
             this.password2 = ""
 
-            alert("Cadastrado com sucesso");
+           $.growl({ title: "Notificação", style:"notice", message: "Cadastrado com Sucesso!" });
              console.log(res.body);
              $('#login-modal').modal('hide');
               return true;
@@ -184,11 +184,17 @@ export default {
          })
          promise
          .then(function(res) {
-           alert("Logado com sucesso");
+          
+            $.growl({ title: "Notificação", style:"notice", message: "Logado com sucesso!" });
            console.log(res)
            this.emailLogar = ""
            this.passwordLogar = ""
-        })
+        },function(res){
+          console.log(res)
+          
+           $.growl({ title: "Erro ao efetuar login!", style:"error", message: res.body.message })
+           $('#login-modal').modal('hide')}
+        )
           .catch(function(err) {
               console.log(err);
               // when you throw error this will also fetch error.
