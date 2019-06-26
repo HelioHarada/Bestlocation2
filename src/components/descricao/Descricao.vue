@@ -27,14 +27,19 @@
       </div>
       
     </div>
-    <div align="center" class="maps">
-      <h3>Maps</h3>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14772.848850018188!2d-49.967845!3d-22.2320257!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18636cf8fd387b35!2sUNIVEM!5e0!3m2!1spt-BR!2sbr!4v1555356629592!5m2!1spt-BR!2sbr" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+     <div class="place-map">
+        <h3 align="center">Maps</h3>
+
+      <div  class="google-map" :id="mapName" > </div>
+     </div>
+      
+      <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14772.848850018188!2d-49.967845!3d-22.2320257!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x18636cf8fd387b35!2sUNIVEM!5e0!3m2!1spt-BR!2sbr!4v1555356629592!5m2!1spt-BR!2sbr" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> -->
     </div>
     </div>
-  </div>
   
 </template>
+
 <script>
 
 import routes from '../../routes'
@@ -42,6 +47,9 @@ import Slider from '../shared/slider/Slider.vue'
 import Contato from '../shared/contato/Contato.vue'
 
 export default {
+      name: 'google-map',
+     
+      props: ['name'],
       components: {
         'slide' : Slider,
         'contato-modal' : Contato
@@ -49,7 +57,18 @@ export default {
   data(){
     return{
       id : '',
-      imovel : ''
+      imovel : '',
+      map: '',
+      mapName: this.name + "-map",
+       address : 'adelmo mugnai',
+      markerCoordinates : '',
+    // markerCoordinates: [{
+    //   latitude: -22.235696,
+    //   longitude: -49.925378
+    // }],
+    map: null,
+    bounds: null,
+    markers: []
     }
   },
   methods:{
@@ -59,24 +78,77 @@ export default {
     console.log(this.id)
     },
 
-    getImovel: function(){
-      
+    getImovel: function(){     
         let promise = this.$http.get('http://bestlocation.com.br/api/imoveis/'+this.id);
         promise .then(function(res) {
           console.log(res)
             this.imovel = res.body;
+            this.GetLocation(this.imovel.endereco + this.imovel.cidade);
         });
+   
     },
     shareface: function(){
         var url = window.location.host+window.location.pathname
         window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'_blank');
-    }
+    },
 
+    GetLocation : function(address){
+      console.log(address)
+ const element = document.getElementById(this.mapName)
+      var geocoder = new google.maps.Geocoder(address);
+      geocoder.geocode({ 'address': address,}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                var latitude = results[0].geometry.location.lat();
+                var longitude = results[0].geometry.location.lng();
+               this.markerCoordinates = [{"latitude" :latitude , "longitude" : longitude}]
+         
+
+          // this.bounds = new google.maps.LatLngBounds();
+          
+          const mapCentre = this.markerCoordinates[0]
+          const options = {
+            zoom : 16,
+           center: new google.maps.LatLng(mapCentre.latitude , mapCentre.longitude)
+          }
+          console.log(element)
+ 
+          this.map = new google.maps.Map(element, options);
+        
+          this.markerCoordinates.forEach((coord) => {
+            const position = new google.maps.LatLng(coord.latitude, coord.longitude);
+            const marker = new google.maps.Marker({ 
+              position,
+              map: this.map
+            });
+          // this.markers.push(marker)
+            // this.map.fitBounds(this.bounds.extend(position))
+          });
+
+        } else {
+               alert("Request failed.")
+        }
+      
+      });
+      
+    },
+    createMap : function(){
+        console.log("createMap")
+
+    },
   },
+      // center: new google.maps.LatLng(-22.235696, -49.927110)
+    mounted: function () {
+     
+    },
   created () {
       this.setID();
       this.getImovel();
-  }
+      // this.GetLocation();
+        // this.createMap();
+      
+      
+  },
+
 }
 </script>
 
@@ -110,10 +182,14 @@ export default {
   width: 100%;
   height: 50px;
 }
-
-.maps{
-  margin-top: 30px;
-  margin-left: 20px;
-  width: 100%;
+.place-map{
+  margin: 0 auto;
 }
+
+.google-map {
+  width: 900px;
+  height: 500px;
+  margin: 0 auto;
+  background: gray;
+} 
 </style>
