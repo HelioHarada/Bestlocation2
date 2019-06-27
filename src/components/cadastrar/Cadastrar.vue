@@ -229,8 +229,8 @@ export default {
         this.errors.push('O titulo é obrigatório.');
       }
 
-      if (!this.endereco) {
-        this.errors.push('O endereco é obrigatório.');
+      if (!this.rua) {
+        this.errors.push('O endereço é obrigatório.');
       }
 
       if (!this.descricao) {
@@ -239,8 +239,17 @@ export default {
       if (!this.cidade) {
         this.errors.push('A cidade é obrigatório.');
       }
-      if (!this.preco) {
-        this.errors.push('O preco é obrigatório.');
+     if (!this.preco) {
+        this.errors.push('O preço é obrigatório.');
+      }
+      if (!this.numEndereco) {
+        this.errors.push('O numero do endereço é obrigatório.');
+      }
+      if (!this.area) {
+        this.errors.push('O Area do imóvel é obrigatório.');
+      }
+      if (!this.cep) {
+        this.errors.push('O CEP do imóvel é obrigatório.');
       }
       if (!this.errors.length)
       {

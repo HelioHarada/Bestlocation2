@@ -28,7 +28,7 @@
       
     </div>
 
-     <div class="place-map">
+     <div class="place-map ">
         <h3 align="center">Maps</h3>
 
       <div  class="google-map" :id="mapName" > </div>
@@ -183,11 +183,11 @@ export default {
   height: 50px;
 }
 .place-map{
-  margin: 0 auto;
+  width: 100%;
 }
 
 .google-map {
-  width: 900px;
+  width: 100%;
   height: 500px;
   margin: 0 auto;
   background: gray;
