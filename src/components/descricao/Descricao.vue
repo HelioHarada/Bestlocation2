@@ -83,7 +83,7 @@ export default {
         promise .then(function(res) {
           console.log(res)
             this.imovel = res.body;
-            this.GetLocation(this.imovel.endereco + this.imovel.cidade);
+            this.GetLocation(this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco);
         });
    
     },
