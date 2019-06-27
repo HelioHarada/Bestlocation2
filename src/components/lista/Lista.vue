@@ -19,28 +19,21 @@
         </div>
         <hr>
 
-  <div class="row content-lista">
+  <div class="content-lista">
     <transition name="fade">
     <!-- Lista -->
-        <div v-if="view == 'list'">
+        <div class="row" v-if="view == 'list'">
             <div class="list col-md-12" v-for="(imovel, index) in imoveisFiltro" :key="index">
               <div>
-                <img class="img-list" src="/../src/img/casa.jpg" alt="Card image cap">
+                <img class="img-list img-fluid" src="/../src/img/casa.jpg" alt="Card image cap">
               </div>
               <div class="text-list">
-                <h4 class="card-title" > R${{imovel.preco}}</h4>
-                <h6 class="card-title" >{{imovel.status}} : {{imovel.titulo}}</h6>
-                <p class="card-text">Descrição: {{imovel.descricao}} </p>
-                <p class="card-text">
-                <img src="/../src/img/bed.png">   {{imovel.numQuartos}}
-                -
-                <img src="/../src/img/banheiro.png"> {{imovel.numBanheiros}}
-                -
-                <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
-                <p class="card-text">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
+                <h4 class="list-preco" > R${{imovel.preco}}</h4>
+                <h6 class="list-titulo" >{{imovel.status}} : {{imovel.titulo}}</h6>
+                <p class="list-texto">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
                     {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
                 
-                <router-link @click.native="closeMenu()" class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
+                <router-link @click.native="closeMenu()" class="btn button-desc" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
               
               </div>
             </div>
@@ -163,6 +156,29 @@ export default {
 </script>
 
 <style>
+@media screen and (max-width: 990px){
+
+  .list-preco{
+    font-size: 14px;
+     white-space: nowrap;
+  }
+
+  .list-texto{
+    display: none;
+  }
+
+  .list-titulo{
+    font-size: 12px;
+    /* white-space: nowrap; */
+  }
+
+  .button-plus{
+    width: 120px;
+    font-size: 2px;
+  }
+  
+}
+
 .catalago{
   margin-top: 20px;
 }
@@ -201,6 +217,7 @@ export default {
 
 .img-list{
   width: 400px;
+  min-width: 150px;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -208,6 +225,14 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active em versões anteriores a 2.1.8 */ {
   opacity: 0;
+}
+
+.button-desc{
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    background-color: #ff7f00;
+    color:white!important;
 }
 
 .btn-view{
