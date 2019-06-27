@@ -12,35 +12,64 @@
            <!-- <h4>Total de imóveis {{this.imoveis.length}}</h4> -->
           </div>
           <div class="place-button-catalogo">
-            <button>lista</button>
-            <button>coluna</button>
+            <button @click="changeView('list')" class="btn-view"> <img src="/../src/img/list.png">  </button>
+            <button @click="changeView('card')" class="btn-view"> <img src="/../src/img/square.png">  </button>
       
           </div>
         </div>
         <hr>
 
   <div class="row content-lista">
-    <div class="col-md-4 card-house" v-for="(imovel, index) in imoveisFiltro" :key="index">
-      <div class="card">
-        <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
-        <div class="card-body card-imovel">
-          <h4 class="card-title" > R${{imovel.preco}}</h4>
-          <h6 class="card-title" >{{imovel.status}} : {{imovel.titulo}}</h6>
-          <p class="card-text">Descrição: {{imovel.descricao}} </p>
-          <p class="card-text">
-          <img src="/../src/img/bed.png">   {{imovel.numQuartos}}
-          -
-          <img src="/../src/img/banheiro.png"> {{imovel.numBanheiros}}
-          -
-          <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
-          <p class="card-text">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
-              {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
-          <!-- <p class="card-text">id: {{imovel._id}}</p> --> 
-          <router-link @click.native="closeMenu()" class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
-          <!-- <a class="btn button-plus" @click="getId(imovel._id)" :meu_id="imovel._id"  data-toggle="modal" data-target="#desc-modal" >Mais+</a> -->
+    <transition name="fade">
+    <!-- Lista -->
+        <div v-if="view == 'list'">
+            <div class="list col-md-12" v-for="(imovel, index) in imoveisFiltro" :key="index">
+              <div>
+                <img class="img-list" src="/../src/img/casa.jpg" alt="Card image cap">
+              </div>
+              <div class="text-list">
+                <h4 class="card-title" > R${{imovel.preco}}</h4>
+                <h6 class="card-title" >{{imovel.status}} : {{imovel.titulo}}</h6>
+                <p class="card-text">Descrição: {{imovel.descricao}} </p>
+                <p class="card-text">
+                <img src="/../src/img/bed.png">   {{imovel.numQuartos}}
+                -
+                <img src="/../src/img/banheiro.png"> {{imovel.numBanheiros}}
+                -
+                <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
+                <p class="card-text">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
+                    {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
+                
+                <router-link @click.native="closeMenu()" class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
+              
+              </div>
+            </div>
+        </div>
+      <!-- Card -->
+        <div v-else-if="view == 'card'" class="row">
+          <div class="col-md-4 card-house" v-for="(imovel, index) in imoveisFiltro" :key="index">
+            <div class="card">
+              <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
+              <div class="card-body card-imovel">
+                <h4 class="card-title" > R${{imovel.preco}}</h4>
+                <h6 class="card-title" >{{imovel.status}} : {{imovel.titulo}}</h6>
+                <p class="card-text">Descrição: {{imovel.descricao}} </p>
+                <p class="card-text">
+                <img src="/../src/img/bed.png">   {{imovel.numQuartos}}
+                -
+                <img src="/../src/img/banheiro.png"> {{imovel.numBanheiros}}
+                -
+                <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
+                <p class="card-text">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
+                    {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
+                
+                <router-link @click.native="closeMenu()" class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
+              
+                </div>
+            </div>
           </div>
-      </div>
-    </div>
+        </div>
+    </transition>
   </div>
 </div>
 </template>
@@ -61,6 +90,7 @@ export default {
             id: '',
             query: '',
             filtro : '',
+            view : 'list',
             error : false
         }
   },
@@ -68,15 +98,8 @@ export default {
     imoveisFiltro(){
         if(this.filtro){
 
-
-          
           let exp = new RegExp(this.filtro.trim(), 'gi');
           console.log(exp)
-
-  
-
-      // exp.replace(/[^a-z0-9]/gi,''); 
-
 
           return this.imoveis.filter(imovel => exp.test(imovel.cidade));
         }else{
@@ -119,6 +142,9 @@ export default {
         promise .then(function(res) { this.imoveis = res.body;});
       });
   },
+    changeView:function(type){
+      this.view = type;
+    }
   },
 
   created() {
@@ -159,4 +185,39 @@ export default {
   width: 400px;
 
 }
+
+/* Lista */
+.list{
+  box-shadow:0px 3px 10px -4px #000;
+  margin: 15px;
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+}
+
+.text-list{
+  padding: 20px;
+}
+
+.img-list{
+  width: 400px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active em versões anteriores a 2.1.8 */ {
+  opacity: 0;
+}
+
+.btn-view{
+    border-radius: 4px;
+    height: 54px;
+    width: 54px;
+    margin: 3px 4px 0px 0px;
+    float: right;
+    border: none;
+    cursor: pointer;
+}
+
 </style>
