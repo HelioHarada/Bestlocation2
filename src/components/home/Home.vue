@@ -17,10 +17,10 @@
             <div class="find_perfil_place col-md-12">
                 <div class="title_descobrir_place">
                   <h2 class="titulo_descobrir">Descubra seu perfil</h2>
-                  <h5 class="subtitulo_descobrir">venha descobrir o seu perfil para escolher imóvel</h5>
+                  <h5 class="subtitulo_descobrir">Descubra o imóvel ideal para você </h5>
                 </div>
                 <div class="place_button_perfil">
-                  <a href="/find"><button class="btn button_descobrir">descobrir!</button></a>
+                  <a href="/find"><button class="btn button_descobrir">Descobrir!</button></a>
                 </div>
             </div>
          </div>
@@ -28,21 +28,21 @@
         <div class="row funcionalidade">
           <div class="col-md-4 text-center">
               <img src="../../png/011-building.png" alt="">
-              <h2>Encontre o lugar ideal para sua empresa</h2>
-              <p>Busque escritórios ou estabelecimento para seu négócio a bestlocation te ajuda
-                a buscar o melhor local de acordo com seu publico alvo. </p>
+              <h2>Empresarial</h2>
+              <p>Busque escritórios ou estabelecimento para o seu négócio. A bestlocation te ajuda
+                a encontrar o melhor local de acordo com seu publico alvo. </p>
           </div>
           <div class="col-md-4 text-center">
             <img src="../../png/004-money.png" alt="">
               <h2>Gaste apenas o necessário</h2>
-              <p>Saiba de nossos planos e gaste apenas caso queira impulsonar suas vendas
+              <p>Saiba de nossos planos e gaste apenas caso queira impulsonar suas vendas,
                 o restante das funcionalidades é grátis  </p>
           </div>
           <div class="col-md-4 text-center">
               <img src="../../png/021-search-1.png" alt="">            
               <h2>Encontre seu imóvel perfeito</h2>
-              <p>É possível buscar seu novo lar através dos filtros de palavra-chave, características e 
-                valor total de aluguel que a bestlocation mostra para você. </p>
+              <p>É possível encontrar seu novo lar através dos filtros de palavra-chave, características e 
+                valores. </p>
           </div>
         </div>
 
