@@ -22,7 +22,7 @@
   <div class="content-lista">
     <transition name="fade">
     <!-- Lista -->
-        <div class="row" v-if="view == 'list'">
+        <div class="row" v-if="view == 'list'" key="1">
             <div class="list col-md-12" v-for="(imovel, index) in imoveisFiltro" :key="index">
               <div>
                 <img class="img-list img-fluid" src="/../src/img/casa.jpg" alt="Card image cap">
@@ -39,7 +39,7 @@
             </div>
         </div>
       <!-- Card -->
-        <div v-else-if="view == 'card'" class="row">
+        <div v-else-if="view == 'card'" key="2" class="row">
           <div class="col-md-4 card-house" v-for="(imovel, index) in imoveisFiltro" :key="index">
             <div class="card">
               <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
