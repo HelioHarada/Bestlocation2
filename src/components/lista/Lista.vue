@@ -126,6 +126,7 @@ export default {
           this.imoveis = res.body.list;
           if(res.body.list == ""){
             console.log("busca vazia. "+ this.query + "Não encontrado")
+            this.$router.go()
             this.error = true;
           }
           
