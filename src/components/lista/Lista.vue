@@ -204,10 +204,15 @@ export default {
 }
 
 /* Lista */
+
+.content-lista{
+  margin: 15px;
+}
+
 .list{
   box-shadow:0px 3px 10px -4px #000;
-  margin: 15px;
   display: flex;
+  margin-bottom: 10px;
   flex-direction: row;
   padding: 0px;
 }
