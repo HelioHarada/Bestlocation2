@@ -34,13 +34,13 @@
              <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'cadastrar'}">  <a class="nav-link" href="/#/">Cadastrar <span class="sr-only">(current)</span></a></router-link>
              <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'usuario'}">  <a class="nav-link" href="/#/">Lista usuario <span class="sr-only">(current)</span></a></router-link>
              <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'deletar'}">  <a class="nav-link" href="/#/">Deletar <span class="sr-only">(current)</span></a></router-link>   
-              <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'find'}">  <a class="nav-link" href="/#/">Descobrindo Perfil <span class="sr-only">(current)</span></a></router-link>     
+              <!-- <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'find'}">  <a class="nav-link" href="/#/">Descobrindo Perfil <span class="sr-only">(current)</span></a></router-link>      -->
     
           </div>
         </li> 
-         <li class="nav-item">
+         <!-- <li class="nav-item">
             <a class="nav-link" href="formchat.html">chat</a>
-        </li>
+        </li> -->
     </ul>
   </div>
 
