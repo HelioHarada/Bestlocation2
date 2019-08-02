@@ -22,7 +22,7 @@
   <div class="content-lista">
     <transition name="fade">
     <!-- Lista -->
-        <div class="row" v-if="view == 'list'">
+        <div class="row" v-if="view == 'list'" key="1">
             <div class="list col-md-12" v-for="(imovel, index) in imoveisFiltro" :key="index">
               <div>
                 <img class="img-list img-fluid" src="/../src/img/casa.jpg" alt="Card image cap">
@@ -39,7 +39,7 @@
             </div>
         </div>
       <!-- Card -->
-        <div v-else-if="view == 'card'" class="row">
+        <div v-else-if="view == 'card'" key="2" class="row">
           <div class="col-md-4 card-house" v-for="(imovel, index) in imoveisFiltro" :key="index">
             <div class="card">
               <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
@@ -126,6 +126,7 @@ export default {
           this.imoveis = res.body.list;
           if(res.body.list == ""){
             console.log("busca vazia. "+ this.query + "Não encontrado")
+            this.$router.go()
             this.error = true;
           }
           
@@ -203,10 +204,15 @@ export default {
 }
 
 /* Lista */
+
+.content-lista{
+  margin: 15px;
+}
+
 .list{
   box-shadow:0px 3px 10px -4px #000;
-  margin: 15px;
   display: flex;
+  margin-bottom: 10px;
   flex-direction: row;
   padding: 0px;
 }
