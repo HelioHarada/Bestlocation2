@@ -60,7 +60,7 @@ export default {
       imovel : '',
       map: '',
       mapName: this.name + "-map",
-       address : 'adelmo mugnai',
+       address : '',
       markerCoordinates : '',
     // markerCoordinates: [{
     //   latitude: -22.235696,
@@ -81,7 +81,6 @@ export default {
     getImovel: function(){     
         let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis/'+this.id);
         promise .then(function(res) {
-          console.log(res)
             this.imovel = res.body;
             this.GetLocation(this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco);
         });
@@ -94,12 +93,15 @@ export default {
 
     GetLocation : function(address){
       console.log(address)
- const element = document.getElementById(this.mapName)
+      const element = document.getElementById(this.mapName)
+      // geocoder API (pega o endereço)
       var geocoder = new google.maps.Geocoder(address);
+      // Pega o endereço e transforma e lat long
       geocoder.geocode({ 'address': address,}, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 var latitude = results[0].geometry.location.lat();
                 var longitude = results[0].geometry.location.lng();
+                // Salva na marcação
                this.markerCoordinates = [{"latitude" :latitude , "longitude" : longitude}]
          
 
@@ -110,7 +112,6 @@ export default {
             zoom : 16,
            center: new google.maps.LatLng(mapCentre.latitude , mapCentre.longitude)
           }
-          console.log(element)
  
           this.map = new google.maps.Map(element, options);
         

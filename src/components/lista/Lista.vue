@@ -175,7 +175,7 @@ export default {
 
   .button-plus{
     width: 120px;
-    font-size: 2px;
+    font-size: 12px;
   }
   
 }
