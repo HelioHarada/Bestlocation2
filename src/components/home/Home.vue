@@ -20,7 +20,7 @@
                   <h5 class="subtitulo_descobrir">Descubra o imóvel ideal para você </h5>
                 </div>
                 <div class="place_button_perfil">
-                  <a href="/find"><button class="btn button_descobrir">Descobrir!</button></a>
+                  <a href="https://links.collect.chat/5d388d08ae0fe57267cc7f56"><button class="btn button_descobrir">Descobrir!</button></a>
                 </div>
             </div>
          </div>
@@ -47,6 +47,7 @@
         </div>
 
       </div>
+      
 </template>
 
 <script>

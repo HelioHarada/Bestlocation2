@@ -184,6 +184,10 @@ export default {
   margin-top: 20px;
 }
 
+.card{
+  margin-top: 5px;
+}
+
 .topo-catalago{
   display: flex;
   align-items: center;
