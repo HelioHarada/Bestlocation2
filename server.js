@@ -16,4 +16,4 @@ app.get('*', function (req, res) {
 var port = process.env.PORT || 5000; 
 // passa a porta definida no Express e levantamento do servidor
 app.listen(port);
-console.log ('servidor iniciado' + port);
+console.log ('Servidor client iniciado na porta ' + port + '.');

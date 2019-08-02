@@ -102,7 +102,7 @@ export default {
   },
   methods:{
     listaGeral:function(){
-          let promise = this.$http.get('http://bestlocation.com.br/api/imoveis');
+          let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
           promise .then(function(res) {
             console.log(res)
               this.imoveis = res.body;
