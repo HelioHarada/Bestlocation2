@@ -4,6 +4,7 @@ var express = require('express');
 var path = require('path');
 var serveStatic = require('serve-static');
 
+app = express ();
 app.use(serveStatic(__dirname));
 
 app.get('*', function (req, res) {
@@ -12,7 +13,7 @@ app.get('*', function (req, res) {
     res.sendFile(index)
 });
 
+var port = process.env.PORT || 5000; 
 // passa a porta definida no Express e levantamento do servidor
-app.listen(app.get('port'), () => {
-    console.log(`Servidor rodando na porta ${app.get('port')}`)
-});
+app.listen(port);
+console.log ('servidor iniciado' + port);
