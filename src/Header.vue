@@ -49,32 +49,32 @@
 
 <script>
   // tamanho da tela do usuáro 
-  var width = $( window ).width();
-  // Verificar resize
-  $(window).resize(checkWidth);
+  // var width = $( window ).width();
+  // // Verificar resize
+  // $(window).resize(checkWidth);
 
-  function checkWidth(){
+  // function checkWidth(){
 
-    width = $( window ).width();
+  //   width = $( window ).width();
 
-      if(width <= 975){
-        console.log("mobile")
-        setTimeout(function(){
-              $('#header')
-              // .css({
-              //   'display':  'flex',
-              // 'align-items:' : 'flex-end'
-              // })
-              .addClass("fixed-bottom");
-        }, 1000);
-      }
-      if(width > 975){
-        (console.log("desktop"))
-        setTimeout(function(){
-              $('#header').removeClass("fixed-bottom");
-        }, 1000);
-      }
-  }
+  //     if(width <= 975){
+  //       console.log("mobile")
+  //       setTimeout(function(){
+  //             $('#header')
+  //             // .css({
+  //             //   'display':  'flex',
+  //             // 'align-items:' : 'flex-end'
+  //             // })
+  //             .addClass("fixed-bottom");
+  //       }, 1000);
+  //     }
+  //     if(width > 975){
+  //       (console.log("desktop"))
+  //       setTimeout(function(){
+  //             $('#header').removeClass("fixed-bottom");
+  //       }, 1000);
+  //     }
+  // }
 export default {
          methods: {
             closeMenu() {
