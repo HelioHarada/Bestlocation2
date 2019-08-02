@@ -39,7 +39,7 @@ export default {
 
 methods:{
   getUser(){
-    let promise = this.$http.get('http://bestlocation.com.br/api/users/crud');
+    let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/users/crud');
     promise .then(function(res) {
         console.log(res.body[3]);
           this.usuarios = res.body
@@ -48,7 +48,7 @@ methods:{
 
     deletarUser(id){
       console.log(id);
-       let promise = this.$http.delete('http://bestlocation.com.br/api/users/crud/'+id);
+       let promise = this.$http.delete('https://bestlocationapi.herokuapp.com/api/users/crud/'+id);
 
             promise.then(function(res){
 

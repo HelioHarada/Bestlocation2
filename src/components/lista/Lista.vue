@@ -109,7 +109,7 @@ export default {
               
           },function(){
             console.log("tentando acessar https")
-            promise = this.$http.get('https://bestlocation.com.br/api/imoveis');
+            promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
             promise .then(function(res) { this.imoveis = res.body;});
           });
     },
@@ -120,7 +120,7 @@ export default {
 
       listaQuery:function(){
     console.log(this.query)
-      let promise = this.$http.get('http://bestlocation.com.br/api/searchimovel/?query='+this.query);
+      let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/searchimovel/?query='+this.query);
       promise .then(function(res) {
         console.log(res)
           this.imoveis = res.body.list;
@@ -131,7 +131,7 @@ export default {
           
       },function(){
         console.log("tentando acessar https")
-        promise = this.$http.get('https://bestlocation.com.br/api/imoveis');
+        promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
         promise .then(function(res) { this.imoveis = res.body;});
       });
   },

@@ -152,7 +152,7 @@ export default {
 
       if (!this.errors.length) {
 
-         let promise = this.$http.post('http://bestlocation.com.br/api/users/crud',{
+         let promise = this.$http.post('https://bestlocationapi.herokuapp.com/api/users/crud',{
           firstName: this.username,
           email: this.email,
           cpf: this.cpf,
@@ -178,7 +178,7 @@ export default {
       }
       },
       logar() {
-        let promise = this.$http.post('http://bestlocation.com.br/api/users/login',{
+        let promise = this.$http.post('https://bestlocationapi.herokuapp.com/api/users/login',{
           emailLogar: this.emailLogar,
           passwordLogar: this.passwordLogar
          })
