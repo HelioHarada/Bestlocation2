@@ -45,6 +45,7 @@
 import routes from '../../routes'
 import Slider from '../shared/slider/Slider.vue'
 import Contato from '../shared/contato/Contato.vue'
+import {getImovelID} from '../../api/'
 
 export default {
       name: 'google-map',
@@ -62,30 +63,27 @@ export default {
       mapName: this.name + "-map",
        address : '',
       markerCoordinates : '',
-    // markerCoordinates: [{
-    //   latitude: -22.235696,
-    //   longitude: -49.925378
-    // }],
     map: null,
     bounds: null,
     markers: []
     }
   },
   methods:{
+    getImovelID,
 
     setID: function (){
     this.id = this.$route.params.id;
     console.log(this.id)
     },
 
-    getImovel: function(){     
-        let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis/'+this.id);
-        promise .then(function(res) {
-            this.imovel = res.body;
-            this.GetLocation(this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco);
-        });
-   
+
+    async load () {
+      await this.getImovelID(this.id).then(res => {
+        this.imovel = res.body;
+       this.GetLocation(this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco);
+      }).catch(console.error)
     },
+
     shareface: function(){
         var url = window.location.host+window.location.pathname
         window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'_blank');
@@ -143,7 +141,7 @@ export default {
     },
   created () {
       this.setID();
-      this.getImovel();
+      this.load();
       // this.GetLocation();
         // this.createMap();
       

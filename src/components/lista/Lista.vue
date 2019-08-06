@@ -9,7 +9,7 @@
               <input type="search" v-on:input="filtro = $event.target.value" class="form-control input-grey" placeholder="Digite a cidade">
           </div>
           <div class="text-catalogo">
-           <!-- <h4>Total de imóveis {{this.imoveis.length}}</h4> -->
+          
           </div>
           <div class="place-button-catalogo">
             <button @click="changeView('list')" class="btn-view"> <img src="/../src/img/list.png">  </button>
@@ -18,7 +18,7 @@
           </div>
         </div>
         <hr>
-
+ <p>Total de imóveis {{this.imoveis.length}}</p>
   <div class="content-lista">
     <transition name="fade">
     <!-- Lista -->
@@ -69,6 +69,7 @@
 
 <script>
 import routes from '../../routes'
+import {getImoveis, getQuery} from '../../api/'
 
 export default {
            methods: {
@@ -101,41 +102,34 @@ export default {
     }
   },
   methods:{
-    listaGeral:function(){
-          let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
-          promise .then(function(res) {
-            console.log(res)
-              this.imoveis = res.body;
-              
-          },function(){
-            console.log("tentando acessar https")
-            promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
-            promise .then(function(res) { this.imoveis = res.body;});
-          });
+
+  getImoveis,
+  getQuery,
+
+    async load () {
+      await this.getImoveis().then(res => {
+        this.imoveis = res.body;
+        console.log()
+      }).catch(console.error)
     },
+
     setQuery: function (){
     this.query = this.$route.params.query;
     return this.query 
     },
 
-      listaQuery:function(){
-    console.log(this.query)
-      let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/searchimovel/?query='+this.query);
-      promise .then(function(res) {
-        console.log(res)
-          this.imoveis = res.body.list;
+  async busca () {
+    await this.getQuery(this.query).then(res => {
+      console.log(res)
+      this.imoveis = res.body.list;
           if(res.body.list == ""){
             console.log("busca vazia. "+ this.query + "Não encontrado")
             this.$router.go()
             this.error = true;
           }
-          
-      },function(){
-        console.log("tentando acessar https")
-        promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
-        promise .then(function(res) { this.imoveis = res.body;});
-      });
+    }).catch(console.error)
   },
+
     changeView:function(type){
       this.view = type;
     }
@@ -144,13 +138,11 @@ export default {
   created() {
      this.setQuery() 
      if(typeof this.setQuery() == "undefined" || this.setQuery() == ""){
-       this.listaGeral();
+       this.load();
      }else{
-       this.listaQuery();
+       this.busca();
      }
-     
-     
-   
+  
   },
 
 }

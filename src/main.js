@@ -4,6 +4,10 @@ import Index from './Index.vue'
 import Footer from './Footer.vue'
 import money from './components/cadastrar/v-money'
 
+// Uso de async await
+require("babel-core/register");
+require("babel-polyfill");
+
 Vue.config.productionTip = false;
 
 import { routes } from './routes'

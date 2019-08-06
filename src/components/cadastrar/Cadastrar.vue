@@ -199,7 +199,6 @@ export default {
   },
   methods: {
     buscarCEP() {
-      console.log("key");
       var self = this;
 
       self.naoLocalizado = false;
@@ -253,7 +252,7 @@ export default {
       }
       if (!this.errors.length)
       {
-          let promise = this.$http.post("http://bestlocation.com.br/api/imoveis", {
+          let promise = this.$http.post("https://bestlocationapi.herokuapp.com/api/imoveis", {
             titulo: this.titulo,
             status: this.status,
             endereco: this.rua,
