@@ -22,14 +22,17 @@
                 <button class="btn button-plus btn-icon" data-toggle="tooltip" title="Favoritos" ><i class="far fa-heart"></i></button>
                 <button class="btn button-plus btn-icon" @click="shareface()"  data-toggle="tooltip" title="Compartilhar" ><i class="fab fa-facebook-f"></i></button>
                 <button class="btn button-plus btn-contato" data-toggle="modal" data-target="#contato-modal" >Contato</button>
-                           
-             
+                                       
       </div>
       
     </div>
 
      <div class="place-map ">
-        <h3 align="center">Maps</h3>
+     
+           
+      <h3 align="center">Maps</h3>
+      <button @click="showMaps()">Hospital</button>
+      <button>Restaurante</button>
 
       <div  class="google-map" :id="mapName" > </div>
      </div>
@@ -48,108 +51,164 @@ import Contato from '../shared/contato/Contato.vue'
 import {getImovelID} from '../../api/'
 
 export default {
-      name: 'google-map',
-     
-      props: ['name'],
-      components: {
-        'slide' : Slider,
-        'contato-modal' : Contato
-    },
+           methods: {
+            closeMenu() {
+                $('.navbar-collapse').collapse('hide');
+            }
+        },
+
+  name: 'google-map',
+  props: ['name'],
+  components: {
+    'slide'         : Slider,
+    'contato-modal' : Contato
+  },
+
   data(){
     return{
       id : '',
       imovel : '',
       map: '',
       mapName: this.name + "-map",
-       address : '',
+      address : '',
       markerCoordinates : '',
-    map: null,
-    bounds: null,
-    markers: []
+      map: null,
+      bounds: null,
+      markers: [],
+      options : '',
     }
   },
+
   methods:{
-    getImovelID,
+     getImovelID,
 
     setID: function (){
-    this.id = this.$route.params.id;
-    console.log(this.id)
-    },
-
-
-    async load () {
-      await this.getImovelID(this.id).then(res => {
-        this.imovel = res.body;
-       this.GetLocation(this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco);
-      }).catch(console.error)
+      this.id = this.$route.params.id;
+      console.log(this.id)
     },
 
     shareface: function(){
-        var url = window.location.host+window.location.pathname
-        window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'_blank');
+          var url = window.location.host+window.location.pathname
+          window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'_blank');
+    },  
+    
+    load () {
+       this.getImovelID(this.id).then(res => {
+        this.imovel = res.body;
+        this.getLocation(this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco);
+        
+      }).catch(console.error)
     },
 
-    GetLocation : function(address){
-      console.log(address)
-      const element = document.getElementById(this.mapName)
+    getLocation : function (address){
+      const element = document.getElementById(this.mapName);
+      var local;
       // geocoder API (pega o endereço)
       var geocoder = new google.maps.Geocoder(address);
-      // Pega o endereço e transforma e lat long
-      geocoder.geocode({ 'address': address,}, function (results, status) {
+      let self = this;
+      coord(function(addr, options, map){
+          console.log(options)
+          self.showMaps(options);
+      });
+
+      
+
+    function coord(callback){
+      let self = this
+      geocoder.geocode({ 'address': address}, function (results, status){
             if (status == google.maps.GeocoderStatus.OK) {
+              
                 var latitude = results[0].geometry.location.lat();
                 var longitude = results[0].geometry.location.lng();
                 // Salva na marcação
                this.markerCoordinates = [{"latitude" :latitude , "longitude" : longitude}]
-         
+                
+  
+            }
+            var mapCentre = this.markerCoordinates[0]
+      
+            var options = {
+              zoom : 16,
+              center: new google.maps.LatLng(mapCentre.latitude , mapCentre.longitude)
+            }
+            this.options = options;
+           
+            this.map = new google.maps.Map(element, options);
+            
+            
 
-          // this.bounds = new google.maps.LatLngBounds();
-          
-          const mapCentre = this.markerCoordinates[0]
-          const options = {
-            zoom : 16,
-           center: new google.maps.LatLng(mapCentre.latitude , mapCentre.longitude)
-          }
- 
-          this.map = new google.maps.Map(element, options);
-        
           this.markerCoordinates.forEach((coord) => {
             const position = new google.maps.LatLng(coord.latitude, coord.longitude);
             const marker = new google.maps.Marker({ 
               position,
               map: this.map
             });
-          // this.markers.push(marker)
-            // this.map.fitBounds(this.bounds.extend(position))
-          });
+          });    
+           callback(this.markerCoordinates, this.options, this.map)
+      });      
+    }     
+        
+    },
+    
+   createMarker : function (places){        
+        const icon = {
+            url: "../src/img/Fav.png", // url
+            scaledSize: new google.maps.Size(50, 50), // scaled size
+            origin: new google.maps.Point(0,0), // origin
+            anchor: new google.maps.Point(0, 0) // anchor
+        };
 
-        } else {
-               alert("Request failed.")
-        }
-      
+        const marker = new google.maps.Marker({
+          map: map,
+          title: places.name,
+          icon : icon,
+          position: places.geometry.location
       });
-      
-    },
-    createMap : function(){
-        console.log("createMap")
-
-    },
+  
   },
-      // center: new google.maps.LatLng(-22.235696, -49.927110)
-    mounted: function () {
-     
+    showMaps : function  (options){
+          console.log(options);
+      var request = {
+          location: options.center,
+          types: ['hospital'],
+          radius: 8074
+        }
+
+      var service = new google.maps.places.PlacesService(this.map);
+      
+      function callback(results, status){
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+              for (var i = 0; i < results.length; i++) {
+                var place = results[i];
+                createMarker(results[i]);
+              }
+            }
+          }
+
+        service.nearbySearch(request, callback);
+
+  
     },
-  created () {
+
+
+
+  },
+   created () {
       this.setID();
       this.load();
-      // this.GetLocation();
-        // this.createMap();
-      
-      
-  },
+  
+   
+  }, 
+  mounted (){
+    // this.createMap();
+    // this.showMaps();
+  },   
 
 }
+
+
 </script>
+
 
 <style>
 .card-left{
