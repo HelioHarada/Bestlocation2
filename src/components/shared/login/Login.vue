@@ -178,7 +178,7 @@ export default {
       }
       },
       logar() {
-        let promise = this.$http.post('https://bestlocationapi.herokuapp.com/api/users/login',{
+        let promise = this.$http.post('http://bestlocationapi.herokuapp.com/api/users/login',{
           emailLogar: this.emailLogar,
           passwordLogar: this.passwordLogar
          })
