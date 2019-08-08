@@ -47,10 +47,18 @@
       <div class="place-map">
         <h3 align="center">Maps</h3>
 
-        <button @click="markerHospital()">Hospital</button>
-        <button @click="markerFood()">Restaurante</button>
-        <button @click="markerSchool()">Escola</button>
-
+        <button class="btn button-plus" @click="markerHospital()">
+          <i class="fas fa-hospital"></i> Hospital
+        </button>
+        <button class="btn button-plus" @click="markerFood()">
+          <i class="fas fa-utensils"></i> Restaurante
+        </button>
+        <button class="btn button-plus" @click="markerSchool()">
+          <i class="fas fa-school"></i> Escola
+        </button>
+        <button class="btn button-plus" @click="markerMarket()">
+          <i class="fas fa-cart-plus"></i> Mercado
+        </button>
         <div class="google-map" :id="mapName"></div>
       </div>
 
@@ -90,7 +98,8 @@ export default {
       map: null,
       bounds: null,
       markers: [],
-      options: ""
+      options: "",
+      count : 0,
     };
   },
 
@@ -175,7 +184,7 @@ export default {
     markerFood() {
       this.setMapOnAll(null);
       let self = this;
-      let food = ["bar", "restaurant", "establishment", "food", "cafe"];
+      let food = ["bar", "restaurant", "establishment",  "cafe","food",];
       var service = new google.maps.places.PlacesService(map);
       let img = "../src/img/food.png";
       let request = {
@@ -197,7 +206,7 @@ export default {
     markerHospital() {
       this.setMapOnAll(null);
       let self = this;
-      let type = ["hospital"];
+      let type = ["hospital", "doctor", "health"];
       var service = new google.maps.places.PlacesService(map);
       let img = "../src/img/hospital.png";
       let request = {
@@ -219,7 +228,7 @@ export default {
     markerSchool() {
       this.setMapOnAll(null);
       let self = this;
-      let type = ["school"];
+      let type = ["school", "university"];
       var service = new google.maps.places.PlacesService(map);
       let img = "../src/img/school.png";
       let request = {
@@ -237,7 +246,29 @@ export default {
       }
 
       service.nearbySearch(request, callback);
-    },    
+    },
+    markerMarket() {
+      this.setMapOnAll(null);
+      let self = this;
+      let type = ["supermarket","grocery_or_supermarket", "store"];
+      var service = new google.maps.places.PlacesService(map);
+      let img = "../src/img/supermarket.png";
+      let request = {
+        location: options.center,
+        types: type,
+        radius: 2074
+      };
+
+      function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            self.createMarker(results[i], img);
+          }
+        }
+      }
+
+      service.nearbySearch(request, callback);
+    },
 
     setMapOnAll: function(map) {
       for (var i = 0; i < this.markers.length; i++) {
@@ -251,12 +282,15 @@ export default {
       console.log(map);
       this.setMapOnAll(map);
     },
+    
     createMarker: function(places, img) {
-      console.log(img)
+        
+      console.log(places.types);
+      console.log(this.count++)
       const icon = {
         // url: "../src/img/Fav.png", // url
         url: img,
-        scaledSize: new google.maps.Size(50, 50), // scaled size
+        scaledSize: new google.maps.Size(50, 50) // scaled size
         // origin: new google.maps.Point(0, 0), // origin
         // anchor: new google.maps.Point(0, 0) // anchor
       };
@@ -322,6 +356,7 @@ export default {
   height: 50px;
 }
 .place-map {
+  margin-top: 50px;
   width: 100%;
 }
 
