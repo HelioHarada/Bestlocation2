@@ -59,6 +59,10 @@
         <button class="btn button-plus" @click="markerMarket()">
           <i class="fas fa-cart-plus"></i> Mercado
         </button>
+        </button>
+        <button class="btn button-plus" @click="markerFarmacia()">
+          <i class="fas fa-pills"></i> Farmácia
+        </button>
         <div class="google-map" :id="mapName"></div>
       </div>
 
@@ -209,6 +213,28 @@ export default {
       let type = ["hospital", "doctor", "health"];
       var service = new google.maps.places.PlacesService(map);
       let img = "../src/img/hospital.png";
+      let request = {
+        location: options.center,
+        types: type,
+        radius: 2074
+      };
+
+      function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            self.createMarker(results[i], img);
+          }
+        }
+      }
+
+      service.nearbySearch(request, callback);
+    },
+    markerFarmacia() {
+      this.setMapOnAll(null);
+      let self = this;
+      let type = ["pharmacy","health"];
+      var service = new google.maps.places.PlacesService(map);
+      let img = "../src/img/farmacia.png";
       let request = {
         location: options.center,
         types: type,
