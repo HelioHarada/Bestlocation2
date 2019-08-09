@@ -24,6 +24,12 @@
             Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
             {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}
           </p>
+          <button
+            class="btn button-plus btn-contato"
+            data-toggle="modal"
+            data-target="#contato-modal"
+          >Contato</button>
+          <br>
           <button class="btn button-plus btn-icon" data-toggle="tooltip" title="Favoritos">
             <i class="far fa-heart"></i>
           </button>
@@ -35,11 +41,6 @@
           >
             <i class="fab fa-facebook-f"></i>
           </button>
-          <button
-            class="btn button-plus btn-contato"
-            data-toggle="modal"
-            data-target="#contato-modal"
-          >Contato</button>
         </div>
       </div>
   
@@ -235,6 +236,7 @@ export default {
 .btn-contato {
   width: 100%;
   height: 50px;
+  max-width: 500px;
 }
 .place-map {
   margin-top: 50px;

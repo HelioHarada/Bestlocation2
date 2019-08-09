@@ -24,26 +24,27 @@
                 </div>
             </div>
          </div>
-
+        <div class="container">
         <div class="row funcionalidade">
-          <div class="col-md-4 text-center">
+          <div c class="col-md-4 text-center img-funcionalidade">
               <img src="../../png/011-building.png" alt="">
               <h2>Empresarial</h2>
               <p>Busque escritórios ou estabelecimento para o seu négócio. A bestlocation te ajuda
                 a encontrar o melhor local de acordo com seu publico alvo. </p>
           </div>
-          <div class="col-md-4 text-center">
+          <div class="col-md-4 text-center img-funcionalidade">
             <img src="../../png/004-money.png" alt="">
-              <h2>Gaste apenas o necessário</h2>
+              <h4>Gaste apenas o necessário</h4>
               <p>Saiba de nossos planos e gaste apenas caso queira impulsonar suas vendas,
                 o restante das funcionalidades é grátis  </p>
           </div>
-          <div class="col-md-4 text-center">
+          <div class="col-md-4 text-center img-funcionalidade">
               <img src="../../png/021-search-1.png" alt="">            
-              <h2>Encontre seu imóvel perfeito</h2>
+              <h4>Encontre seu imóvel perfeito</h4>
               <p>É possível encontrar seu novo lar através dos filtros de palavra-chave, características e 
                 valores. </p>
           </div>
+        </div>
         </div>
 
       </div>
@@ -61,6 +62,20 @@ export default {
 </script>
 
 <style>
+.img-funcionalidade{
+    filter: grayscale(90%);
+}
+
+.img-funcionalidade:hover{
+    filter: grayscale(0%);
+}
+
+@media screen and (max-width: 990px) {
+    .img-funcionalidade{
+    filter: grayscale(0%);
+
+    }
+}
 
 .funcionalidade{
     margin-top: 90px;
@@ -196,7 +211,6 @@ export default {
     text-shadow: 6px 6px 10px rgba(0,0,0,0.2);
 	box-shadow: inset 0 0 0 3px #d35400; */
 }
-
 
 
 </style>
