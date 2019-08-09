@@ -140,6 +140,7 @@ export default {
     },
 
     getLocation: function(address) {
+      
       const bounds = new google.maps.LatLngBounds();
       const element = document.getElementById(this.mapName);
       var local;
@@ -148,6 +149,7 @@ export default {
       let self = this;
       coord(function(addr, options, map) {
         self.showMaps(options, map);
+        
       });
 
       function coord(callback) {
@@ -184,7 +186,7 @@ export default {
               map: this.map
             });
           });
-
+ var service = new google.maps.places.PlacesService(this.map);
           callback(this.markerCoordinates, this.options, this.map);
         });
       }
