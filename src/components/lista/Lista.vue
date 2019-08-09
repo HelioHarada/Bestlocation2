@@ -24,7 +24,7 @@
       </div>
     </div>
     <hr />
-    <p>Total de imóveis {{this.imoveis.length}}</p>
+    <p>Total de imóveis {{this.totalImoveis}}</p>
     <div class="content-lista">
       <transition name="fade">
         <!-- Lista -->
@@ -109,17 +109,22 @@ export default {
       query: "",
       filtro: "",
       view: "list",
-      error: false
+      error: false,
+      totalImoveis: ""
     };
   },
   computed: {
     imoveisFiltro() {
+      let exp = new RegExp(this.filtro.trim(), "gi");
       if (this.filtro) {
-        let exp = new RegExp(this.filtro.trim(), "gi");
-        console.log(exp);
-
+        
+        
+        this.totalImoveis = this.imoveis.filter(imovel => exp.test(imovel.cidade)).length;
+      
         return this.imoveis.filter(imovel => exp.test(imovel.cidade));
+       
       } else {
+        this.totalImoveis = this.imoveis.filter(imovel => exp.test(imovel.cidade)).length;
         return this.imoveis;
       }
     }
@@ -132,7 +137,7 @@ export default {
       await this.getImoveis()
         .then(res => {
           this.imoveis = res.body;
-          console.log();
+              this.totalImoveis = this.imoveis.length
         })
         .catch(console.error);
     },
@@ -165,10 +170,14 @@ export default {
     this.setQuery();
     if (typeof this.setQuery() == "undefined" || this.setQuery() == "") {
       this.load();
+      
     } else {
       this.busca();
     }
+
+ 
   }
+
 };
 </script>
 
