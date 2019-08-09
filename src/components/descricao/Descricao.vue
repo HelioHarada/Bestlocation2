@@ -43,8 +43,9 @@
           >Contato</button>
         </div>
       </div>
-
+  
       <div class="place-map">
+        <hr>
         <h3 align="center">Maps</h3>
 
         <button class="btn button-plus" @click="markerHospital()">
@@ -59,7 +60,6 @@
         <button class="btn button-plus" @click="markerMarket()">
           <i class="fas fa-cart-plus"></i> Mercado
         </button>
-        </button>
         <button class="btn button-plus" @click="markerFarmacia()">
           <i class="fas fa-pills"></i> Farmácia
         </button>
@@ -72,10 +72,11 @@
 </template>
 
 <script>
-import routes from "../../routes";
-import Slider from "../shared/slider/Slider.vue";
-import Contato from "../shared/contato/Contato.vue";
-import { getImovelID } from "../../api/";
+  import routes from "../../routes";
+  import Slider from "../shared/slider/Slider.vue";
+  import Contato from "../shared/contato/Contato.vue";
+  import { getImovelID } from "../../api/";
+  import { markerFood, markerHospital, markerFarmacia, markerSchool, markerMarket} from "../../api/marker";  
 
 export default {
   methods: {
@@ -109,7 +110,11 @@ export default {
 
   methods: {
     getImovelID,
-
+    markerFood,
+    markerHospital,
+    markerFarmacia,
+    markerSchool,
+    markerMarket,
     setID: function() {
       this.id = this.$route.params.id;
       console.log(this.id);
@@ -185,116 +190,11 @@ export default {
       }
     },
 
-    markerFood() {
-      this.setMapOnAll(null);
-      let self = this;
-      let food = ["bar", "restaurant", "establishment",  "cafe","food",];
-      var service = new google.maps.places.PlacesService(map);
-      let img = "../src/img/food.png";
-      let request = {
-        location: options.center,
-        types: food,
-        radius: 2074
-      };
 
-      function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            self.createMarker(results[i], img);
-          }
-        }
-      }
 
-      service.nearbySearch(request, callback);
-    },
-    markerHospital() {
-      this.setMapOnAll(null);
-      let self = this;
-      let type = ["hospital", "doctor", "health"];
-      var service = new google.maps.places.PlacesService(map);
-      let img = "../src/img/hospital.png";
-      let request = {
-        location: options.center,
-        types: type,
-        radius: 2074
-      };
 
-      function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            self.createMarker(results[i], img);
-          }
-        }
-      }
 
-      service.nearbySearch(request, callback);
-    },
-    markerFarmacia() {
-      this.setMapOnAll(null);
-      let self = this;
-      let type = ["pharmacy","health"];
-      var service = new google.maps.places.PlacesService(map);
-      let img = "../src/img/farmacia.png";
-      let request = {
-        location: options.center,
-        types: type,
-        radius: 2074
-      };
 
-      function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            self.createMarker(results[i], img);
-          }
-        }
-      }
-
-      service.nearbySearch(request, callback);
-    },
-    markerSchool() {
-      this.setMapOnAll(null);
-      let self = this;
-      let type = ["school", "university"];
-      var service = new google.maps.places.PlacesService(map);
-      let img = "../src/img/school.png";
-      let request = {
-        location: options.center,
-        types: type,
-        radius: 2074
-      };
-
-      function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            self.createMarker(results[i], img);
-          }
-        }
-      }
-
-      service.nearbySearch(request, callback);
-    },
-    markerMarket() {
-      this.setMapOnAll(null);
-      let self = this;
-      let type = ["supermarket","grocery_or_supermarket", "store"];
-      var service = new google.maps.places.PlacesService(map);
-      let img = "../src/img/supermarket.png";
-      let request = {
-        location: options.center,
-        types: type,
-        radius: 2074
-      };
-
-      function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            self.createMarker(results[i], img);
-          }
-        }
-      }
-
-      service.nearbySearch(request, callback);
-    },
 
     setMapOnAll: function(map) {
       for (var i = 0; i < this.markers.length; i++) {
@@ -304,21 +204,14 @@ export default {
     clearMakers() {
       this.setMarkerMap(null);
     },
-    showMakers(type) {
-      console.log(map);
-      this.setMapOnAll(map);
-    },
-    
     createMarker: function(places, img) {
         
-      console.log(places.types);
-      console.log(this.count++)
+
+   
       const icon = {
         // url: "../src/img/Fav.png", // url
         url: img,
         scaledSize: new google.maps.Size(50, 50) // scaled size
-        // origin: new google.maps.Point(0, 0), // origin
-        // anchor: new google.maps.Point(0, 0) // anchor
       };
 
       const marker = new google.maps.Marker({
