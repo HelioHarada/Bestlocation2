@@ -119,7 +119,7 @@ export default {
             password2: '',
             isAdmin: 'false',
             emailLogar: '',
-            passwordLogar: ''
+            passwordLogar: '',
         }
     },
     methods:{
@@ -168,7 +168,6 @@ export default {
               this.cpf = ""
             this.password = ""
             this.password2 = ""
-
            $.growl({ title: "Notificação", style:"notice", message: "Cadastrado com Sucesso!" });
              console.log(res.body);
              $('#login-modal').modal('hide');
@@ -184,11 +183,11 @@ export default {
          })
          promise
          .then(function(res) {
-          
-            $.growl({ title: "Notificação", style:"notice", message: "Logado com sucesso!" });
-           console.log(res)
+          const token = res.data
+           localStorage.setItem('acess_token', token)
            this.emailLogar = ""
            this.passwordLogar = ""
+            $.growl({ title: "Notificação", style:"notice", message: "Logado com sucesso!" });
         },function(res){
           console.log(res)
           
