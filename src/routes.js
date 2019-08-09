@@ -5,7 +5,7 @@ import Find from './components/find/Find.vue'
 import Usuario from './components/usuario/Usuario.vue'
 import Deletar from './components/deletar/Deletar.vue'
 import Descricao from './components/descricao/Descricao.vue'
-import Meu_imovel from './components/meu_imovel/Meu_imovel.vue'
+import Minha_conta from './components/conta/MinhaConta.vue'
 
 
 export const routes  = [
@@ -16,6 +16,6 @@ export const routes  = [
     {path : '/Deletar', name:'deletar', component : Deletar},
     {path : '/find', name : 'find', component : Find, },
     {path : '/Descricao/:id', name:'desc',component : Descricao},
-    {path : '/minhaConta', name:'meu_imovel',component : Meu_imovel},
+    {path : '/Minha_Conta', name:'conta',component : Minha_conta},
 ];
 
