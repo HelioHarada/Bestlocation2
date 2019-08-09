@@ -22,10 +22,13 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li v-if="storeState.visibleLogin" class="nav-item">
             <a class="nav-link menu-login" data-toggle="modal" data-target="#login-modal" > <img src="./img/user.svg" class="icon-user" alt="user">Login</a>
         </li>
-        
+        <li v-else class="nav-item">
+         
+            <a class="nav-link menu-login" @click="logout()"><img src="./img/user.svg" class="icon-user" alt="user">Logout</a>
+        </li> 
         <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Admin
@@ -75,12 +78,38 @@
   //       }, 1000);
   //     }
   // }
+import {store} from '../src/api'
 export default {
-         methods: {
-            closeMenu() {
-                $('.navbar-collapse').collapse('hide');
-            }
-        }
+  data(){
+    return{
+       storeState: store.state
+    }
+  },
+  methods: {
+    closeMenu() {
+        $('.navbar-collapse').collapse('hide');
+    },
+    logout(){
+        let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/users/logout');
+        promise.then(function(res){
+          
+            localStorage.clear();
+            store.clearToken();
+            console.log(this.storeState.visibleLogin)
+            console.log(res.body);
+        })
+    }
+  },
+  created(){
+    console.log(localStorage.getItem("acess_token"))
+  if( localStorage.getItem("acess_token") != null ){
+         this.storeState.visibleLogin = false
+        console.log(this.storeState.visibleLogin )
+    }else{
+       this.storeState.visibleLogin = true
+    }
+    
+  }
 }
 
 

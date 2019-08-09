@@ -108,6 +108,7 @@
 
 </template>
 <script>
+  import { getToken, auth, store } from "../../../api";
 export default {
     data(){
         return{
@@ -120,9 +121,11 @@ export default {
             isAdmin: 'false',
             emailLogar: '',
             passwordLogar: '',
+            storeState: store.state,
         }
     },
     methods:{
+      auth,
       cadastrar(){
               // Validação
       this.errors = [];
@@ -176,30 +179,23 @@ export default {
         // Post
       }
       },
-      logar() {
-        let promise = this.$http.post('http://bestlocationapi.herokuapp.com/api/users/login',{
-          emailLogar: this.emailLogar,
-          passwordLogar: this.passwordLogar
-         })
-         promise
-         .then(function(res) {
-          const token = res.data
-           localStorage.setItem('acess_token', token)
-           this.emailLogar = ""
-           this.passwordLogar = ""
-            $.growl({ title: "Notificação", style:"notice", message: "Logado com sucesso!" });
-        },function(res){
-          console.log(res)
-          
-           $.growl({ title: "Erro ao efetuar login!", style:"error", message: res.body.message })
-           $('#login-modal').modal('hide')}
-        )
-          .catch(function(err) {
-              console.log(err);
-              // when you throw error this will also fetch error.
-              throw err;
-         })
+     async logar() {
+        try{
+          const res = await this.auth()
+          console.log(res.data)
+             const token = res.data;
+             localStorage.setItem('acess_token', token)
+             store.setToken(token)
+             this.emailLogar = ""
+             this.passwordLogar = ""
+             console.log(this.storeState.visibleLogin);
+             $.growl({ title: "Notificação", style:"notice", message: "Logado com sucesso!" });
+        }catch(e){
+             console.log(e)
+             $.growl({ title: "Erro ao efetuar login!", style:"error", message: e.body.message })
+             $('#login-modal').modal('hide')}
       }
+     
     }
 }
 </script>

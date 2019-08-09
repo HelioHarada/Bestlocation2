@@ -28,6 +28,7 @@
 
 <script>
 
+
 export default {
 
   data(){
@@ -38,6 +39,8 @@ export default {
   },
 
   created() {
+
+localStorage.getItem("acess_token")
 
     let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
     promise .then(function(res) {
