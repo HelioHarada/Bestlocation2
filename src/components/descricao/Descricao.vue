@@ -4,7 +4,6 @@
       <contato-modal :imovel="imovel"></contato-modal>
       <div class="col-md-6 slide">
         <slide></slide>
-        <!-- <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap"> -->
       </div>
       <div class="col-md-6">
         <div class="card-body card-imovel">
@@ -140,20 +139,11 @@ export default {
     },
 
     getLocation: function(address) {
-      
       const bounds = new google.maps.LatLngBounds();
       const element = document.getElementById(this.mapName);
-      var local;
       // geocoder API (pega o endereço)
       var geocoder = new google.maps.Geocoder(address);
       let self = this;
-      
-      coord(function(addr, options, map) {
-        self.showMaps(options, map);
-      });
-
-      function coord(callback) {
-        let self = this;
         geocoder.geocode({ address: address }, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
             var latitude = results[0].geometry.location.lat();
@@ -186,13 +176,8 @@ export default {
               map: this.map
             });
           });
-
-          callback(this.markerCoordinates, this.options, this.map);
         });
-      }
     },
-
-
     setMapOnAll: function(map) {
       for (var i = 0; i < this.markers.length; i++) {
         this.markers[i].setMap(map);
@@ -202,11 +187,7 @@ export default {
       this.setMarkerMap(null);
     },
     createMarker: function(places, img) {
-        
-
-   
       const icon = {
-        // url: "../src/img/Fav.png", // url
         url: img,
         scaledSize: new google.maps.Size(50, 50) // scaled size
       };
@@ -219,28 +200,12 @@ export default {
       });
       this.markers.push(marker);
     },
-    showMaps: function(options, map) {
-      let self = this;
-
-      var x = 0;
-
-      var service = new google.maps.places.PlacesService(map);
-
-      const places = ["food", "hospital", "school"];
-
-      var request = {};
-
-      places.forEach(type => {});
-    }
   },
   created() {
     this.setID();
     this.load();
   },
-  mounted() {
-    // this.createMap();
-    // this.showMaps();
-  }
+
 };
 </script>
 
