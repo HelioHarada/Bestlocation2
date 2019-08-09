@@ -43,9 +43,9 @@
           >Contato</button>
         </div>
       </div>
-
+  
       <div class="place-map">
-        <hr />
+        <hr>
         <h3 align="center">Maps</h3>
 
         <button class="btn button-plus" @click="markerHospital()">
@@ -72,17 +72,11 @@
 </template>
 
 <script>
-import routes from "../../routes";
-import Slider from "../shared/slider/Slider.vue";
-import Contato from "../shared/contato/Contato.vue";
-import { getImovelID } from "../../api/";
-import {
-  markerFood,
-  markerHospital,
-  markerFarmacia,
-  markerSchool,
-  markerMarket
-} from "../../api/marker";
+  import routes from "../../routes";
+  import Slider from "../shared/slider/Slider.vue";
+  import Contato from "../shared/contato/Contato.vue";
+  import { getImovelID } from "../../api/";
+  import { markerFood, markerHospital, markerFarmacia, markerSchool, markerMarket} from "../../api/marker";  
 
 export default {
   methods: {
@@ -109,6 +103,8 @@ export default {
       map: null,
       bounds: null,
       markers: [],
+      options: "",
+      count : 0,
     };
   },
 
@@ -147,12 +143,13 @@ export default {
       
       const bounds = new google.maps.LatLngBounds();
       const element = document.getElementById(this.mapName);
+      var local;
       // geocoder API (pega o endereço)
       var geocoder = new google.maps.Geocoder(address);
       let self = this;
+      
       coord(function(addr, options, map) {
         self.showMaps(options, map);
-        
       });
 
       function coord(callback) {
@@ -167,6 +164,7 @@ export default {
             ];
           }
           var mapCentre = this.markerCoordinates[0];
+
           var options = {
             zoom: 16,
             center: new google.maps.LatLng(
@@ -174,6 +172,8 @@ export default {
               mapCentre.longitude
             )
           };
+          this.options = options;
+
           this.map = new google.maps.Map(element, options);
 
           this.markerCoordinates.forEach(coord => {
@@ -186,10 +186,12 @@ export default {
               map: this.map
             });
           });
- var service = new google.maps.places.PlacesService(this.map);
+
           callback(this.markerCoordinates, this.options, this.map);
         });
+      }
     },
+
 
     setMapOnAll: function(map) {
       for (var i = 0; i < this.markers.length; i++) {
@@ -200,7 +202,11 @@ export default {
       this.setMarkerMap(null);
     },
     createMarker: function(places, img) {
+        
+
+   
       const icon = {
+        // url: "../src/img/Fav.png", // url
         url: img,
         scaledSize: new google.maps.Size(50, 50) // scaled size
       };
@@ -212,14 +218,32 @@ export default {
         position: places.geometry.location
       });
       this.markers.push(marker);
+    },
+    showMaps: function(options, map) {
+      let self = this;
+
+      var x = 0;
+
+      var service = new google.maps.places.PlacesService(map);
+
+      const places = ["food", "hospital", "school"];
+
+      var request = {};
+
+      places.forEach(type => {});
     }
   },
   created() {
     this.setID();
     this.load();
+  },
+  mounted() {
+    // this.createMap();
+    // this.showMaps();
   }
 };
 </script>
+
 
 <style>
 .card-left {
