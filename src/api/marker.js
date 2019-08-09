@@ -5,7 +5,6 @@ export function markerFood() {
     this.setMapOnAll(null);
     let self = this;
     let food = ["bar", "restaurant", "establishment", "cafe", "food",];
-    
     let img = "../src/img/food.png";
     let request = {
         location: options.center,
@@ -20,7 +19,6 @@ export function markerFood() {
             }
         }
     }
-
     service.nearbySearch(request, callback);
 };
 
@@ -28,7 +26,6 @@ export function markerHospital() {
     this.setMapOnAll(null);
     let self = this;
     let type = ["hospital", "doctor", "health"];
-  
     let img = "../src/img/hospital.png";
     let request = {
         location: options.center,
@@ -43,7 +40,6 @@ export function markerHospital() {
             }
         }
     }
-
     service.nearbySearch(request, callback);
 };
 
@@ -51,7 +47,6 @@ export function markerFarmacia() {
     this.setMapOnAll(null);
     let self = this;
     let type = ["pharmacy", "health"];
-    
     let img = "../src/img/farmacia.png";
     let request = {
         location: options.center,
@@ -66,7 +61,6 @@ export function markerFarmacia() {
             }
         }
     }
-
     service.nearbySearch(request, callback);
 };
 
@@ -80,7 +74,6 @@ export function markerSchool() {
         types: type,
         radius: 2074
     };
-
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
@@ -88,7 +81,6 @@ export function markerSchool() {
             }
         }
     }
-
     service.nearbySearch(request, callback);
 }
 
@@ -102,7 +94,6 @@ export function markerMarket() {
         types: type,
         radius: 2074
     };
-
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
@@ -110,6 +101,5 @@ export function markerMarket() {
             }
         }
     }
-
     service.nearbySearch(request, callback);
 }
