@@ -16,6 +16,6 @@ export const routes  = [
     {path : '/Deletar', name:'deletar', component : Deletar},
     {path : '/find', name : 'find', component : Find, },
     {path : '/Descricao/:id', name:'desc',component : Descricao},
-    {path : '/Minha_Conta', name:'conta',component : Minha_conta},
+    {path : '/account', name:'account',component : Minha_conta},
 ];
 

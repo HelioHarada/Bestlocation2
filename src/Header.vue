@@ -25,11 +25,15 @@
         <li v-if="storeState.visibleLogin" class="nav-item">
             <a class="nav-link menu-login" data-toggle="modal" data-target="#login-modal" > <img src="./img/user.svg" class="icon-user" alt="user">Login</a>
         </li>
-        <li v-else class="nav-item">
-         
-            <a class="nav-link menu-login" @click="logout()"><img src="./img/user.svg" class="icon-user" alt="user">Logout</a>
-        </li> 
-        <li class="nav-item dropdown ">
+        <ul class="navbar-nav ml-auto" v-else>
+            <li class="nav-item">       
+                <a class="nav-link menu-login" @click="logout()"><img src="./img/user.svg" class="icon-user" alt="user">Logout</a>
+            </li> 
+            <li class="nav-item">
+              <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'account'}">  <a class="nav-link" href="/#/">Minha conta <span class="sr-only">(current)</span></a></router-link>
+            </li>
+        </ul>
+        <li class="nav-item dropdown " v-show="false">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Admin
           </a>

@@ -1,7 +1,9 @@
 <template>
 <div class="container-fluid">
+          <h1 align="center"> Minha Conta</h1>
   <div class="row content-lista">
-    <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
+      
+    <!-- <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
       <div class="card">
         <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
         <div class="card-body card-imovel">
@@ -16,12 +18,12 @@
           <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
           <p class="card-text">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
               {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
-          <!-- <p class="card-text">id: {{imovel._id}}</p> --> 
+    
           <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
-          <!-- <a class="btn button-plus" @click="getId(imovel._id)" :meu_id="imovel._id"  data-toggle="modal" data-target="#desc-modal" >Mais+</a> -->
+         
           </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 </template>
@@ -39,14 +41,16 @@ export default {
   },
 
   created() {
+      if(localStorage.getItem("acess_token") == null){
+          $.growl({ title: "Notificação", style:"error", message: "Efetue o Login primeiro" });
+      }
+      console.log(localStorage.getItem("acess_token"))
 
-localStorage.getItem("acess_token")
-
-    let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
-    promise .then(function(res) {
-      console.log(res)
-         this.imoveis = res.body;
-    });
+    // let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
+    // promise .then(function(res) {
+    //   console.log(res)
+    //      this.imoveis = res.body;
+    // });
 
   },
 
