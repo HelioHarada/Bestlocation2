@@ -20,7 +20,6 @@ export function markerFood() {
             }
         }
     }
-
     service.nearbySearch(request, callback);
 };
 
@@ -43,7 +42,6 @@ export function markerHospital() {
             }
         }
     }
-
     service.nearbySearch(request, callback);
 };
 
@@ -66,7 +64,6 @@ export function markerFarmacia() {
             }
         }
     }
-
     service.nearbySearch(request, callback);
 };
 
@@ -81,7 +78,6 @@ export function markerSchool() {
         types: type,
         radius: 2074
     };
-
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
@@ -89,7 +85,6 @@ export function markerSchool() {
             }
         }
     }
-
     service.nearbySearch(request, callback);
 }
 
@@ -104,7 +99,6 @@ export function markerMarket() {
         types: type,
         radius: 2074
     };
-
     function callback(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
@@ -112,6 +106,5 @@ export function markerMarket() {
             }
         }
     }
-
     service.nearbySearch(request, callback);
 }
