@@ -1,9 +1,8 @@
 <template>
-<div class="container-fluid">
-          <h1 align="center"> Minha Conta</h1>
-  <div class="row content-lista">
-      
-    <!-- <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
+  <div class="container-fluid">
+    <h1 align="center">Minha Conta</h1>
+    <div class="row content-lista">
+      <!-- <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
       <div class="card">
         <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
         <div class="card-body card-imovel">
@@ -23,38 +22,44 @@
          
           </div>
       </div>
-    </div> -->
+      </div>-->
+    </div>
   </div>
-</div>
 </template>
 
 <script>
-
-
 export default {
-
-  data(){
-        return{
-            imoveis: [],
-            id: ''
-        }
+  data() {
+    return {
+      imoveis: [],
+      id: ""
+    };
   },
 
   created() {
-      if(localStorage.getItem("acess_token") == null){
-          $.growl({ title: "Notificação", style:"error", message: "Efetue o Login primeiro" });
-      }
-      console.log(localStorage.getItem("acess_token"))
+  
+    if (localStorage.getItem("acess_token") == null) {
+           
+      this.$router.push('home')
+      $('#login-modal').modal()
+      $.growl({
+        title: "Notificação",
+        style: "error",
+        message: "Efetue o Login primeiro"
+      });
+         setTimeout(function(){
+             $('#login-modal').modal()
+         },4000)
+    }
+    console.log(localStorage.getItem("acess_token"));
 
     // let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
     // promise .then(function(res) {
     //   console.log(res)
     //      this.imoveis = res.body;
     // });
-
-  },
-
-}
+  }
+};
 </script>
 
 

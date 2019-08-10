@@ -9,7 +9,7 @@ import Minha_conta from './components/conta/MinhaConta.vue'
 
 
 export const routes  = [
-    {path: '', name:'home' ,component : Home},
+    {path: '*', name:'home' ,component : Home},
     {path : '/lista', name:'lista' ,component: Lista },
     {path : '/cadastrar',name:'cadastrar', component : Cadastrar},
     {path : '/Usuario', name:'usuario', component : Usuario},
