@@ -102,13 +102,13 @@
                   </div>
 
                   <div class="form-group">
-                    <input
-                      type="number"
+                    <the-mask
+                      :mask="['###.###.###-##', '##.###.###/####-##']"
                       class="form-control input-grey"
                       v-model="cpf"
                       id="cpf"
                       aria-describedby="emailHelp"
-                      placeholder="CPF"
+                      placeholder="CPF ou CNPJ"
                     />
                   </div>
 
@@ -246,7 +246,7 @@ export default {
         store.setToken(token);
         this.emailLogar = "";
         this.passwordLogar = "";
-        console.log(this.storeState.visibleLogin);
+        $("#login-modal").modal("hide");
         $.growl({
           title: "Notificação",
           style: "notice",
