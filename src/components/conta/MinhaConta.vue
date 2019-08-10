@@ -1,8 +1,16 @@
 <template>
   <div class="container-fluid">
+      <br>
     <h1 align="center">Minha Conta</h1>
-    <div class="row content-lista">
-      <!-- <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
+        <h4>Bem-vindo {{user.firstName}}</h4>
+    <hr>
+
+    
+    <div>
+        <p>email: {{user.email}}</p>
+    </div>
+    <!-- <div class="row content-lista">
+      <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
       <div class="card">
         <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
         <div class="card-body card-imovel">
@@ -22,42 +30,61 @@
          
           </div>
       </div>
-      </div>-->
-    </div>
+      </div>
+    </div> -->
   </div>
 </template>
 
 <script>
+  import { getUserID } from "../../api/";
 export default {
   data() {
     return {
       imoveis: [],
+      user: '',
       id: ""
     };
   },
+    methods:{
+        getUserID,
 
-  created() {
+        async load(){
+            console.log("entrooo")
+            try{
+                const res = await this.getUserID('5d4e18d3fbcd2b0016a55d0f');
+                this.user = res.body
+                console.log(this.user)
+            }catch(e){
+                console.log(e)
+            }
+            
+        }
+
+    },
+    created() {
   
-    if (localStorage.getItem("acess_token") == null) {
-           
-      this.$router.push('home')
-      $('#login-modal').modal()
-      $.growl({
-        title: "Notificação",
-        style: "error",
-        message: "Efetue o Login primeiro"
-      });
-         setTimeout(function(){
-             $('#login-modal').modal()
-         },4000)
-    }
-    console.log(localStorage.getItem("acess_token"));
-
-    // let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
-    // promise .then(function(res) {
-    //   console.log(res)
-    //      this.imoveis = res.body;
-    // });
+        if (localStorage.getItem("acess_token") == null) {
+            
+        this.$router.push('home')
+        $('#login-modal').modal()
+        $.growl({
+            title: "Notificação",
+            style: "error",
+            message: "Efetue o Login primeiro"
+        });
+            setTimeout(function(){
+                $('#login-modal').modal()
+            },4000)
+        }else{
+            this.load();
+        }
+        console.log(localStorage.getItem("acess_token"));
+    // 5cbffa7d52214b001787c4a3
+        // let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
+        // promise .then(function(res) {
+        //   console.log(res)
+        //      this.imoveis = res.body;
+        // });
   }
 };
 </script>

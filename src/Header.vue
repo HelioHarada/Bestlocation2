@@ -99,6 +99,7 @@ export default {
           
             localStorage.clear();
             store.clearToken();
+            this.$router.push('home')
             console.log(this.storeState.visibleLogin)
             console.log(res.body);
         })

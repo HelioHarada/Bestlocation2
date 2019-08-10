@@ -33,13 +33,10 @@ export function getImovelID (id) {
   return this.$http.get(url+'/api/imoveis/'+id);
 }
 
-// export function setToken(token){
-//   token = token;
-// }
-
-export function getToken(){
-  return this.token ;
- }
+export function getUserID (id) {
+  console.log(id)
+  return this.$http.get(url+'/api/users/crud/'+id);
+}
 
  export function auth(){
    return this.$http.post(url+'/api/users/login',{
