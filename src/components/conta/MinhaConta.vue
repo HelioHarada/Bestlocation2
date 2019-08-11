@@ -1,13 +1,26 @@
 <template>
   <div class="container-fluid">
       <br>
-    <h1 align="center">Minha Conta</h1>
-        <h4>Bem-vindo {{user.firstName}}</h4>
-    <hr>
+      <h1 align="center">Minha Conta</h1>
+      <h5 class="title-name">Bem-vindo {{user.firstName}} </h5>
+      <hr>
+    <div class="row">
+                       <router-link
+                            @click.native="closeMenu()"
+                            class="nav-link"
+                            :to="{ name: 'cadastrar', params: { id: user._id }}"
+                            >Cadastrar imóvel
+                        </router-link>
+
+                        <a class="nav-link" href="#">Meus imóveis</a>
+    </div>
+    
+        
+    
 
     
     <div>
-        <p>email: {{user.email}}</p>
+
     </div>
     <!-- <div class="row content-lista">
       <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
@@ -36,7 +49,7 @@
 </template>
 
 <script>
-  import { getUserID } from "../../api/";
+  import { getUserID, closeMenu } from "../../api/";
 export default {
   data() {
     return {
@@ -47,7 +60,7 @@ export default {
   },
     methods:{
         getUserID,
-
+        closeMenu,
         async load(){
             console.log("entrooo")
             try{
@@ -89,4 +102,28 @@ export default {
 };
 </script>
 
+<style scoped>
 
+/* .nav-side-menu {
+    margin-left: -15px;
+  font-size: 16px;
+  font-weight: 200;
+  background-color: #343A40;
+  width: 300px;
+  height: 100%;
+  color:white;
+}
+
+.nav-side-menu ul,
+.nav-side-menu li ,
+.title-name,
+.nav-side-menu .nav-link {
+  list-style: none;
+  padding: 20px;
+  margin-left: 10px;
+  line-height: 35px;
+  cursor: pointer;
+  color:white;
+
+} */
+</style>

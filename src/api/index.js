@@ -38,6 +38,10 @@ export function getUserID (id) {
   return this.$http.get(url+'/api/users/crud/'+id);
 }
 
+export function closeMenu() {
+  $('.navbar-collapse').collapse('hide');
+}
+
  export function auth(){
    return this.$http.post(url+'/api/users/login',{
       emailLogar: this.emailLogar,

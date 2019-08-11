@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container">
     <form ref="form" @submit.prevent="handleSubmit">
     <div class="alert alert-danger" id ="message-errors" role="alert"  v-if="errors.length" >
       <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
@@ -7,9 +7,9 @@
         <li v-for="(error , index ) in errors" :key="index">{{ error }}</li>
       </ul>
    </div>
-
+      <br>
       <h2 align="center">Cadastrar Ímovel</h2>
-
+      <hr>
       <div class="form-group">
         <input
           type="titulo"
@@ -159,13 +159,15 @@
 </template>
 
 <script>
+import routes from "../../routes";
 import { Money } from "./v-money.js";
-
+import { closeMenu } from "../../api/";
 export default {
   components: { Money },
 
   data() {
     return {
+      query:"",
       imoveis: [],
       errors: [],
       status: "venda",
@@ -198,6 +200,19 @@ export default {
     $("#cep").mask("00000-000");
   },
   methods: {
+    closeMenu,
+    async load(){
+      try{
+        const res = await this.setQuery();
+        console.log(res)
+        if(res == undefined || res == '')
+        {
+            this.$router.push('account')
+        }
+      }catch(e){
+        console.log(e)
+      }
+    },
     buscarCEP() {
       var self = this;
 
@@ -220,6 +235,11 @@ export default {
           self.rua = endereco.logradouro;
         });
       }
+    },
+    setQuery: function() {
+      this.query = this.$route.params.id;
+  
+      return this.query;
     },
     handleSubmit() {
       this.errors = [];
@@ -291,6 +311,10 @@ export default {
       }
 
     }
+  },
+  created(){
+    this.load();
+    this.setQuery();
   }
 };
 </script>

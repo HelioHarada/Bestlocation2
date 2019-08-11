@@ -28,7 +28,7 @@
         <div class="row funcionalidade">
           <div c class="col-md-4 text-center img-funcionalidade">
               <img src="../../png/011-building.png" alt="">
-              <h2>Empresarial</h2>
+              <h4>Empresarial</h4>
               <p>Busque escritórios ou estabelecimento para o seu négócio. A bestlocation te ajuda
                 a encontrar o melhor local de acordo com seu publico alvo. </p>
           </div>
@@ -36,7 +36,7 @@
             <img src="../../png/004-money.png" alt="">
               <h4>Gaste apenas o necessário</h4>
               <p>Saiba de nossos planos e gaste apenas caso queira impulsonar suas vendas,
-                o restante das funcionalidades é grátis  </p>
+                Anunciar é GRÁTIS </p>
           </div>
           <div class="col-md-4 text-center img-funcionalidade">
               <img src="../../png/021-search-1.png" alt="">            
