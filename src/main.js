@@ -4,6 +4,7 @@ import Index from './Index.vue'
 import Footer from './Footer.vue'
 import money from './components/cadastrar/v-money'
 import VueTheMask from 'vue-the-mask'
+import Notifications from 'vue-notification'
 // Uso de async await
 require("babel-core/register");
 require("babel-polyfill");
@@ -13,6 +14,7 @@ Vue.config.productionTip = false;
 import { routes } from './routes'
 Vue.use(money, {precision: 2})
 Vue.use(VueTheMask)
+Vue.use(Notifications)
 
 // Vue router
 import VueRouter from 'vue-router';

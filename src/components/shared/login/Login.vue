@@ -247,18 +247,10 @@ export default {
         this.emailLogar = "";
         this.passwordLogar = "";
         $("#login-modal").modal("hide");
-        $.growl({
-          title: "Notificação",
-          style: "notice",
-          message: "Logado com sucesso!"
-        });
+
       } catch (e) {
         console.log(e);
-        $.growl({
-          title: "Erro ao efetuar login!",
-          style: "error",
-          message: e.body.message
-        });
+
         $("#login-modal").modal("hide");
       }
     }
