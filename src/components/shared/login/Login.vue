@@ -255,19 +255,19 @@ export default {
             this.emailLogar = "";
             this.passwordLogar = "";
             this.$notify({
-            group: 'foo',
-            type : 'success',
-            title: 'Logado com Sucesso!',
+              group: 'foo',
+              type : 'success',
+              title: 'Logado com Sucesso!',
             });
             $("#login-modal").modal("hide");
 
           } catch (e) {
             console.log(e);
             this.$notify({
-            group: 'foo',
-            type : 'error',
-            title: "Erro!",
-            text : e.body.message,
+              group: 'foo',
+              type : 'error',
+              title: "Erro!",
+              text : e.body.message,
             });
             this.emailLogar = "";
             this.passwordLogar = "";

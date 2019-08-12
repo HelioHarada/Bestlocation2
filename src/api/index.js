@@ -1,6 +1,8 @@
 
 var url = 'https://bestlocationapi.herokuapp.com'
 
+// Variavel Global Store
+// token
 export const store = {
   debug: true,
   state: {
@@ -47,6 +49,11 @@ export function returnToken(token){
 export function getUserID (id) {
   console.log(id)
   return this.$http.get(url+'/api/users/crud/'+id);
+}
+
+export function getUserImoveis (id) {
+  console.log(id)
+  return this.$http.get(url+'/api/imoveis/user/'+id);
 }
 
 export function cadastrarImovel () {

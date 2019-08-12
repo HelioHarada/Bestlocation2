@@ -185,6 +185,7 @@ export default {
       area: "",
       uf: "",
       bairro: "",
+      id:"",
       // === Money === //
       money: {
         decimal: ",",
@@ -206,6 +207,7 @@ export default {
       try{
         const res = await this.setQuery();
         console.log(res)
+        this.id = res
         if(res == undefined || res == '')
         {
             this.$router.push('account')
@@ -216,13 +218,12 @@ export default {
     },
 
     async cadastrar(){
-      console.log("cadastrar")
       try{
-        let res = await this.cadastrarImovel();
+        const res = await this.cadastrarImovel();
         console.log(res);
-      }catch(e){
-        console.log(e)
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+      }catch(err){
+        console.log(err);
+        // $("html, body").animate({ scrollTop: 0 }, "slow");
       }
     },
     buscarCEP() {
@@ -284,14 +285,51 @@ export default {
       }
       if (!this.errors.length)
       {
-          this.cadastrar()
-      }
+          // this.cadastrar()
+        let promise = this.$http.post("https://bestlocationapi.herokuapp.com/api/imoveis/user/"+this.id, {
+            titulo: this.titulo,
+            status: this.status,
+            endereco: this.rua,
+            numEndereco: this.numEndereco,
+            complementoEndereco: this.complementoEndereco,
+            cidade: this.cidade,
+            bairro: this.bairro,
+            uf: this.uf,
+            descricao: this.descricao,
+            numBanheiros: this.numBanheiros,
+            numQuartos: this.numQuartos,
+            preco: this.preco,
+            area: this.area,
+            cep: this.cep,
+          });
+          promise.then(function(res) {
+            console.log(res);
+
+            this.titulo = "";
+            this.status = "";
+            this.endereco = "";
+            this.numEndereco = "";
+            this.complementoEndereco = "";
+            this.cidade = "";
+            this.uf = "";
+            this.bairro = "";
+            this.descricao = "";
+            this.numBanheiros = "";
+            this.numQuartos = "";
+            this.preco = "";
+            this.cep = "";
+            this.area = "";
+          });
+      }else{
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+        }     
+      
     }
   },
   created(){
     this.load();
     this.setQuery();
-    console.log(req)
+    // console.log(req)
   }
 };
 </script>

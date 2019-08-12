@@ -133,15 +133,15 @@ export default {
     getImoveis,
     getQuery,
 
-    async load() {
-      await this.getImoveis()
-        .then(res => {
-          this.imoveis = res.body;
-          this.totalImoveis = this.imoveis.length
-        })
-        .catch(console.error);
+    async load(){
+      try{
+        const res = await this.getImoveis()
+        this.imoveis = res.body;
+        this.totalImoveis = this.imoveis.length
+      }catch(e){
+        console.log(e);
+      }
     },
-
     setQuery: function() {
       this.query = this.$route.params.query;
       return this.query;

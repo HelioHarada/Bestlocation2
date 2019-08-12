@@ -22,7 +22,7 @@
     <div>
 
     </div>
-    <!-- <div class="row content-lista">
+    <div class="row content-lista">
       <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
       <div class="card">
         <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
@@ -44,12 +44,12 @@
           </div>
       </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
-  import {  returnToken,getUserID, closeMenu } from "../../api/";
+  import {  returnToken,getUserID, closeMenu, getUserImoveis } from "../../api/";
 export default {
   data() {
     return {
@@ -62,24 +62,28 @@ export default {
         getUserID,
         closeMenu,
         returnToken,
+        getUserImoveis,
         async getToken(){
           try{
             const id = this.returnToken(localStorage.getItem("acess_token"))
-            console.log(id)
-            this.load(id)
+            this.getImoveis(id)
           }catch(e){
             console.log(e)
           }
         },
-        async load(id){
+        async getImoveis(id){
             try{
-                const res = await this.getUserID(id);
-                this.user = res.body
-                console.log(this.user)
+                const res = await this.getUserImoveis(id);
+                this.imoveis = res.body
+                console.log(this.imoveis)
+
            
             }catch(e){
                 console.log(e)
             }
+        },
+        async load(id){
+
             
         }
 
@@ -95,6 +99,7 @@ export default {
                 $('#login-modal').modal()
             },4000)
         }else{
+
             this.getToken();
         }
        
