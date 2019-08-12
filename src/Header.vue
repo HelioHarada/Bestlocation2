@@ -94,7 +94,7 @@ export default {
         $('.navbar-collapse').collapse('hide');
     },
     logout(){
-        let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/users/logout');
+        let promise = this.$http.post('https://bestlocationapi.herokuapp.com/api/users/logout');
         promise.then(function(res){
           
             localStorage.clear();
