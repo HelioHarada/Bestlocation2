@@ -49,7 +49,7 @@
 </template>
 
 <script>
-  import { getUserID, closeMenu } from "../../api/";
+  import {  returnToken,getUserID, closeMenu } from "../../api/";
 export default {
   data() {
     return {
@@ -61,12 +61,22 @@ export default {
     methods:{
         getUserID,
         closeMenu,
-        async load(){
-            console.log("entrooo")
+        returnToken,
+        async getToken(){
+          try{
+            const id = this.returnToken(localStorage.getItem("acess_token"))
+            console.log(id)
+            this.load(id)
+          }catch(e){
+            console.log(e)
+          }
+        },
+        async load(id){
             try{
-                const res = await this.getUserID('5d4e18d3fbcd2b0016a55d0f');
+                const res = await this.getUserID(id);
                 this.user = res.body
                 console.log(this.user)
+           
             }catch(e){
                 console.log(e)
             }
@@ -80,18 +90,14 @@ export default {
             
         this.$router.push('home')
         $('#login-modal').modal()
-        $.growl({
-            title: "Notificação",
-            style: "error",
-            message: "Efetue o Login primeiro"
-        });
+
             setTimeout(function(){
                 $('#login-modal').modal()
             },4000)
         }else{
-            this.load();
+            this.getToken();
         }
-        console.log(localStorage.getItem("acess_token"));
+       
     // 5cbffa7d52214b001787c4a3
         // let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
         // promise .then(function(res) {

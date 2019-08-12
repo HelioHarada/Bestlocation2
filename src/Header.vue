@@ -21,11 +21,11 @@
         <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'lista'}"><a class="nav-link" >Catálogo de imóveis</a></router-link>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto navbar-right">
         <li v-if="storeState.visibleLogin" class="nav-item">
             <a class="nav-link menu-login" data-toggle="modal" data-target="#login-modal" > <img src="./img/user.svg" class="icon-user" alt="user">Login</a>
         </li>
-        <ul class="navbar-nav ml-auto" v-else>
+        <ul class="navbar-nav mr-auto " v-else>
             <li class="nav-item">       
                 <a class="nav-link menu-login" @click="logout()"><img src="./img/user.svg" class="icon-user" alt="user">Logout</a>
             </li> 

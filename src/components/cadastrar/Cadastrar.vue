@@ -290,7 +290,7 @@ export default {
           });
           promise.then(function(res) {
             console.log(res);
-            $.growl({ title: "Notificação", style:"notice", message: "Cadastrado com sucesso!" });
+
             this.titulo = "";
             this.status = "";
             this.endereco = "";

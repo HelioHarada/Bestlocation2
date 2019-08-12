@@ -1,5 +1,6 @@
 <template>
   <div id="login">
+    <notifications group="foo" />
     <div class="modal modal-grey fade" id="login-modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content content-grey">
@@ -51,7 +52,7 @@
                   <div class="form-group">
                     <!-- <label for="exam2pleInputEmail1">Email address</label> -->
                     <input
-                      type="emailLogar"
+                      type="email"
                       class="form-control input-grey"
                       v-model="emailLogar"
                       id="exampleInputE2mail1"
@@ -177,6 +178,16 @@ export default {
   },
   methods: {
     auth,
+    validarLogin(){
+      if(this.email == ""){
+        return false
+      }else if(this.password == ""){
+        return false
+      }else{
+        return true
+      }
+      
+    },
     cadastrar() {
       // Validação
       this.errors = [];
@@ -186,7 +197,7 @@ export default {
       }
       if (this.username == "love") {
         alert(
-          "Patricia Criado você é o amor da minha vida e sempre vou te amar Ass: HaradaHelio"
+          "Patricia Criado você é o amor da minha vida Ass: HaradaHelio"
         );
       }
       if (!this.cpf) {
@@ -225,11 +236,7 @@ export default {
           this.cpf = "";
           this.password = "";
           this.password2 = "";
-          $.growl({
-            title: "Notificação",
-            style: "notice",
-            message: "Cadastrado com Sucesso!"
-          });
+          
           console.log(res.body);
           $("#login-modal").modal("hide");
           return true;
@@ -238,21 +245,33 @@ export default {
       }
     },
     async logar() {
-      try {
-        const res = await this.auth();
-        console.log(res);
-        const token = res.data;
-        localStorage.setItem("acess_token", token);
-        store.setToken(token);
-        this.emailLogar = "";
-        this.passwordLogar = "";
-        $("#login-modal").modal("hide");
+      console.log("logar")
+          try {
+            const res = await this.auth();
+            console.log(res);
+            const token = res.data;
+            localStorage.setItem("acess_token", token);
+            store.setToken(token);
+            this.emailLogar = "";
+            this.passwordLogar = "";
+            this.$notify({
+            group: 'foo',
+            type : 'success',
+            title: 'Logado com Sucesso!',
+            });
+            $("#login-modal").modal("hide");
 
-      } catch (e) {
-        console.log(e);
-
-        $("#login-modal").modal("hide");
-      }
+          } catch (e) {
+            console.log(e);
+            this.$notify({
+            group: 'foo',
+            type : 'error',
+            title: "Erro!",
+            text : e.body.message,
+            });
+            this.emailLogar = "";
+            this.passwordLogar = "";
+          }
     }
   }
 };
