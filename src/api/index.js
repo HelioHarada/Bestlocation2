@@ -49,6 +49,26 @@ export function getUserID (id) {
   return this.$http.get(url+'/api/users/crud/'+id);
 }
 
+export function cadastrarImovel () {
+
+  return this.$http.post(+"/api/imoveis", {
+    titulo: this.titulo,
+    status: this.status,
+    endereco: this.rua,
+    numEndereco: this.numEndereco,
+    complementoEndereco: this.complementoEndereco,
+    cidade: this.cidade,
+    bairro: this.bairro,
+    uf: this.uf,
+    descricao: this.descricao,
+    numBanheiros: this.numBanheiros,
+    numQuartos: this.numQuartos,
+    preco: this.preco,
+    area: this.area,
+    cep: this.cep
+  });
+}
+
 export function closeMenu() {
   $('.navbar-collapse').collapse('hide');
 }

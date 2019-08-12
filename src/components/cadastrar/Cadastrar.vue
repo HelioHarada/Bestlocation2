@@ -161,7 +161,7 @@
 <script>
 import routes from "../../routes";
 import { Money } from "./v-money.js";
-import { closeMenu } from "../../api/";
+import { closeMenu, cadastrarImovel } from "../../api/";
 export default {
   components: { Money },
 
@@ -201,6 +201,7 @@ export default {
   },
   methods: {
     closeMenu,
+    cadastrarImovel,
     async load(){
       try{
         const res = await this.setQuery();
@@ -211,6 +212,17 @@ export default {
         }
       }catch(e){
         console.log(e)
+      }
+    },
+
+    async cadastrar(){
+      console.log("cadastrar")
+      try{
+        let res = await this.cadastrarImovel();
+        console.log(res);
+      }catch(e){
+        console.log(e)
+        $("html, body").animate({ scrollTop: 0 }, "slow");
       }
     },
     buscarCEP() {
@@ -272,49 +284,14 @@ export default {
       }
       if (!this.errors.length)
       {
-          let promise = this.$http.post("https://bestlocationapi.herokuapp.com/api/imoveis", {
-            titulo: this.titulo,
-            status: this.status,
-            endereco: this.rua,
-            numEndereco: this.numEndereco,
-            complementoEndereco: this.complementoEndereco,
-            cidade: this.cidade,
-            bairro: this.bairro,
-            uf: this.uf,
-            descricao: this.descricao,
-            numBanheiros: this.numBanheiros,
-            numQuartos: this.numQuartos,
-            preco: this.preco,
-            area: this.area,
-            cep: this.cep
-          });
-          promise.then(function(res) {
-            console.log(res);
-
-            this.titulo = "";
-            this.status = "";
-            this.endereco = "";
-            this.numEndereco = "";
-            this.complementoEndereco = "";
-            this.cidade = "";
-            this.uf = "";
-            this.bairro = "";
-            this.descricao = "";
-            this.numBanheiros = "";
-            this.numQuartos = "";
-            this.preco = "";
-            this.cep = "";
-            this.area = "";
-          });
-      }else{
-          $("html, body").animate({ scrollTop: 0 }, "slow");
+          this.cadastrar()
       }
-
     }
   },
   created(){
     this.load();
     this.setQuery();
+    console.log(req)
   }
 };
 </script>

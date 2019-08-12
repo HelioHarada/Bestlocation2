@@ -1,6 +1,6 @@
 <template>
       <nav id="header" class="navbar navbar-expand-lg navbar-dark bg-dark ">
-        
+      <notifications group="foo"/>
   <!-- Logo -->
   <a class="navbar-brand" href="/#/">
      <img class="img-logo" src="../src/img/Logobranca.png">
@@ -102,6 +102,11 @@ export default {
             this.$router.push('home')
             console.log(this.storeState.visibleLogin)
             console.log(res.body);
+            this.$notify({
+            group: 'foo',
+            type : 'success',
+            title: 'Logout efetuado',
+            });
         })
     }
   },

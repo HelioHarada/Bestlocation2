@@ -118,7 +118,7 @@ export default {
       let exp = new RegExp(this.filtro.trim(), "gi");
       if (this.filtro) {
         
-        
+        this.load();
         this.totalImoveis = this.imoveis.filter(imovel => exp.test(imovel.cidade)).length;
       
         return this.imoveis.filter(imovel => exp.test(imovel.cidade));
@@ -137,7 +137,7 @@ export default {
       await this.getImoveis()
         .then(res => {
           this.imoveis = res.body;
-              this.totalImoveis = this.imoveis.length
+          this.totalImoveis = this.imoveis.length
         })
         .catch(console.error);
     },

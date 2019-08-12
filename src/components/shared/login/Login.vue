@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <notifications group="foo" />
+    <notifications group="foo"/>
     <div class="modal modal-grey fade" id="login-modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content content-grey">
@@ -408,6 +408,10 @@ export default {
 
 .button-grey:hover {
   background-color: #ff8915;
+}
+
+.vue-notification{
+  font-size: 18px;
 }
 </style>
 

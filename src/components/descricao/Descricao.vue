@@ -132,6 +132,7 @@ export default {
       this.getImovelID(this.id)
         .then(res => {
           this.imovel = res.body;
+          console.log(this.imovel);
           this.getLocation(
             this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco
           );
