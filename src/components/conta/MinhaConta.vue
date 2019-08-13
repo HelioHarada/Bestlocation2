@@ -37,12 +37,12 @@
     
           <div class="flex-align">
               <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
-              <div v-if="visibleDelete.id">
+              <div v-if="visibleDelete">
                 <button  data-toggle="modal"  @click="checkDelete(imovel._id)" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button>
               </div> 
               <div v-else>
                 <button @click="visibleDelete = !visibleDelete" class="btn btn-secondary">Cancel</button>
-                <button @click="deletarImovel(imovel._id)" class="btn btn-danger">Delete</button>
+                <button @click="checkDelete(imovel._id)" class="btn btn-danger">Delete</button>
               </div>
           </div>
           </div>
@@ -60,7 +60,7 @@ export default {
       imoveis: [],
       user: '',
       id: "",
-      visibleDelete:[]
+      visibleDelete:true
     };
   },
     methods:{
@@ -88,11 +88,11 @@ export default {
                 for(const x in this.imoveis)
                 {
 
-                  item = this.imoveis[x]._id
-                this.visibleDelete.push({
-                  item : 'true'
-                })
-                  console.log(this.visibleDelete)
+                //   item = this.imoveis[x]._id
+                // this.visibleDelete.push({
+                //   item : 'true'
+                // })
+                //   console.log(this.visibleDelete)
                 }
                 
               

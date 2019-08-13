@@ -236,7 +236,11 @@ export default {
           this.cpf = "";
           this.password = "";
           this.password2 = "";
-          
+          this.$notify({
+            group: 'foo',
+            type : 'success',
+            title: 'Cadastrado com Sucesso!',
+          });
           console.log(res.body);
           $("#login-modal").modal("hide");
           return true;
