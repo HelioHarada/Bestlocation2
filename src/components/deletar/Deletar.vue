@@ -64,14 +64,14 @@ export default {
 
             }
         },  
-          async deletarImovel(){
-            try{
-              const res = this.deleteImovelId();
-              console.log(res)
-            }catch(e){
-              console.log(e)
-            }
-          },
+        async deletarImovel(){
+          try{
+            const res = this.deleteImovelId();
+            console.log(res)
+          }catch(e){
+            console.log(e)
+          }
+        },
     },
     created(){
         this.showImoveis();
