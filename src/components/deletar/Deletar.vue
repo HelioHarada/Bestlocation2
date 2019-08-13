@@ -41,12 +41,9 @@
 
 <script>
 import { getImoveis, deletarImovel } from "../../api/";
- import modalDelete from "../shared/ModalDeleteConfim.vue";
+
 export default {
     name: "deletar",
-    components: {
-        modalDelete
-    },
     data(){
          let self = this;
         return{

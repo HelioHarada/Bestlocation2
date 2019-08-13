@@ -35,8 +35,16 @@
           <p class="card-text">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
               {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
     
-          <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
-         <button  data-toggle="modal"  @click="deletarImovel(imovel._id)" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button>
+          <div class="flex-align">
+              <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
+              <div v-if="visibleDelete.id">
+                <button  data-toggle="modal"  @click="checkDelete(imovel._id)" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button>
+              </div> 
+              <div v-else>
+                <button @click="visibleDelete = !visibleDelete" class="btn btn-secondary">Cancel</button>
+                <button @click="deletarImovel(imovel._id)" class="btn btn-danger">Delete</button>
+              </div>
+          </div>
           </div>
       </div>
       </div>
@@ -51,7 +59,8 @@ export default {
     return {
       imoveis: [],
       user: '',
-      id: ""
+      id: "",
+      visibleDelete:[]
     };
   },
     methods:{
@@ -59,6 +68,9 @@ export default {
         closeMenu,
         returnToken,
         getUserImoveis,
+        checkDelete(){
+            this.visibleDelete = false
+        },
         async getToken(){
           try{
             const id = this.returnToken(localStorage.getItem("acess_token"))
@@ -73,62 +85,56 @@ export default {
             try{
                 const res = await this.getUserImoveis(id);
                 this.imoveis = res.body
-                console.log(this.imoveis)
+                for(const x in this.imoveis)
+                {
+
+                  item = this.imoveis[x]._id
+                this.visibleDelete.push({
+                  item : 'true'
+                })
+                  console.log(this.visibleDelete)
+                }
+                
+              
 
            
             }catch(e){
                 console.log(e)
             }
         },
+        async deletarImovel(id){
+          try{
+            console.log(id)
+            // const res = this.deleteImovelId();
+            // console.log(res)
+          }catch(e){
+            console.log(e)
+          }
+        },
 
     },
     created() {
   
         if (localStorage.getItem("acess_token") == null) {
-            
-        this.$router.push('home')
-        $('#login-modal').modal()
-
-            setTimeout(function(){
-                $('#login-modal').modal()
+            this.$router.push('home')
+            $('#login-modal').modal()
+                setTimeout(function(){
+                    $('#login-modal').modal()
             },4000)
         }else{
-
             this.getToken();
         }
        
-    // 5cbffa7d52214b001787c4a3
-        // let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
-        // promise .then(function(res) {
-        //   console.log(res)
-        //      this.imoveis = res.body;
-        // });
   }
 };
 </script>
 
 <style scoped>
-
-/* .nav-side-menu {
-    margin-left: -15px;
-  font-size: 16px;
-  font-weight: 200;
-  background-color: #343A40;
-  width: 300px;
-  height: 100%;
-  color:white;
+.button-plus{
+  margin-bottom: 0px;
 }
-
-.nav-side-menu ul,
-.nav-side-menu li ,
-.title-name,
-.nav-side-menu .nav-link {
-  list-style: none;
-  padding: 20px;
-  margin-left: 10px;
-  line-height: 35px;
-  cursor: pointer;
-  color:white;
-
-} */
+.flex-align{
+  display: flex;
+  justify-content: space-between;
+}
 </style>
