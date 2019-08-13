@@ -5,19 +5,15 @@
       <h5 class="title-name">Bem-vindo {{user.firstName}} </h5>
       <hr>
     <div class="row">
-                       <router-link
-                            @click.native="closeMenu()"
-                            class="nav-link"
-                            :to="{ name: 'cadastrar', params: { id: id }}"
-                            >Cadastrar imóvel
-                        </router-link>
+    <router-link
+        @click.native="closeMenu()"
+        class="nav-link"
+        :to="{ name: 'cadastrar', params: { id: id }}"
+        >Cadastrar imóvel
+    </router-link>
 
-                        <a class="nav-link" href="#">Meus imóveis</a>
+    <a class="nav-link" href="#">Meus imóveis</a>
     </div>
-    
-        
-    
-
     
     <div>
 
@@ -40,7 +36,7 @@
               {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
     
           <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
-         
+         <button  data-toggle="modal"  @click="deletarImovel(imovel._id)" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button>
           </div>
       </div>
       </div>

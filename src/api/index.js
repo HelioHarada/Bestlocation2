@@ -22,9 +22,16 @@ export const store = {
     
   }
 }
+// Imovel
 
+// get imoveis
 export function getImoveis () {
-  return this.$http.get(url+'/api/imoveis');
+  return this.$http.get(url+'/api/imovel/buscar');
+}
+
+// delete imoveis 
+export function deletarImovel (id) {
+  return this.$http.delete(url+'/api/imovel/admin/'+id);
 }
 
 export function getQuery (query) {
@@ -32,7 +39,7 @@ export function getQuery (query) {
 }
 
 export function getImovelID (id) {
-  return this.$http.get(url+'/api/imoveis/'+id);
+  return this.$http.get(url+'/api/imovel/buscar/'+id);
 }
 
 export function returnToken(token){
@@ -53,12 +60,12 @@ export function getUserID (id) {
 
 export function getUserImoveis (id) {
   console.log(id)
-  return this.$http.get(url+'/api/imoveis/user/'+id);
+  return this.$http.get(url+'/api/imovel/usuario/'+id);
 }
 
 export function cadastrarImovel () {
 
-  return this.$http.post(+"/api/imoveis", {
+  return this.$http.post(url+"/api/imovel/usuario/"+this.id, {
     titulo: this.titulo,
     status: this.status,
     endereco: this.rua,

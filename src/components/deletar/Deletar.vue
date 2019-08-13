@@ -5,7 +5,7 @@
           <div class="form-group">
             <input type="titulo" class="form-control input-grey" v-model="id" id="id" aria-describedby="emailHelp" placeholder="ID imovel">
           </div>
-          <button class="btn button-delete"  @click.prevent="deletarImovel()">Delete</button>
+          <button class="btn button-delete"  @click.prevent="deletar()">Delete</button>
       </form>
       <hr>
     <div class="table-responsive">
@@ -40,7 +40,13 @@
 </template>
 
 <script>
+import { getImoveis, deletarImovel } from "../../api/";
+ import modalDelete from "../shared/ModalDeleteConfim.vue";
 export default {
+    name: "deletar",
+    components: {
+        modalDelete
+    },
     data(){
          let self = this;
         return{
@@ -49,28 +55,29 @@ export default {
         }
     },
     methods:{
-    
-        getImoveis(){
-            let promise = this.$http.get('https://bestlocationapi.herokuapp.com/api/imoveis');
-            promise .then(function(res) {
+    getImoveis,
+    deletarImovel,
+            async showImoveis(){
+            try{
+                const res = await this.getImoveis()
                 console.log(res.body);
                 this.imoveis = res.body
-            });
-        },
+      
+            }catch(e){
 
-        deletarImovel(id){
-
-            // console.log(id)
-            let promise = this.$http.delete('https://bestlocationapi.herokuapp.com/api/imoveis/'+id);
-
-            promise.then(function(res){
-               location.reload(); 
-            });
-     
-        }
+            }
+        },  
+          async deletarImovel(){
+            try{
+              const res = this.deleteImovelId();
+              console.log(res)
+            }catch(e){
+              console.log(e)
+            }
+          },
     },
     created(){
-        this.getImoveis();
+        this.showImoveis();
     }
 }
 </script>

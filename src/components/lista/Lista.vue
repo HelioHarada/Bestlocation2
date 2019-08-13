@@ -208,6 +208,11 @@ export default {
   margin-top: 20px;
 }
 
+.card-text {
+  max-height: 50px;
+  overflow: hidden;
+}
+
 .card {
   margin-top: 5px;
 }
