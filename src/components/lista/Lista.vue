@@ -140,6 +140,7 @@ export default {
         this.totalImoveis = this.imoveis.length
       }catch(e){
         console.log(e);
+        console.log("error")
       }
     },
     setQuery: function() {

@@ -250,8 +250,9 @@ export default {
       }
     },
     setQuery: function() {
+      
       this.query = this.$route.params.id;
-  
+      console.log(this.query)
       return this.query;
     },
     handleSubmit() {

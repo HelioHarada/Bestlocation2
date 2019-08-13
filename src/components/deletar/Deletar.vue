@@ -5,7 +5,7 @@
           <div class="form-group">
             <input type="titulo" class="form-control input-grey" v-model="id" id="id" aria-describedby="emailHelp" placeholder="ID imovel">
           </div>
-          <button class="btn button-delete"  @click.prevent="deletar()">Delete</button>
+          <button class="btn button-delete"  @click.prevent="deletarImovel()">Delete</button>
       </form>
       <hr>
     <div class="table-responsive">
@@ -67,7 +67,6 @@ export default {
                location.reload(); 
             });
      
-                console.log(Deletar)
         }
     },
     created(){

@@ -8,7 +8,7 @@
                        <router-link
                             @click.native="closeMenu()"
                             class="nav-link"
-                            :to="{ name: 'cadastrar', params: { id: user._id }}"
+                            :to="{ name: 'cadastrar', params: { id: id }}"
                             >Cadastrar imóvel
                         </router-link>
 
@@ -66,6 +66,8 @@ export default {
         async getToken(){
           try{
             const id = this.returnToken(localStorage.getItem("acess_token"))
+            console.log(id)
+            this.id = id;
             this.getImoveis(id)
           }catch(e){
             console.log(e)
@@ -82,10 +84,6 @@ export default {
                 console.log(e)
             }
         },
-        async load(id){
-
-            
-        }
 
     },
     created() {
