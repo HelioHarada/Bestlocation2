@@ -25,6 +25,14 @@
     </div>
     <hr />
     <p>Total de imóveis {{this.totalImoveis}}</p>
+
+
+  <transition name="fade">
+    <div class="lazy-loading" v-show="lazyLoading">
+        <img class="img-logo-loader" src="/src/img/BestLocation-logo.jpg" alt="">
+        <img class="img-loader" src="/src/img/loader_new.gif" alt="">
+    </div>
+  </transition>
     <div class="content-lista">
       <transition name="fade">
         <!-- Lista -->
@@ -110,7 +118,8 @@ export default {
       filtro: "",
       view: "list",
       error: false,
-      totalImoveis: ""
+      totalImoveis: "",
+      lazyLoading: false,
     };
   },
   computed: {
@@ -135,9 +144,12 @@ export default {
 
     async load(){
       try{
+        this.lazyLoading = true
         const res = await this.getImoveis()
+        this.lazyLoading = false
         this.imoveis = res.body;
-        this.totalImoveis = this.imoveis.length
+        this.totalImoveis = this.imoveis.length;
+        
       }catch(e){
         console.log(e);
         console.log("error")
@@ -204,6 +216,12 @@ export default {
   }
 }
 
+.lazy-loading{
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+   align-items: center;
+}
 .catalago {
   margin-top: 20px;
 }
