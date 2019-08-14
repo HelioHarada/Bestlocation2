@@ -37,13 +37,7 @@
     
           <div class="flex-align">
               <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
-              <div v-if="visibleDelete">
-                <button  data-toggle="modal"  @click="checkDelete(imovel._id)" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button>
-              </div> 
-              <div v-else>
-                <button @click="visibleDelete = !visibleDelete" class="btn btn-secondary">Cancel</button>
-                <button @click="checkDelete(imovel._id)" class="btn btn-danger">Delete</button>
-              </div>
+                <button data-toggle="modal" @click="deletarImovel()" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button>
           </div>
           </div>
       </div>
@@ -60,7 +54,7 @@ export default {
       imoveis: [],
       user: '',
       id: "",
-      visibleDelete:true
+      visibleDelete: ""
     };
   },
     methods:{
@@ -68,14 +62,19 @@ export default {
         closeMenu,
         returnToken,
         getUserImoveis,
-        checkDelete(){
-            this.visibleDelete = false
+        checkDelete(id){
+              console.log(id)
+              console.log(this.visibleDelete.boolean)
+            // this.visibleDelete[id]._id.visible = true
+            this.visibleDelete.boolean = false
+            console.log(this.visibleDelete.boolean)
         },
         async getToken(){
           try{
             const id = this.returnToken(localStorage.getItem("acess_token"))
             console.log(id)
             this.id = id;
+            
             this.getImoveis(id)
           }catch(e){
             console.log(e)
@@ -85,6 +84,7 @@ export default {
             try{
                 const res = await this.getUserImoveis(id);
                 this.imoveis = res.body
+                this.visibleDelete = this.imoveis
                 for(const x in this.imoveis)
                 {
 
@@ -104,7 +104,7 @@ export default {
         },
         async deletarImovel(id){
           try{
-            console.log(id)
+            $("#modal-delete").modal("show");
             // const res = this.deleteImovelId();
             // console.log(res)
           }catch(e){

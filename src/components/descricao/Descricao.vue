@@ -63,6 +63,9 @@
         <button class="btn button-plus" @click="markerFarmacia()">
           <i class="fas fa-pills"></i> Farmácia
         </button>
+        <button class="btn button-plus" @click="markerBus()">
+          <i class="fas fa-bus"></i> Ponto de ônibus
+        </button>
         <div class="google-map" :id="mapName"></div>
       </div>
 
@@ -76,7 +79,7 @@
   import Slider from "../shared/slider/Slider.vue";
   import Contato from "../shared/contato/Contato.vue";
   import { getImovelID } from "../../api/";
-  import { markerFood, markerHospital, markerFarmacia, markerSchool, markerMarket} from "../../api/marker";  
+  import { markerFood, markerHospital, markerFarmacia, markerSchool, markerMarket, markerBus} from "../../api/marker";  
 
 export default {
   methods: {
@@ -115,6 +118,7 @@ export default {
     markerFarmacia,
     markerSchool,
     markerMarket,
+    markerBus,
     setID: function() {
       this.id = this.$route.params.id;
       console.log(this.id);
@@ -191,7 +195,7 @@ export default {
     createMarker: function(places, img) {
       const icon = {
         url: img,
-        scaledSize: new google.maps.Size(50, 50) // scaled size
+        scaledSize: new google.maps.Size(30, 30) // scaled size
       };
 
       const marker = new google.maps.Marker({

@@ -108,3 +108,24 @@ export function markerMarket() {
     }
     service.nearbySearch(request, callback);
 }
+
+export function markerBus() {
+    this.setMapOnAll(null);
+    let self = this;
+    let type = ["transit_station"];
+    let img = "../src/img/bus.png";
+    var service = new google.maps.places.PlacesService(map);
+    let request = {
+        location: options.center,
+        types: type,
+        radius: 2074
+    };
+    function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                self.createMarker(results[i], img);
+            }
+        }
+    }
+    service.nearbySearch(request, callback);
+}
