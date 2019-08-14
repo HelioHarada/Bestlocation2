@@ -7,17 +7,27 @@
     <div class="row">
     <router-link
         @click.native="closeMenu()"
-        class="nav-link"
+        class="btn button-plus"
         :to="{ name: 'cadastrar', params: { id: id }}"
-        >Cadastrar imóvel
+        >Anuncie!
     </router-link>
 
-    <a class="nav-link" href="#">Meus imóveis</a>
+    <a class="btn button-plus" href="#">Meus imóveis</a>
     </div>
     
-    <div>
-
+    <div class="noneImovel" v-show="imoveisCadastrado">
+      <br>
+        <h2 align="center">Você não tem nenhum imóvel anunciado</h2>
+        <br>
+        <br>
+        <router-link
+            @click.native="closeMenu()"
+            class="btn button-plus"
+            :to="{ name: 'cadastrar', params: { id: id }}"
+            >Anuncie agora é Grátis!
+        </router-link>  
     </div>
+
     <div class="row content-lista">
       <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
       <div class="card">
@@ -54,7 +64,8 @@ export default {
       imoveis: [],
       user: '',
       id: "",
-      visibleDelete: ""
+      visibleDelete: "",
+      imoveisCadastrado: "",
     };
   },
     methods:{
@@ -74,7 +85,6 @@ export default {
             const id = this.returnToken(localStorage.getItem("acess_token"))
             console.log(id)
             this.id = id;
-            
             this.getImoveis(id)
           }catch(e){
             console.log(e)
@@ -83,22 +93,13 @@ export default {
         async getImoveis(id){
             try{
                 const res = await this.getUserImoveis(id);
+                this.imoveisCadastrado = (res ? true: false)
+                console.log(this.imoveisCadastrado)
+                console.log("oi")
                 this.imoveis = res.body
                 this.visibleDelete = this.imoveis
-                for(const x in this.imoveis)
-                {
-
-                //   item = this.imoveis[x]._id
-                // this.visibleDelete.push({
-                //   item : 'true'
-                // })
-                //   console.log(this.visibleDelete)
-                }
-                
-              
-
-           
             }catch(e){
+
                 console.log(e)
             }
         },
@@ -136,5 +137,16 @@ export default {
 .flex-align{
   display: flex;
   justify-content: space-between;
+}
+
+.noneImovel{
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+   align-items: center;
+}
+
+.noneImovel .button-plus{
+  width: 300px;
 }
 </style>
