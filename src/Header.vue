@@ -1,6 +1,6 @@
 <template>
       <nav id="header" class="navbar navbar-expand-lg navbar-dark bg-dark ">
-      <notifications group="foo"/>
+      <notifications group="foo" position="top left"/>
   <!-- Logo -->
   <a class="navbar-brand" href="/#/">
      <img class="img-logo" src="../src/img/Logobranca.png">

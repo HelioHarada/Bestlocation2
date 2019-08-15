@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <notifications group="foo"/>
+    <notifications group="foo" position="top left"/>
     <div class="modal modal-grey fade" id="login-modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content content-grey">
@@ -227,10 +227,13 @@ export default {
             password: this.password,
             password2: this.password2,
             isAdmin: this.isAdmin
+            
           }
         );
         promise.then(function(res) {
-          console.log("foi");
+          this.emailLogar = this.username 
+          this.passwordLogar = this.password 
+          this.logar()
           this.username = "";
           this.email = "";
           this.cpf = "";
@@ -251,6 +254,7 @@ export default {
     async logar() {
       console.log("logar")
           try {
+          
             const res = await this.auth();
             console.log(res);
             const token = res.data;
@@ -274,14 +278,14 @@ export default {
               text : e.body.message,
             });
             this.emailLogar = "";
-            this.passwordLogar = "";
+         
           }
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
 /* POPUP GREY */
 
 @media screen and (max-width: 990px) {

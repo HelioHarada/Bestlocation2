@@ -15,7 +15,7 @@
  <tbody>
    <tr v-for="(usuario, index) in usuarios" v-bind:key="index" >
      <th scope="row">{{index}}</th>
-     <td>{{usuario.username}}</td>
+     <td>{{usuario.firstName}}</td>
      <td>{{usuario.email}}</td>
      <td>{{usuario._id}}</td>
      <td>{{usuario.isAdmin}}</td>

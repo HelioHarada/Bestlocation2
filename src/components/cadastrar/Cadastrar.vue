@@ -10,7 +10,9 @@
       <br>
       <h2 align="center">Cadastrar Ímovel</h2>
       <hr>
+       
       <div class="form-group">
+        <label for="">Titulo do imóvel</label>
         <input
           type="titulo"
           class="form-control input-grey"
@@ -22,14 +24,18 @@
       </div>
 
       <div class="form-group">
+        <label for="">Transação</label>
         <select name="tipo" id="status" v-model="status" class="form-control input-grey">
           <option value="venda" selected>Venda</option>
           <option value="aluguel">Aluguel</option>
         </select>
         <!-- <input type="text" class="form-control input-grey" v-model="status" id="status" aria-describedby="emailHelp" placeholder="Tipo da venda (Venda, Aluguel)"> -->
       </div>
-
+     
+     <h2>Onde fica seu imóvel?</h2>
       <div class="form-group">
+        <label for="">CEP</label>
+        <button><a target="_blank" href="http://www.buscacep.correios.com.br/sistemas/buscacep/">Não sei meu CEP</a></button>
         <input
           type="text"
           class="form-control input-grey"
@@ -42,6 +48,7 @@
 
       <div class="form-group">
         <input
+          :disabled="disableInput"
           type="text"
           class="form-control input-grey"
           id="endereco"
@@ -82,6 +89,7 @@
 
       <div class="form-group">
         <input
+          :disabled="disableInput"
           type="text"
           class="form-control input-grey"
           id="cidade"
@@ -170,6 +178,7 @@ export default {
       query:"",
       imoveis: [],
       errors: [],
+      disableInput:false,
       status: "venda",
       titulo: "",
       endereco: {},
@@ -240,8 +249,10 @@ export default {
             self.endereco = {};
             $("#inputLogradouro").focus();
             self.naoLocalizado = true;
+            self.disableInput = false;
             return;
           }
+          self.disableInput = true;
           self.endereco = endereco;
           self.cidade = endereco.localidade;
           self.uf = endereco.uf;
@@ -300,3 +311,18 @@ export default {
   }
 };
 </script>
+<style scoped>
+
+.input-grey {
+  margin-bottom: 25px;
+  display: block;
+  width: 100%;
+  height: 45px;
+  border-radius: 25px;
+  border: 0;
+  color: #1a212f;
+  background: #ccc;
+  transition: 0.3s ease;
+}
+
+</style>

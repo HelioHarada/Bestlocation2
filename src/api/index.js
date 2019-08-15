@@ -88,6 +88,7 @@ export function closeMenu() {
 }
 
  export function auth(){
+  console.log(this.emailLogar,this.passwordLogar )
    return this.$http.post(url+'/api/users/login',{
       emailLogar: this.emailLogar,
       passwordLogar: this.passwordLogar

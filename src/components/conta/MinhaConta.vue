@@ -93,9 +93,16 @@ export default {
         async getImoveis(id){
             try{
                 const res = await this.getUserImoveis(id);
-                this.imoveisCadastrado = (res ? true: false)
-                console.log(this.imoveisCadastrado)
-                console.log("oi")
+                console.log(res.body)
+                if(res.body == ""){
+                  console.log("vazio")
+                  this.imoveisCadastrado = true
+                }else{
+                  this.imoveisCadastrado = false
+                }
+                
+             
+         
                 this.imoveis = res.body
                 this.visibleDelete = this.imoveis
             }catch(e){
