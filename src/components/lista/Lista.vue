@@ -27,13 +27,13 @@
     <p>Total de imóveis {{this.totalImoveis}}</p>
 
 
-  <transition name="fade">
-    <div class="lazy-loading" v-show="lazyLoading">
+  <transition name="fade" mode="out-in">
+    <div class="lazy-loading" v-if="lazyLoading" key="3">
         <img class="img-logo-loader" src="/src/img/BestLocation-logo.jpg" alt="">
         <img class="img-loader" src="/src/img/loader_new.gif" alt="">
     </div>
-  </transition>
-    <div class="content-lista">
+
+    <div v-else key="4" class="content-lista">
       <transition name="fade">
         <!-- Lista -->
         <div class="row" v-if="view == 'list'" key="1">
@@ -96,6 +96,8 @@
         </div>
       </transition>
     </div>
+  </transition>
+
   </div>
 </template>
 
@@ -220,7 +222,13 @@ export default {
   display: flex;
   flex-direction:column;
   justify-content: center;
-   align-items: center;
+  align-items: center;
+  /* background-color: red; */
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  /* margin-left: 30%; */
+
 }
 .catalago {
   margin-top: 20px;
