@@ -16,8 +16,10 @@
     <button @click="showFavoritos()" class="btn button-plus">Favoritos</button>
     </div>
 
-    <h2 v-if="favoritosVisible" align="center">Favoritos</h2>
-    <h2  v-else align="center">Meus imóveis</h2>
+    <transition name="fade" mode="out-in">
+      <h2 key="1" v-if="favoritosVisible" align="center">Favoritos</h2>
+      <h2  key="2" v-else align="center">Meus imóveis</h2>
+    </transition>
     <div class="noneImovel" v-show="imoveisCadastrado">
       <br>
         <h4 align="center">Você não tem nenhum imóvel anunciado</h4>
@@ -29,10 +31,7 @@
             :to="{ name: 'cadastrar', params: { id: id }}"
             >Anuncie agora é Grátis!
         </router-link>  
-    </div>
-    
-
-   
+    </div> 
     <div class="row content-lista">
       <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
       <div class="card">

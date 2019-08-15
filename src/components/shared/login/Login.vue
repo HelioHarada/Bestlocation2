@@ -277,7 +277,7 @@ export default {
               title: "Erro!",
               text : e.body.message,
             });
-            this.emailLogar = "";
+            this.passwordLogar = "";
          
           }
     }
