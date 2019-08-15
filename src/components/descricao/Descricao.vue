@@ -54,24 +54,26 @@
         <hr>
         <h3 align="center">Maps</h3>
 
-        <button class="btn button-plus" @click="markerHospital()">
-          <i class="fas fa-hospital"></i> Hospital
-        </button>
-        <button class="btn button-plus" @click="markerFood()">
-          <i class="fas fa-utensils"></i> Restaurante
-        </button>
-        <button class="btn button-plus" @click="markerSchool()">
-          <i class="fas fa-school"></i> Escola
-        </button>
-        <button class="btn button-plus" @click="markerMarket()">
-          <i class="fas fa-cart-plus"></i> Mercado
-        </button>
-        <button class="btn button-plus" @click="markerFarmacia()">
-          <i class="fas fa-pills"></i> Farmácia
-        </button>
-        <button class="btn button-plus" @click="markerBus()">
-          <i class="fas fa-bus"></i> Ponto de ônibus
-        </button>
+        <div class="place-button-desc">
+            <button class="btn button-plus" @click="markerHospital()">
+              <i class="fas fa-hospital"></i> Hospital
+            </button>
+            <button class="btn button-plus" @click="markerFood()">
+              <i class="fas fa-utensils"></i> Restaurante
+            </button>
+            <button class="btn button-plus" @click="markerSchool()">
+              <i class="fas fa-school"></i> Escola
+            </button>
+            <button class="btn button-plus" @click="markerMarket()">
+              <i class="fas fa-cart-plus"></i> Mercado
+            </button>
+            <button class="btn button-plus" @click="markerFarmacia()">
+              <i class="fas fa-pills"></i> Farmácia
+            </button>
+            <button class="btn button-plus" @click="markerBus()">
+              <i class="fas fa-bus"></i> Ponto de ônibus
+            </button>
+        </div>
         <div class="google-map" :id="mapName"></div>
       </div>
 
@@ -299,6 +301,11 @@ export default {
 .place-map {
   margin-top: 50px;
   width: 100%;
+}
+
+.place-button-desc{
+  display: flex;
+  justify-content: center;
 }
 
 .google-map {
