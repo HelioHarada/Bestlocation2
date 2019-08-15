@@ -83,6 +83,18 @@ export function cadastrarImovel () {
   });
 }
 
+export function favoritarImovel () {
+  return this.$http.put(url+'/api/imovel/favoritos/'+this.idUser+'/'+this.idImovel,{
+    idUsuario : this.idUser,
+    idImovel : this.idImovel
+  });
+}
+
+export function getFavImoveis(id){
+  console.log(id)
+  return this.$http.get(url+'/api/imovel/favoritos/'+id);
+}
+
 export function closeMenu() {
   $('.navbar-collapse').collapse('hide');
 }

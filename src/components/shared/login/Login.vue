@@ -285,7 +285,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 /* POPUP GREY */
 
 @media screen and (max-width: 990px) {

@@ -12,12 +12,15 @@
         >Anuncie!
     </router-link>
 
-    <a class="btn button-plus" href="#">Meus imóveis</a>
+    <a @click="getImoveis(id)" class="btn button-plus" href="#">Meus imóveis</a>
+    <button @click="showFavoritos()" class="btn button-plus">Favoritos</button>
     </div>
-    
+
+    <h2 v-if="favoritosVisible" align="center">Favoritos</h2>
+    <h2  v-else align="center">Meus imóveis</h2>
     <div class="noneImovel" v-show="imoveisCadastrado">
       <br>
-        <h2 align="center">Você não tem nenhum imóvel anunciado</h2>
+        <h4 align="center">Você não tem nenhum imóvel anunciado</h4>
         <br>
         <br>
         <router-link
@@ -27,7 +30,9 @@
             >Anuncie agora é Grátis!
         </router-link>  
     </div>
+    
 
+   
     <div class="row content-lista">
       <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
       <div class="card">
@@ -57,7 +62,7 @@
 </template>
 
 <script>
-  import {  returnToken,getUserID, closeMenu, getUserImoveis } from "../../api/";
+  import {  returnToken,getUserID, closeMenu, getUserImoveis, getFavImoveis } from "../../api/";
 export default {
   data() {
     return {
@@ -66,6 +71,7 @@ export default {
       id: "",
       visibleDelete: "",
       imoveisCadastrado: "",
+      favoritosVisible: "",
     };
   },
     methods:{
@@ -73,6 +79,7 @@ export default {
         closeMenu,
         returnToken,
         getUserImoveis,
+        getFavImoveis,
         checkDelete(id){
               console.log(id)
               console.log(this.visibleDelete.boolean)
@@ -93,6 +100,7 @@ export default {
         async getImoveis(id){
             try{
                 const res = await this.getUserImoveis(id);
+                this.favoritosVisible = false
                 console.log(res.body)
                 if(res.body == ""){
                   console.log("vazio")
@@ -100,9 +108,6 @@ export default {
                 }else{
                   this.imoveisCadastrado = false
                 }
-                
-             
-         
                 this.imoveis = res.body
                 this.visibleDelete = this.imoveis
             }catch(e){
@@ -110,11 +115,22 @@ export default {
                 console.log(e)
             }
         },
+
+        async showFavoritos(){
+            try{
+              const res = await this.getFavImoveis(this.id)
+              console.log(res.body)
+              this.imoveis = res.body
+              this.favoritosVisible = true
+              this.imoveisCadastrado = false
+            }catch(e){
+              console.log(e)
+            }
+        },
+
         async deletarImovel(id){
           try{
             $("#modal-delete").modal("show");
-            // const res = this.deleteImovelId();
-            // console.log(res)
           }catch(e){
             console.log(e)
           }

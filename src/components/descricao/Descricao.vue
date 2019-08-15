@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid card-left">
+    <notifications group="foo" position="top left"/>
     <div class="row">
       <contato-modal :imovel="imovel"></contato-modal>
       <div class="col-md-6 slide">
@@ -30,7 +31,12 @@
             data-target="#contato-modal"
           >Contato</button>
           <br>
-          <button class="btn button-plus btn-icon" data-toggle="tooltip" title="Favoritos">
+
+          <button 
+            @click="favoritar"
+            class="btn button-plus btn-icon" 
+            data-toggle="tooltip" 
+            title="Favoritos">
             <i class="far fa-heart"></i>
           </button>
           <button
@@ -78,7 +84,7 @@
   import routes from "../../routes";
   import Slider from "../shared/slider/Slider.vue";
   import Contato from "../shared/contato/Contato.vue";
-  import { getImovelID } from "../../api/";
+  import { getImovelID, returnToken, favoritarImovel } from "../../api/";
   import { markerFood, markerHospital, markerFarmacia, markerSchool, markerMarket, markerBus} from "../../api/marker";  
 
 export default {
@@ -97,7 +103,8 @@ export default {
 
   data() {
     return {
-      id: "",
+      idImovel: "",
+      idUser: "",
       imovel: "",
       map: "",
       mapName: this.name + "-map",
@@ -113,15 +120,71 @@ export default {
 
   methods: {
     getImovelID,
+    returnToken,
+    favoritarImovel,
     markerFood,
     markerHospital,
     markerFarmacia,
     markerSchool,
     markerMarket,
     markerBus,
+
     setID: function() {
-      this.id = this.$route.params.id;
-      console.log(this.id);
+      this.idImovel = this.$route.params.id;
+    },
+
+    async getToken(){
+      try{
+        const id = this.returnToken(localStorage.getItem("acess_token"))
+        // console.log(id)
+        this.idUser = id;
+        return this.idUser
+      
+      }catch(e){
+        console.log(e)
+      }
+    },
+
+    load() {
+      this.getImovelID(this.idImovel)
+        .then(res => {
+          this.imovel = res.body;
+          console.log(this.imovel);
+          this.getLocation(
+            this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco
+          );
+        })
+        .catch(console.error);
+    },
+
+    favoritar(){
+      if(localStorage.getItem("acess_token") == null)
+      {
+      this.$notify({
+        group: 'foo',
+        type : 'warn',
+        title: 'Faça o login primeiro!',
+      });
+        $("#login-modal").modal("show");
+      }else{
+        this.getToken()
+        console.log(this.idUser)
+        this.postFavoritar()
+      }
+    },
+
+    async postFavoritar(){
+      try{
+          const res = this.favoritarImovel(this.idUser);
+          console.log(res.promise)
+          this.$notify({
+            group: 'foo',
+            type : 'success',
+            title: 'Salvo nos favoritos!',
+          });
+      }catch(e){  
+          console.log(e)
+      }
     },
 
     shareface: function() {
@@ -132,17 +195,7 @@ export default {
       );
     },
 
-    load() {
-      this.getImovelID(this.id)
-        .then(res => {
-          this.imovel = res.body;
-          console.log(this.imovel);
-          this.getLocation(
-            this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco
-          );
-        })
-        .catch(console.error);
-    },
+
 
     getLocation: function(address) {
       const bounds = new google.maps.LatLngBounds();
