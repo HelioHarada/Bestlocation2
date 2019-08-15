@@ -30,7 +30,8 @@ export function getImoveis () {
 }
 
 // delete imoveis 
-export function deletarImovel (id) {
+export function deleteImovelId (id) {
+  console.log(id)
   return this.$http.delete(url+'/api/imovel/admin/'+id);
 }
 

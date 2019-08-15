@@ -1,5 +1,8 @@
 <template>
   <div class="container-fluid">
+
+
+    
       <br>
       <h1 align="center">Minha Conta</h1>
       <h5 class="title-name">Bem-vindo {{user.firstName}} </h5>
@@ -48,12 +51,31 @@
           <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
           <p class="card-text">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
               {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
-    
+
           <div class="flex-align">
               <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
-                <button data-toggle="modal" @click="deletarImovel()" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                <button data-toggle="modal" data-target="#delete-modal" @click="checkDelete(imovel._id)" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button>
           </div>
           </div>
+      </div>
+      <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Confrimação</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Deseja Deletar o imóvel?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" @click="deletarImovel()" class="btn btn-danger">Deletar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
       </div>
       </div>
     </div>
@@ -61,14 +83,14 @@
 </template>
 
 <script>
-  import {  returnToken,getUserID, closeMenu, getUserImoveis, getFavImoveis } from "../../api/";
+  import {  returnToken,getUserID, closeMenu, getUserImoveis, getFavImoveis, deleteImovelId} from "../../api/";
 export default {
   data() {
     return {
       imoveis: [],
       user: '',
       id: "",
-      visibleDelete: "",
+      idDel:"",
       imoveisCadastrado: "",
       favoritosVisible: "",
     };
@@ -79,12 +101,11 @@ export default {
         returnToken,
         getUserImoveis,
         getFavImoveis,
+        deleteImovelId,
         checkDelete(id){
-              console.log(id)
-              console.log(this.visibleDelete.boolean)
-            // this.visibleDelete[id]._id.visible = true
-            this.visibleDelete.boolean = false
-            console.log(this.visibleDelete.boolean)
+          console.log(id)
+          this.idDel = id
+          $("#modal-delete").modal("show");
         },
         async getToken(){
           try{
@@ -97,6 +118,7 @@ export default {
           }
         },
         async getImoveis(id){
+              console.log("getimovei")
             try{
                 const res = await this.getUserImoveis(id);
                 this.favoritosVisible = false
@@ -127,9 +149,13 @@ export default {
             }
         },
 
-        async deletarImovel(id){
+        async deletarImovel(){
           try{
-            $("#modal-delete").modal("show");
+          
+            const res = await this.deleteImovelId(this.idDel);
+            $("#modal-delete").modal("hide");
+            this.getToken(this.id)
+            console.log(res)
           }catch(e){
             console.log(e)
           }
