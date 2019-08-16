@@ -34,6 +34,12 @@
     </div>
 
     <div v-else key="4" class="content-lista">
+      <!-- Paginação -->
+      <nav aria-label="Navegação de página exemplo">
+        <ul class="pagination pagination-lg justify-content-center">
+          <li v-for="(page , index) in totalPages" :key="index" v-bind:class="{active : activePage(index+1) }" class="page-item"><a class="page-link" @click="getPageImoveis(index+1)">{{index+1}}</a></li>   
+        </ul>
+      </nav>
       <transition name="fade">
         <!-- Lista -->
         <div class="row" v-if="view == 'list'" key="1">
@@ -95,6 +101,24 @@
           </div>
         </div>
       </transition>
+      <!-- Paginação -->
+      <nav aria-label="Navegação de página exemplo">
+        <ul class="pagination pagination-lg justify-content-center">
+          <!-- <li class="page-item disabled">
+          <a class="page-link" href="#" aria-label="Anterior">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          </li> -->
+          <li v-for="(page , index) in totalPages" :key="index" v-bind:class="{active : activePage(index+1) }" class="page-item"><a class="page-link" @click="getPageImoveis(index+1)">{{index+1}}</a></li>   
+          <!-- <li class="page-item">
+          <a class="page-link" href="#" aria-label="Próximo">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Próximo</span>
+          </a>
+          </li> -->
+        </ul>
+      </nav>
     </div>
   </transition>
 
@@ -122,6 +146,9 @@ export default {
       error: false,
       totalImoveis: "",
       lazyLoading: false,
+      totalPages:"",
+      page:"",
+      isActive: true,
     };
   },
   computed: {
@@ -148,10 +175,11 @@ export default {
       try{
         this.lazyLoading = true
         const res = await this.getImoveis()
-        
+        this.totalPages = res.body.pages
+        this.page =  1
         this.lazyLoading = false
         this.imoveis = res.body.message
-        console.log(this.imoveis)
+
         this.totalImoveis = this.imoveis.length;
         
       }catch(e){
@@ -164,6 +192,34 @@ export default {
       return this.query;
     },
 
+    async getPageImoveis(page){
+        
+        this.lazyLoading = true
+        const res = await this.getImoveis(page)
+        this.totalPages = res.body.pages
+        this.page = page
+        this.lazyLoading = false
+        this.imoveis = res.body.message
+        console.log(this.imoveis)
+        this.totalImoveis = this.imoveis.length;
+    },
+    activePage(index){
+      console.log(index, this.page)
+      if(index == this.page)
+      {
+        return true
+      }else{
+        return false
+      }
+    },
+    // async nextprevPage(index){
+    //   try{
+    //     this.lazyLoading = true
+    //     const res = await this.getImoveis(index)
+    //   }catch(e){
+
+    //   }
+    // },
     async busca() {
       await this.getQuery(this.query)
         .then(res => {
@@ -177,7 +233,6 @@ export default {
         })
         .catch(console.error);
     },
-
     changeView: function(type) {
       this.view = type;
     }

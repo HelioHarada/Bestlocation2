@@ -25,9 +25,8 @@ export const store = {
 // Imovel
 
 // get imoveis
-export function getImoveis () {
-    // return this.$http.get(url+'/api/imovel/buscar?pageNo=1&size=5');
-  return this.$http.get(url+'/api/imovel/buscar');
+export function getImoveis (page) {
+    return this.$http.get(url+'/api/imovel/buscar?pageNo='+page+'&size=5');
 }
 
 // delete imoveis 
