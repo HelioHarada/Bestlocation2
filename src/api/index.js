@@ -81,7 +81,8 @@ export function cadastrarImovel () {
     numQuartos: this.numQuartos,
     preco: this.preco,
     area: this.area,
-    cep: this.cep
+    cep: this.cep,
+    tipoImovel: this.tipo
   });
 }
 

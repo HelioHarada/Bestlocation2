@@ -24,6 +24,17 @@
       </div>
 
       <div class="form-group">
+        <label for="">Tipo do imóvel</label>
+        <select name="tipo" id="tipo" v-model="tipo" class="form-control input-grey">
+          <option value="Casa" selected>Casa</option>
+          <option value="Apartamento">Apartamento</option>
+          <option value="Chacara">Chacara</option>
+          <option value="Kitnet">Kitnet</option>
+        </select>
+        <!-- <input type="text" class="form-control input-grey" v-model="status" id="status" aria-describedby="emailHelp" placeholder="Tipo da venda (Venda, Aluguel)"> -->
+      </div>
+
+      <div class="form-group">
         <label for="">Transação</label>
         <select name="tipo" id="status" v-model="status" class="form-control input-grey">
           <option value="venda" selected>Venda</option>
@@ -195,6 +206,7 @@ export default {
       uf: "",
       bairro: "",
       id:"",
+      tipo:"",
       // === Money === //
       money: {
         decimal: ",",
@@ -277,9 +289,11 @@ export default {
       if (!this.rua) {
         this.errors.push('O endereço é obrigatório.');
       }
-
       if (!this.descricao) {
         this.errors.push('O descricao é obrigatório.');
+      }
+      if (!this.tipo) {
+        this.errors.push('O Tipo é obrigatório.');
       }
       if (!this.cidade) {
         this.errors.push('A cidade é obrigatório.');
