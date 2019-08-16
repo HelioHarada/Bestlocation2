@@ -370,4 +370,13 @@ export default {
   border: none;
   cursor: pointer;
 }
+
+.page-link{
+  border-color: #ccc
+}
+
+.page-item.active .page-link{
+  background-color: #ff7f00;
+  border-color: #ccc
+}
 </style>
