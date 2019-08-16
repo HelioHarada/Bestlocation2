@@ -148,8 +148,10 @@ export default {
       try{
         this.lazyLoading = true
         const res = await this.getImoveis()
+        
         this.lazyLoading = false
-        this.imoveis = res.body;
+        this.imoveis = res.body.message
+        console.log(this.imoveis)
         this.totalImoveis = this.imoveis.length;
         
       }catch(e){
