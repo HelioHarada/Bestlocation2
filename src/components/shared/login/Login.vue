@@ -231,7 +231,7 @@ export default {
           }
         );
         promise.then(function(res) {
-          this.emailLogar = this.username 
+          this.emailLogar = this.email 
           this.passwordLogar = this.password 
           this.logar()
           this.username = "";
