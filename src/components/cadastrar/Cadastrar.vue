@@ -10,7 +10,9 @@
       <br>
       <h2 align="center">Cadastrar Ímovel</h2>
       <hr>
-       
+      <br>
+     <h2>Informações básicas</h2>
+      <br>
       <div class="form-group">
         <label for="">Titulo do imóvel</label>
         <input
@@ -19,40 +21,44 @@
           v-model="titulo"
           id="titulo"
           aria-describedby="emailHelp"
-          placeholder="Título (Casa, Condominio, Apartamento)"
+          placeholder="Casa no zona Sul de Marília"
         >
       </div>
 
-      <div class="form-group">
+
         <label for="">Tipo do imóvel</label>
-        <select name="tipo" id="tipo" v-model="tipo" class="form-control input-grey">
-          <option value="Casa" selected>Casa</option>
-          <option value="Apartamento">Apartamento</option>
+        <select  autocomplete="off" name="tipo" id="tipo" v-model="tipo" class="form-control input-grey tipo">
+          <option value="Casa">Casa</option>
+          <option value="Apartamento" selected>Apartamento</option>
           <option value="Chacara">Chacara</option>
           <option value="Kitnet">Kitnet</option>
         </select>
-        <!-- <input type="text" class="form-control input-grey" v-model="status" id="status" aria-describedby="emailHelp" placeholder="Tipo da venda (Venda, Aluguel)"> -->
-      </div>
+        
+       
+
 
       <div class="form-group">
         <label for="">Transação</label>
-        <select name="tipo" id="status" v-model="status" class="form-control input-grey">
+        <select name="transação" id="status" v-model="status" class="form-control input-grey transacao">
           <option value="venda" selected>Venda</option>
           <option value="aluguel">Aluguel</option>
         </select>
-        <!-- <input type="text" class="form-control input-grey" v-model="status" id="status" aria-describedby="emailHelp" placeholder="Tipo da venda (Venda, Aluguel)"> -->
+      
       </div>
-     
+     <br>
      <h2>Onde fica seu imóvel?</h2>
+     <hr>
       <div class="form-group">
         <label for="">CEP</label>
-        <button><a target="_blank" href="http://www.buscacep.correios.com.br/sistemas/buscacep/">Não sei meu CEP</a></button>
+        <a target="_blank" href="http://www.buscacep.correios.com.br/sistemas/buscacep/">Não sei meu CEP</a>
         <input
+        
           type="text"
-          class="form-control input-grey"
+          class="form-control input-grey cep"
           id="cep"
           v-model="cep"
           placeholder="CEP"
+
           @keyup="buscarCEP"
         >
       </div>
@@ -61,7 +67,7 @@
         <input
           :disabled="disableInput"
           type="text"
-          class="form-control input-grey"
+          class="form-control input-grey endereco"
           id="endereco"
           v-model="rua"
           placeholder="Endereço"
@@ -71,7 +77,7 @@
       <div class="form-group">
         <input
           type="text"
-          class="form-control input-grey"
+          class="form-control input-grey num-endereco"
           id="numEndereco"
           v-model="numEndereco"
           placeholder="Número"
@@ -81,7 +87,7 @@
       <div class="form-group">
         <input
           type="text"
-          class="form-control input-grey"
+          class="form-control input-grey complemento"
           id="complementoEndereco"
           v-model="complementoEndereco"
           placeholder="Complemento"
@@ -91,8 +97,8 @@
       <div class="form-group">
         <input
           type="text"
-          class="form-control input-grey"
-          id="Bairro"
+          class="form-control input-grey bairro"
+          id="bairro"
           v-model="bairro"
           placeholder="Bairro"
         >
@@ -102,7 +108,7 @@
         <input
           :disabled="disableInput"
           type="text"
-          class="form-control input-grey"
+          class="form-control input-grey cidade"
           id="cidade"
           v-model="cidade"
           placeholder="Cidade"
@@ -112,14 +118,28 @@
       <div class="form-group">
         <input
           type="text"
-          class="form-control input-grey"
+          class="form-control input-grey estado"
           id="estado"
           v-model="uf"
           placeholder="Estado"
         >
       </div>
-
+      <br>
+      <h2>Detalhes do seu imóvel</h2>
+      <hr>
+      <label>Descrição do imóvel</label>
       <div class="form-group">
+      
+      <textarea 
+        v-model="descricao"
+        class="form-control textarea-grey"
+        name="desc"  
+        id="descricao" 
+        cols="60" 
+        rows="10">
+      </textarea>
+      </div>
+      <!-- <div class="form-group">
         <input
           type="textarea"
           class="form-control input-grey"
@@ -127,12 +147,12 @@
           v-model="descricao"
           placeholder="Detalhes do imóvel"
         >
-      </div>
+      </div> -->
 
       <div class="form-group">
         <input
           type="text"
-          class="form-control input-grey"
+          class="form-control input-grey area"
           id="area"
           v-model="area"
           placeholder="area"
@@ -142,7 +162,7 @@
       <div class="form-group">
         <input
           type="number"
-          class="form-control input-grey"
+          class="form-control input-grey quartos"
           v-model="numQuartos"
           id="numQuartos"
           aria-describedby="emailHelp"
@@ -153,7 +173,7 @@
       <div class="form-group">
         <input
           type="number"
-          class="form-control input-grey"
+          class="form-control input-grey banheiros"
           v-model="numBanheiros"
           id="numBanheiros"
           aria-describedby="emailHelp"
@@ -165,7 +185,7 @@
         <money
           v-model="preco"
           v-bind="money"
-          class="form-control input-grey"
+          class="form-control input-grey preco"
           placeholder="Digite o Preço"
         ></money>
       </div>
@@ -206,7 +226,7 @@ export default {
       uf: "",
       bairro: "",
       id:"",
-      tipo:"",
+      tipo:"Casa",
       // === Money === //
       money: {
         decimal: ",",
@@ -329,14 +349,34 @@ export default {
 
 .input-grey {
   margin-bottom: 25px;
+  margin-top: 0px;
   display: block;
-  width: 100%;
+  width:  25rem;
   height: 45px;
-  border-radius: 25px;
+  border-radius: 5px;
   border: 0;
   color: #1a212f;
   background: #ccc;
   transition: 0.3s ease;
+}
+.tipo{
+  width: 12rem;
+}
+
+.trancasao{
+  width: 12rem;  
+}
+
+.endereco{
+  width: 30rem;
+}
+
+.textarea-grey{
+  margin-bottom: 25px;
+  border-radius: 5px;
+  border: 0;
+  color: #1a212f;
+  background: #ccc;
 }
 
 </style>
