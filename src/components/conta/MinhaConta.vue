@@ -129,7 +129,7 @@ export default {
                 }else{
                   this.imoveisCadastrado = false
                 }
-                this.imoveis = res.body
+                this.imoveis = res.body.message
                 this.visibleDelete = this.imoveis
             }catch(e){
 
