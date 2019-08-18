@@ -13,11 +13,11 @@
       <br>
      <h2>Informações básicas</h2>
       <br>
-      <div class="form-group">
+      <div class="form-group col-sm-2">
         <label for="">Titulo do imóvel</label>
         <input
           type="titulo"
-          class="form-control input-grey"
+          class="form-control input-grey "
           v-model="titulo"
           id="titulo"
           aria-describedby="emailHelp"
@@ -26,18 +26,20 @@
       </div>
 
 
+      <div class=" col-sm-2">
         <label for="">Tipo do imóvel</label>
-        <select  autocomplete="off" name="tipo" id="tipo" v-model="tipo" class="form-control input-grey tipo">
-          <option value="Casa">Casa</option>
-          <option value="Apartamento" selected>Apartamento</option>
-          <option value="Chacara">Chacara</option>
-          <option value="Kitnet">Kitnet</option>
-        </select>
+          <select  autocomplete="off" name="tipo" id="tipo" v-model="tipo" class="form-control input-grey tipo ">
+            <option value="Casa">Casa</option>
+            <option value="Apartamento" selected>Apartamento</option>
+            <option value="Chacara">Chacara</option>
+            <option value="Kitnet">Kitnet</option>
+          </select>
+      </div>
         
        
 
 
-      <div class="form-group">
+      <div class="form-group col-sm-2">
         <label for="">Transação</label>
         <select name="transação" id="status" v-model="status" class="form-control input-grey transacao">
           <option value="venda" selected>Venda</option>
@@ -48,7 +50,7 @@
      <br>
      <h2>Onde fica seu imóvel?</h2>
      <hr>
-      <div class="form-group">
+      <div class="form-group col-sm-3">
         <label for="cep">CEP</label>
         <a target="_blank" href="http://www.buscacep.correios.com.br/sistemas/buscacep/">Não sei meu CEP</a>
         <input
@@ -62,8 +64,9 @@
           @keyup="buscarCEP"
         >
       </div>
-      <label for="endereco">Endereço</label>
-      <div class="form-group">
+
+      <div class="form-group col-sm-6">
+        <label for="endereco">Endereço</label>
         <input
           :disabled="disableInput"
           type="text"
@@ -74,8 +77,9 @@
         >
       </div>
 
-      <label for="numEndereco">Número</label>
-      <div class="form-group">
+
+      <div class="form-group col-sm-2">
+        <label for="numEndereco">Número</label>
         <input
           type="text"
           class="form-control input-grey num-endereco"
@@ -84,8 +88,9 @@
           placeholder="Número"
         >
       </div>
-      <label for="complementoEndereco">Complemento</label>
-      <div class="form-group">
+
+      <div class="form-group col-sm-4">
+        <label for="complementoEndereco">Complemento</label>
         <input
           type="text"
           class="form-control input-grey complemento"
@@ -95,8 +100,10 @@
         >
       </div>
 
-      <label for="bairro">Bairro</label>
-      <div class="form-group">
+
+
+      <div class="form-group col-sm-4">
+        <label for="bairro">Bairro</label>
         <input
           type="text"
           class="form-control input-grey bairro"
@@ -106,8 +113,9 @@
         >
       </div>
 
-      <label for="cidade">Cidade</label>
-      <div class="form-group">
+  
+      <div class="form-group col-sm-4">
+        <label for="cidade">Cidade</label>
         <input
           :disabled="disableInput"
           type="text"
@@ -117,8 +125,9 @@
           placeholder="Cidade"
         >
       </div>
-      <label for="estado">Estado</label>
-      <div class="form-group">
+   
+      <div class="form-group col-sm-2">
+        <label for="estado">Estado</label>
         <input
           type="text"
           class="form-control input-grey estado"
@@ -127,41 +136,38 @@
           placeholder="Estado"
         >
       </div>
+      
       <br>
       <h2>Detalhes do seu imóvel</h2>
       <hr>
-      <label for="descricao">Descreva o seu imóvel</label>
-      <div class="form-group">
-      <textarea 
-        v-model="descricao"
-        class="form-control textarea-grey"
-        name="desc"  
-        id="descricao" 
-        cols="60" 
-        rows="10">
-      </textarea>
-      </div>
-      <!-- <div class="form-group">
-        <input
-          type="textarea"
-          class="form-control input-grey"
-          id="descricao"
+
+      <div class="form-group col-sm-6">
+        <label for="descricao">Descreva o seu imóvel</label>
+        <textarea 
           v-model="descricao"
-          placeholder="Detalhes do imóvel"
-        >
-      </div> -->
-      <label for="area">Área</label>
-      <div class="form-group">
-        <input
-          type="number"
-          class="form-control input-grey area"
-          id="area"
-          v-model="area"
-          placeholder="Área (apenas números)"
-        >
+          class="form-control textarea-grey"
+          name="desc"  
+          id="descricao" 
+          cols="60" 
+          rows="10">
+        </textarea>
       </div>
-      <div class="form-group">
-      <label for="numQuartos">Números de quartos</label>
+
+      <div class="form-group  col-sm-2">
+        <label for="area">Área</label>
+        <div>
+          <input
+            type="number"
+            class="form-control input-group input-grey area"
+            id="area"
+            v-model="area"
+            placeholder="Área (apenas números)"
+          >   
+        </div>
+      </div>
+
+      <div class="form-group col-sm-2">
+        <label for="numQuartos">Números de quartos</label>
         <input
           type="number"
           class="form-control input-grey quartos"
@@ -171,8 +177,9 @@
           placeholder="Número de quartos"
         >
       </div>
-      <label for="numBanheiros">Números de banheiro</label>
-      <div class="form-group">
+
+      <div class="form-group col-sm-2">
+        <label for="numBanheiros">Números de banheiro</label>
         <input
           type="number"
           class="form-control input-grey banheiros"
@@ -182,8 +189,9 @@
           placeholder="Número de banheiros"
         >
       </div>
-      <label for="preco">Preço</label>
-      <div class="form-group">
+
+      <div class="form-group col-sm-2">
+        <label for="preco">Preço</label>
         <money
           id="preco"
           v-model="preco"
@@ -354,7 +362,6 @@ export default {
   margin-bottom: 25px;
   margin-top: 0px;
   display: block;
-  width:  25rem;
   height: 45px;
   border-radius: 5px;
   border: 0;
@@ -362,17 +369,60 @@ export default {
   background: #ccc;
   transition: 0.3s ease;
 }
-.tipo{
-  width: 12rem;
+/* .tipo{
+  width: 15%;
+  min-width: 10%;
 }
 
 .trancasao{
-  width: 12rem;  
+  width: 15%;
+  min-width: 10%;
+}
+
+.cep{
+  width: 15%;
+  min-width: 10%;
 }
 
 .endereco{
-  width: 30rem;
+  width: 50%;
+  min-width: 10%;
 }
+
+.num-endereco{
+  width: 10%;
+  min-width: 10%;
+}
+
+.cidade{
+  width: 15%;
+  min-width: 10%;
+}
+
+.estado{
+  width: 5%;
+  min-width: 5%;
+}
+
+.area{
+  width: 10%;
+  min-width: 10%;
+}
+
+.quartos{
+  width: 10%;
+  min-width: 5%;
+}
+
+.banheiros{
+  width: 10%;
+  min-width: 5%;
+}
+
+.preco{
+  width: 15%;
+  min-width: 10%;
+} */
 
 .textarea-grey{
   margin-bottom: 25px;
