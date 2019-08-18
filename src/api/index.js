@@ -26,7 +26,9 @@ export const store = {
 
 // get imoveis
 export function getImoveis (page) {
+
     return this.$http.get(url+'/api/imovel/buscar?pageNo='+page+'&size=5');
+
 }
 
 // delete imoveis 

@@ -49,7 +49,7 @@
      <h2>Onde fica seu imóvel?</h2>
      <hr>
       <div class="form-group">
-        <label for="">CEP</label>
+        <label for="cep">CEP</label>
         <a target="_blank" href="http://www.buscacep.correios.com.br/sistemas/buscacep/">Não sei meu CEP</a>
         <input
         
@@ -62,7 +62,7 @@
           @keyup="buscarCEP"
         >
       </div>
-
+      <label for="endereco">Endereço</label>
       <div class="form-group">
         <input
           :disabled="disableInput"
@@ -74,6 +74,7 @@
         >
       </div>
 
+      <label for="numEndereco">Número</label>
       <div class="form-group">
         <input
           type="text"
@@ -83,7 +84,7 @@
           placeholder="Número"
         >
       </div>
-
+      <label for="complementoEndereco">Complemento</label>
       <div class="form-group">
         <input
           type="text"
@@ -94,6 +95,7 @@
         >
       </div>
 
+      <label for="bairro">Bairro</label>
       <div class="form-group">
         <input
           type="text"
@@ -104,6 +106,7 @@
         >
       </div>
 
+      <label for="cidade">Cidade</label>
       <div class="form-group">
         <input
           :disabled="disableInput"
@@ -114,7 +117,7 @@
           placeholder="Cidade"
         >
       </div>
-
+      <label for="estado">Estado</label>
       <div class="form-group">
         <input
           type="text"
@@ -127,9 +130,8 @@
       <br>
       <h2>Detalhes do seu imóvel</h2>
       <hr>
-      <label>Descrição do imóvel</label>
+      <label for="descricao">Descreva o seu imóvel</label>
       <div class="form-group">
-      
       <textarea 
         v-model="descricao"
         class="form-control textarea-grey"
@@ -148,18 +150,18 @@
           placeholder="Detalhes do imóvel"
         >
       </div> -->
-
+      <label for="area">Área</label>
       <div class="form-group">
         <input
-          type="text"
+          type="number"
           class="form-control input-grey area"
           id="area"
           v-model="area"
-          placeholder="area"
+          placeholder="Área (apenas números)"
         >
       </div>
-
       <div class="form-group">
+      <label for="numQuartos">Números de quartos</label>
         <input
           type="number"
           class="form-control input-grey quartos"
@@ -169,7 +171,7 @@
           placeholder="Número de quartos"
         >
       </div>
-
+      <label for="numBanheiros">Números de banheiro</label>
       <div class="form-group">
         <input
           type="number"
@@ -180,9 +182,10 @@
           placeholder="Número de banheiros"
         >
       </div>
-
+      <label for="preco">Preço</label>
       <div class="form-group">
         <money
+          id="preco"
           v-model="preco"
           v-bind="money"
           class="form-control input-grey preco"

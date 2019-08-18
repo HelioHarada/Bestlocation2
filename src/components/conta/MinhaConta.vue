@@ -1,8 +1,5 @@
 <template>
   <div class="container-fluid">
-
-
-    
       <br>
       <h1 align="center">Minha Conta</h1>
       <h5 class="title-name">Bem-vindo {{user.firstName}} </h5>
@@ -123,7 +120,7 @@ export default {
                 const res = await this.getUserImoveis(id);
                 this.favoritosVisible = false
                 console.log(res.body)
-                if(res.body == ""){
+                if(res.body.message == ""){
                   console.log("vazio")
                   this.imoveisCadastrado = true
                 }else{
