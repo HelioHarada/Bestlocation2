@@ -178,7 +178,7 @@ export default {
     async postFavoritar(){
       try{
           const res = this.favoritarImovel(this.idUser);
-          console.log(res.promise)
+          console.log(res)
           this.$notify({
             group: 'foo',
             type : 'success',

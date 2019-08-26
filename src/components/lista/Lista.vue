@@ -3,7 +3,7 @@
     <div class="alert alert-danger" role="alert" v-if="error">
       <b>Imóvel não encontrado! Cidade {{query}} não encontrada</b>
     </div>
-
+  
     <div class="topo-catalago">
       <div class="busca_imovel">
         <input
@@ -42,7 +42,7 @@
       </nav>
       <transition name="fade">
         <!-- Lista -->
-        <div class="row" v-if="view == 'list'" key="1">
+        <div class="row" style="min-height : 500px" v-if="view == 'list'" key="1">
           <div
             class="list offset-md-1 col-md-10"
             v-for="(imovel, index) in imoveisFiltro"
@@ -52,6 +52,7 @@
               <img class="img-list img-fluid" src="/../src/img/casa.jpg" alt="Card image cap" />
             </div>
             <div class="text-list">
+               
               <h4 class="list-preco">R${{imovel.preco}}</h4>
               <h6 class="list-titulo">{{imovel.status}} : {{imovel.titulo}}</h6>
               <p class="list-endereco">
@@ -156,12 +157,18 @@ export default {
       let exp = new RegExp(this.filtro.trim(), "gi");
       if (this.filtro) {
         
-        this.load();
+        // this.load();
         this.totalImoveis = this.imoveis.filter(imovel => exp.test(imovel.cidade)).length;
-      
+        console.log(this.imoveis.filter(imovel => exp.test(imovel.cidade)))
+        if(this.imoveis.filter(imovel => exp.test(imovel.cidade)) == ""){
+          this.listaVazia = true;
+        }else{
+          this.listaVazia = false;
+        }
         return this.imoveis.filter(imovel => exp.test(imovel.cidade));
-       
+    
       } else {
+        
         this.totalImoveis = this.imoveis.filter(imovel => exp.test(imovel.cidade)).length;
         return this.imoveis;
       }
@@ -173,14 +180,18 @@ export default {
 
     async load(){
       try{
+   
         this.lazyLoading = true
         const res = await this.getImoveis()
+        console.log(res)
         this.totalPages = res.body.pages
-        this.page =  1
+        if(this.page == ""){
+          this.page = 1
+        }
         this.lazyLoading = false
-        this.imoveis = res.body.message
-
+        this.imoveis = res.body.data
         this.totalImoveis = this.imoveis.length;
+        console.log(this.totalImoveis)
         
       }catch(e){
         console.log(e);
@@ -193,18 +204,18 @@ export default {
     },
 
     async getPageImoveis(page){
-        
+        console.log("pageee")
         this.lazyLoading = true
         const res = await this.getImoveis(page)
+      
         this.totalPages = res.body.pages
         this.page = page
         this.lazyLoading = false
-        this.imoveis = res.body.message
+        this.imoveis = res.body.data
         console.log(this.imoveis)
         this.totalImoveis = this.imoveis.length;
     },
     activePage(index){
-      console.log(index, this.page)
       if(index == this.page)
       {
         return true
@@ -322,6 +333,7 @@ export default {
 
 .content-lista {
   margin: 15px;
+  min-height: 500px;
 }
 
 .list {
