@@ -204,7 +204,6 @@ export default {
     },
 
     async getPageImoveis(page){
-        console.log("pageee")
         this.lazyLoading = true
         const res = await this.getImoveis(page)
       

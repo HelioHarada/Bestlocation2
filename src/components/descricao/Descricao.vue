@@ -37,7 +37,8 @@
             class="btn button-plus btn-icon" 
             data-toggle="tooltip" 
             title="Favoritos">
-            <i class="far fa-heart"></i>
+            <i v-if="statusFav" class="fas fa-heart"></i>
+            <i v-else class="far fa-heart"></i>
           </button>
           <button
             class="btn button-plus btn-icon"
@@ -47,6 +48,7 @@
           >
             <i class="fab fa-facebook-f"></i>
           </button>
+          
         </div>
       </div>
   
@@ -87,7 +89,7 @@
   import Slider from "../shared/slider/Slider.vue";
   import Contato from "../shared/contato/Contato.vue";
   import { getImovelID, returnToken, favoritarImovel } from "../../api/";
-  import { markerFood, markerHospital, markerFarmacia, markerSchool, markerMarket, markerBus} from "../../api/marker";  
+  import { markerFood, markerHospital, markerFarmacia, markerSchool, markerMarket, markerBus, closeMenu} from "../../api/marker";  
 
 export default {
   methods: {
@@ -109,6 +111,7 @@ export default {
       idUser: "",
       imovel: "",
       map: "",
+      statusFav:"",
       mapName: this.name + "-map",
       address: "",
       markerCoordinates: "",
@@ -121,6 +124,7 @@ export default {
   },
 
   methods: {
+    closeMenu,
     getImovelID,
     returnToken,
     favoritarImovel,
@@ -138,7 +142,7 @@ export default {
     async getToken(){
       try{
         const id = this.returnToken(localStorage.getItem("acess_token"))
-        // console.log(id)
+        console.log(id)
         this.idUser = id;
         return this.idUser
       
@@ -147,17 +151,38 @@ export default {
       }
     },
 
-    load() {
-      this.getImovelID(this.idImovel)
-        .then(res => {
-          this.imovel = res.body;
-          console.log(this.imovel);
+
+    async load(){
+      try{
+          const idUser = await this.getToken()
+
+          const res = await this.getImovelID(this.idImovel, idUser)
+          this.imovel = res.body.data[1];
+
+          this.statusFav = res.body.data[0].isFavorite
+
+          console.log(this.statusFav);
           this.getLocation(
             this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco
           );
-        })
-        .catch(console.error);
+      }catch(e){
+          console.log(e)
+      }
     },
+
+    // load() {
+      
+    //     .then(res => {
+    //       console.log(res)
+    //       this.imovel = res.body.data[1];
+    //       console.log(res.body.data[0])
+    //       // console.log(this.imovel);
+    //       this.getLocation(
+    //         this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco
+    //       );
+    //     })
+    //     .catch(console.error);
+    // },
 
     favoritar(){
       if(localStorage.getItem("acess_token") == null)
@@ -170,7 +195,6 @@ export default {
         $("#login-modal").modal("show");
       }else{
         this.getToken()
-        console.log(this.idUser)
         this.postFavoritar()
       }
     },
@@ -178,12 +202,21 @@ export default {
     async postFavoritar(){
       try{
           const res = this.favoritarImovel(this.idUser);
+          this.statusFav = !this.statusFav
           console.log(res)
-          this.$notify({
-            group: 'foo',
-            type : 'success',
-            title: 'Salvo nos favoritos!',
-          });
+          if(this.statusFav){
+            this.$notify({
+              group: 'foo',
+              type : 'success',
+              title: 'Salvo nos favoritos!',
+            });
+          }else{
+            this.$notify({
+              group: 'foo',
+              type : 'warning',
+              title: 'Desfavoritado!',
+            });
+          }
       }catch(e){  
           console.log(e)
       }

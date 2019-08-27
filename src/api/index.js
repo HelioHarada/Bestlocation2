@@ -38,11 +38,11 @@ export function deleteImovelId (id) {
 }
 
 export function getQuery (query) {
-  return this.$http.get(url+'/api/searchimovel/?query='+query);
+  return this.$http.get(url+'/api/imovel/searchimovel/?query='+query);
 }
 
-export function getImovelID (id) {
-  return this.$http.get(url+'/api/imovel/buscar/'+id);
+export function getImovelID (idImovel, idUsuario) {
+  return this.$http.get(url+'/api/imovel/buscar/'+idImovel+"/"+idUsuario);
 }
 
 export function returnToken(token){
