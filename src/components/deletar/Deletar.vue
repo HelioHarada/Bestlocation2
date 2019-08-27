@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { getImoveis, deletarImovel } from "../../api/";
+import { getImoveis, deletarImovel, deleteImovelId } from "../../api/";
 
 export default {
     name: "deletar",
@@ -54,19 +54,21 @@ export default {
     methods:{
     getImoveis,
     deletarImovel,
+    deleteImovelId,
             async showImoveis(){
             try{
                 const res = await this.getImoveis()
                 console.log(res.body);
-                this.imoveis = res.body
+                this.imoveis = res.body.data
       
             }catch(e){
 
             }
         },  
-        async deletarImovel(){
+        async deletarImovel(id){
           try{
-            const res = this.deleteImovelId();
+            console.log(id)
+            const res = this.deleteImovelId(id);
             console.log(res)
           }catch(e){
             console.log(e)
