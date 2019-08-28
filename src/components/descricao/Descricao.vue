@@ -158,7 +158,7 @@ export default {
 
           const res = await this.getImovelID(this.idImovel, idUser)
           this.imovel = res.body.data[1];
-
+          console.log(this.imovel)
           this.statusFav = res.body.data[0].isFavorite
 
           console.log(this.statusFav);
@@ -170,19 +170,6 @@ export default {
       }
     },
 
-    // load() {
-      
-    //     .then(res => {
-    //       console.log(res)
-    //       this.imovel = res.body.data[1];
-    //       console.log(res.body.data[0])
-    //       // console.log(this.imovel);
-    //       this.getLocation(
-    //         this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco
-    //       );
-    //     })
-    //     .catch(console.error);
-    // },
 
     favoritar(){
       if(localStorage.getItem("acess_token") == null)

@@ -11,242 +11,64 @@
       <h2 align="center">Cadastrar Ímovel</h2>
       <hr>
       <br>
-     <h2>Informações básicas</h2>
+
+      <transition name="fade">
+      <div>
+        <!-- step 1 tipo imovel -->
+        <tipo-imovel
+        v-if="step === 1"
+        key="1"
+        ></tipo-imovel>
+
+        <!-- step 2 localização imovel-->
+          <local-imovel
+            v-if="step === 2"
+             key="2"
+          ></local-imovel>
+        <br>
+        <!-- step 3 descrição imóvel -->
+          <descricao-imovel
+              v-if="step === 3"
+               key="3"
+          ></descricao-imovel>
+      </div>
+      </transition>
       <br>
-      <div class="form-group col-sm-2">
-        <label for="">Titulo do imóvel</label>
-        <input
-          type="titulo"
-          class="form-control input-grey "
-          v-model="titulo"
-          id="titulo"
-          aria-describedby="emailHelp"
-          placeholder="Casa no zona Sul de Marília"
-        >
-      </div>
+ 
 
+      <!-- <button @click="validate()" class="btn button-grey">Cadastrar</button> -->
 
-      <div class=" col-sm-2">
-        <label for="">Tipo do imóvel</label>
-          <select  autocomplete="off" name="tipo" id="tipo" v-model="tipo" class="form-control input-grey tipo ">
-            <option value="Casa">Casa</option>
-            <option value="Apartamento" selected>Apartamento</option>
-            <option value="Chacara">Chacara</option>
-            <option value="Kitnet">Kitnet</option>
-          </select>
-      </div>
-        
-       
-
-
-      <div class="form-group col-sm-2">
-        <label for="">Transação</label>
-        <select name="transação" id="status" v-model="status" class="form-control input-grey transacao">
-          <option value="venda" selected>Venda</option>
-          <option value="aluguel">Aluguel</option>
-        </select>
-      
-      </div>
-     <br>
-     <h2>Onde fica seu imóvel?</h2>
-     <hr>
-      <div class="form-group col-sm-3">
-        <label for="cep">CEP</label>
-        <a target="_blank" href="http://www.buscacep.correios.com.br/sistemas/buscacep/">Não sei meu CEP</a>
-        <input
-        
-          type="text"
-          class="form-control input-grey cep"
-          id="cep"
-          v-model="cep"
-          placeholder="CEP"
-
-          @keyup="buscarCEP"
-        >
-      </div>
-
-      <div class="form-group col-sm-6">
-        <label for="endereco">Endereço</label>
-        <input
-          :disabled="disableInput"
-          type="text"
-          class="form-control input-grey endereco"
-          id="endereco"
-          v-model="rua"
-          placeholder="Endereço"
-        >
-      </div>
-
-
-      <div class="form-group col-sm-2">
-        <label for="numEndereco">Número</label>
-        <input
-          type="text"
-          class="form-control input-grey num-endereco"
-          id="numEndereco"
-          v-model="numEndereco"
-          placeholder="Número"
-        >
-      </div>
-
-      <div class="form-group col-sm-4">
-        <label for="complementoEndereco">Complemento</label>
-        <input
-          type="text"
-          class="form-control input-grey complemento"
-          id="complementoEndereco"
-          v-model="complementoEndereco"
-          placeholder="Complemento"
-        >
-      </div>
-
-
-
-      <div class="form-group col-sm-4">
-        <label for="bairro">Bairro</label>
-        <input
-          type="text"
-          class="form-control input-grey bairro"
-          id="bairro"
-          v-model="bairro"
-          placeholder="Bairro"
-        >
-      </div>
-
-  
-      <div class="form-group col-sm-4">
-        <label for="cidade">Cidade</label>
-        <input
-          :disabled="disableInput"
-          type="text"
-          class="form-control input-grey cidade"
-          id="cidade"
-          v-model="cidade"
-          placeholder="Cidade"
-        >
-      </div>
-   
-      <div class="form-group col-sm-2">
-        <label for="estado">Estado</label>
-        <input
-          type="text"
-          class="form-control input-grey estado"
-          id="estado"
-          v-model="uf"
-          placeholder="Estado"
-        >
-      </div>
-      
-      <br>
-      <h2>Detalhes do seu imóvel</h2>
-      <hr>
-
-      <div class="form-group col-sm-6">
-        <label for="descricao">Descreva o seu imóvel</label>
-        <textarea 
-          v-model="descricao"
-          class="form-control textarea-grey"
-          name="desc"  
-          id="descricao" 
-          cols="60" 
-          rows="10">
-        </textarea>
-      </div>
-
-      <div class="form-group  col-sm-2">
-        <label for="area">Área</label>
-        <div>
-          <input
-            type="number"
-            class="form-control input-group input-grey area"
-            id="area"
-            v-model="area"
-            placeholder="Área (apenas números)"
-          >   
-        </div>
-      </div>
-
-      <div class="form-group col-sm-2">
-        <label for="numQuartos">Números de quartos</label>
-        <input
-          type="number"
-          class="form-control input-grey quartos"
-          v-model="numQuartos"
-          id="numQuartos"
-          aria-describedby="emailHelp"
-          placeholder="Número de quartos"
-        >
-      </div>
-
-      <div class="form-group col-sm-2">
-        <label for="numBanheiros">Números de banheiro</label>
-        <input
-          type="number"
-          class="form-control input-grey banheiros"
-          v-model="numBanheiros"
-          id="numBanheiros"
-          aria-describedby="emailHelp"
-          placeholder="Número de banheiros"
-        >
-      </div>
-
-      <div class="form-group col-sm-2">
-        <label for="preco">Preço</label>
-        <money
-          id="preco"
-          v-model="preco"
-          v-bind="money"
-          class="form-control input-grey preco"
-          placeholder="Digite o Preço"
-        ></money>
-      </div>
-
-      <button type="submit" class="btn button-grey">Cadastrar</button>
-      <br>
-      <br>
     </form>
+    <button class="btn" @click="goBack()">Back</button>
+    <button class="btn" @click="goNext()">Next</button>
   </div>
 </template>
 
 <script>
 import routes from "../../routes";
+import tipoImovel from "./TipoImovel";
+import localImovel from "./LocalizacaoImovel";
+import descricaoImovel from "./DescricaoImovel";
 import { Money } from "./v-money.js";
 import { closeMenu, cadastrarImovel } from "../../api/";
 export default {
-  components: { Money },
+  components: {
+     Money,
+     tipoImovel         : tipoImovel,
+     'local-imovel'     : localImovel,
+     'descricao-imovel' : descricaoImovel,
+  },
 
   data() {
     return {
       query:"",
+      step: 1,
       imoveis: [],
       errors: [],
-      disableInput:false,
-      status: "venda",
-      titulo: "",
-      endereco: {},
-      rua: "",
-      numEndereco: "",
-      complementoEndereco: "",
-      cidade: "",
-      descricao: "",
-      numBanheiros: "",
-      preco: "",
-      numQuartos: "",
-      cep: "",
-      area: "",
-      uf: "",
-      bairro: "",
+
       id:"",
-      tipo:"Casa",
       // === Money === //
-      money: {
-        decimal: ",",
-        thousands: ".",
-        prefix: " ",
-        suffix: " ",
-        precision: 2,
-        masked: true
-      }
+
     };
   },
   mounted: function() {
@@ -279,40 +101,15 @@ export default {
         // $("html, body").animate({ scrollTop: 0 }, "slow");
       }
     },
-    buscarCEP() {
-      var self = this;
 
-      self.naoLocalizado = false;
-      if (/^[0-9]{5}-[0-9]{3}$/.test(this.cep)) {
-        $.getJSON("https://viacep.com.br/ws/" + this.cep + "/json/", function(
-          endereco
-        ) {
-          console.log(endereco);
-          if (endereco.erro) {
-            self.endereco = {};
-            $("#inputLogradouro").focus();
-            self.naoLocalizado = true;
-            self.disableInput = false;
-            return;
-          }
-          self.disableInput = true;
-          self.endereco = endereco;
-          self.cidade = endereco.localidade;
-          self.uf = endereco.uf;
-          self.bairro = endereco.bairro;
-          self.rua = endereco.logradouro;
-        });
-      }
-    },
     setQuery: function() {
-      
       this.query = this.$route.params.id;
       console.log(this.query)
       return this.query;
     },
-    handleSubmit() {
+    validate() {
       this.errors = [];
-
+      console.log("foi")
       if (!this.titulo) {
         this.errors.push('O titulo é obrigatório.');
       }
@@ -344,9 +141,18 @@ export default {
       if (!this.errors.length)
       {
           this.cadastrar()
-
       }
       
+    },
+    openCard(index) {
+      this.step = index
+    },
+    goNext() {
+      this.imoveis = {...this.imoveis , }
+        this.openCard(this.step + 1)
+    },
+    goBack(){
+      this.openCard(this.step - 1)
     }
   },
   created(){
@@ -356,7 +162,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style>
 
 .input-grey {
   margin-bottom: 25px;
@@ -369,60 +175,7 @@ export default {
   background: #ccc;
   transition: 0.3s ease;
 }
-/* .tipo{
-  width: 15%;
-  min-width: 10%;
-}
 
-.trancasao{
-  width: 15%;
-  min-width: 10%;
-}
-
-.cep{
-  width: 15%;
-  min-width: 10%;
-}
-
-.endereco{
-  width: 50%;
-  min-width: 10%;
-}
-
-.num-endereco{
-  width: 10%;
-  min-width: 10%;
-}
-
-.cidade{
-  width: 15%;
-  min-width: 10%;
-}
-
-.estado{
-  width: 5%;
-  min-width: 5%;
-}
-
-.area{
-  width: 10%;
-  min-width: 10%;
-}
-
-.quartos{
-  width: 10%;
-  min-width: 5%;
-}
-
-.banheiros{
-  width: 10%;
-  min-width: 5%;
-}
-
-.preco{
-  width: 15%;
-  min-width: 10%;
-} */
 
 .textarea-grey{
   margin-bottom: 25px;
@@ -432,4 +185,11 @@ export default {
   background: #ccc;
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active em versões anteriores a 2.1.8 */ {
+  opacity: 0;
+}
 </style>

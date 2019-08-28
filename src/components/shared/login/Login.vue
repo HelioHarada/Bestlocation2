@@ -323,17 +323,7 @@ export default {
   border: none;
 }
 
-.input-grey {
-  margin-top: 25px;
-  display: block;
-  width: 100%;
-  height: 45px;
-  border-radius: 25px;
-  border: 0;
-  color: #1a212f;
-  background: #ccc;
-  transition: 0.3s ease;
-}
+
 
 .header-grey nav {
   width: 100%;

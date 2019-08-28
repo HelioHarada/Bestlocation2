@@ -119,7 +119,7 @@ export default {
             try{
                 const res = await this.getUserImoveis(id);
                 this.favoritosVisible = false
-                console.log(res)
+              
                 if(res.body.message == ""){
                   console.log("vazio")
                   this.imoveisCadastrado = true
@@ -127,6 +127,7 @@ export default {
                   this.imoveisCadastrado = false
                 }
                 this.imoveis = res.body.data
+                console.log(this.imoveis)
                 this.visibleDelete = this.imoveis
             }catch(e){
 
