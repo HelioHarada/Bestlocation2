@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form ref="form" @submit.prevent="handleSubmit">
+    <div >
     <div class="alert alert-danger" id ="message-errors" role="alert"  v-if="errors.length" >
       <b>Por favor, corrija o(s) seguinte(s) erro(s):</b>
       <ul>
@@ -16,21 +16,26 @@
       <div>
         <!-- step 1 tipo imovel -->
         <tipo-imovel
-        v-if="step === 1"
-        key="1"
+          v-if="step === 1"
+          key="1"
+          @back="goBack"
+          @next="goNext"
         ></tipo-imovel>
 
         <!-- step 2 localização imovel-->
-          <local-imovel
-            v-if="step === 2"
-             key="2"
-          ></local-imovel>
+        <local-imovel
+          v-if="step === 2"
+          key="2"
+          @back="goBack"
+          @next="goNext"
+        ></local-imovel>
         <br>
         <!-- step 3 descrição imóvel -->
-          <descricao-imovel
-              v-if="step === 3"
-               key="3"
-          ></descricao-imovel>
+        <descricao-imovel
+          v-if="step === 3"
+          @back="goBack"
+          key="3"
+        ></descricao-imovel>
       </div>
       </transition>
       <br>
@@ -38,9 +43,7 @@
 
       <!-- <button @click="validate()" class="btn button-grey">Cadastrar</button> -->
 
-    </form>
-    <button class="btn" @click="goBack()">Back</button>
-    <button class="btn" @click="goNext()">Next</button>
+    </div>
   </div>
 </template>
 
@@ -63,6 +66,7 @@ export default {
     return {
       query:"",
       step: 1,
+      imovel:'',
       imoveis: [],
       errors: [],
 
@@ -147,11 +151,19 @@ export default {
     openCard(index) {
       this.step = index
     },
-    goNext() {
-      this.imoveis = {...this.imoveis , }
+    syncImovel(newPartImovel){
+      this.imovel = { ...this.imovel, ...newPartImovel }
+      console.log(this.imovel)
+    },
+    goNext(imovel) {
+      this.syncImovel(imovel)
+      console.log(imovel.titulo)
+       console.log(imovel.rua)
+      // this.imoveis = {...this.imoveis , } sync
         this.openCard(this.step + 1)
     },
     goBack(){
+      console.log(this.step - 1)
       this.openCard(this.step - 1)
     }
   },
