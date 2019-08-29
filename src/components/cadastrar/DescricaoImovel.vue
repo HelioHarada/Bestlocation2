@@ -62,13 +62,15 @@
         placeholder="Digite o Preço"
       ></money>
     </div>
-    <step-navigation @goNext="save" @back="goBack"></step-navigation>
+    <step-navigation @goNext="save" @back="goBack">Cadastrar</step-navigation>
   </div>
 </template>
 
 <script>
 import stepNavigation from "./StepNavigation";
+import cloneDeep from 'lodash.clonedeep'
 export default {
+  props: ['imovelProp'],
   components: {
     "step-navigation": stepNavigation
   },
@@ -91,17 +93,40 @@ export default {
       }
     };
   },
+    watch: {
+        ImovelProp(newVal, oldVal) {
+        this.setup()
+        }
+    },
   methods: {
+    cloneDeep,
     updateImovel() {
-      console.log(this.imovel);
+      console.log("next")
       this.$emit("next", this.imovel);
     },
     goBack() {
       this.$emit("back");
     },
-    save(){
-      console.log(this.imovel)
+    async save(){
+     try{
+      await this.$emit("next", this.imovel);
+       let imovel = await this.cloneDeep(this.imovelProp)
+      console.log(imovel)
+      this.$emit("persist", imovel);
+     }catch(e){
+       console.log(e)
+     }
+
+    },
+    setup(){
+        if(this.imovelProp){
+            this.imovel = this.cloneDeep(this.imovelProp)
+        }
+        
     }
+  },
+  mounted() {
+    this.setup()
   }
 };
 </script>

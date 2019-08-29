@@ -39,7 +39,9 @@
 
 <script>
 import stepNavigation from "./StepNavigation";
+import cloneDeep from 'lodash.clonedeep'
 export default {
+props: ['imovelProp'],
   components: {
     'step-navigation' : stepNavigation
   },
@@ -53,12 +55,28 @@ export default {
 
         }
     },
+    watch: {
+        ImovelProp(newVal, oldVal) {
+        this.setup()
+        }
+    },
     methods:{
+        cloneDeep,
         updateImovel(){
             console.log(this.imovel)
             this.$emit('next', this.imovel)
         },
-    }
+        setup(){
+            if(this.imovelProp){
+                console.log("clone")
+                this.imovel = this.cloneDeep(this.imovelProp)
+            }
+           
+        }
+    },
+  mounted() {
+    this.setup()
+  }
 
 }
 </script>

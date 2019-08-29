@@ -74,7 +74,7 @@
             <div class="card">
               <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap" />
               <div class="card-body card-imovel">
-                <h4 class="card-title">R${{imovel.preco}}</h4>
+                <h4 class="card-title">R${{imovel.valorImovel}}</h4>
                 <h6 class="card-title">{{imovel.status}} : {{imovel.titulo}}</h6>
                 <p class="card-text">Descrição: {{imovel.descricao}}</p>
                 <p class="card-text">

@@ -66,24 +66,24 @@ export function getUserImoveis (id) {
   return this.$http.get(url+'/api/imovel/usuario/'+id);
 }
 
-export function cadastrarImovel () {
+export function cadastrarImovel (imovel) {
 
   return this.$http.post(url+"/api/imovel/usuario/"+this.id, {
-    titulo: this.titulo,
-    status: this.status,
-    endereco: this.rua,
-    numEndereco: this.numEndereco,
-    complementoEndereco: this.complementoEndereco,
-    cidade: this.cidade,
-    bairro: this.bairro,
-    uf: this.uf,
-    descricao: this.descricao,
-    numBanheiros: this.numBanheiros,
-    numQuartos: this.numQuartos,
-    preco: this.preco,
-    area: this.area,
-    cep: this.cep,
-    tipoImovel: this.tipo
+    titulo: imovel.titulo,
+    status: imovel.status,
+    endereco: imovel.rua,
+    numEndereco: imovel.numEndereco,
+    complementoEndereco: imovel.complementoEndereco,
+    cidade: imovel.cidade,
+    bairro: imovel.bairro,
+    uf: imovel.uf,
+    descricao: imovel.descricao,
+    numBanheiros: imovel.numBanheiros,
+    numQuartos:imovel.numQuartos,
+    preco : imovel.preco,
+    area: imovel.area,
+    cep: imovel.cep,
+    tipoImovel: imovel.tipo
   });
 }
 

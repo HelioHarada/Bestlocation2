@@ -1,7 +1,7 @@
 <template>
   <div>
     <button v-if="showBack" class="btn" @click="$emit('back')">Back</button>
-    <button class="btn" @click="$emit('goNext')">Next</button>
+    <button class="btn" @click="$emit('goNext')"><slot>Próximo</slot></button>
   </div>
 </template>
 <script>

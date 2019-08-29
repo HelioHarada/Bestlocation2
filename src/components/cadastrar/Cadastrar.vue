@@ -18,6 +18,7 @@
         <tipo-imovel
           v-if="step === 1"
           key="1"
+          :imovelProp="imovel"  
           @back="goBack"
           @next="goNext"
         ></tipo-imovel>
@@ -26,6 +27,7 @@
         <local-imovel
           v-if="step === 2"
           key="2"
+          :imovelProp="imovel"  
           @back="goBack"
           @next="goNext"
         ></local-imovel>
@@ -33,7 +35,10 @@
         <!-- step 3 descrição imóvel -->
         <descricao-imovel
           v-if="step === 3"
+          :imovelProp="imovel"  
           @back="goBack"
+          @next="syncImovel"
+          @persist="cadastrar"
           key="3"
         ></descricao-imovel>
       </div>
@@ -95,9 +100,10 @@ export default {
       }
     },
 
-    async cadastrar(){
+    async cadastrar(imovel){
+      console.log(imovel)
       try{
-        const res = await this.cadastrarImovel();
+        const res = await this.cadastrarImovel(imovel);
         console.log(res);
         this.$router.push('account')
       }catch(err){
@@ -149,7 +155,7 @@ export default {
       
     },
     openCard(index) {
-      this.step = index
+        this.step = index 
     },
     syncImovel(newPartImovel){
       this.imovel = { ...this.imovel, ...newPartImovel }
@@ -157,10 +163,7 @@ export default {
     },
     goNext(imovel) {
       this.syncImovel(imovel)
-      console.log(imovel.titulo)
-       console.log(imovel.rua)
-      // this.imoveis = {...this.imoveis , } sync
-        this.openCard(this.step + 1)
+      this.openCard(this.step + 1)
     },
     goBack(){
       console.log(this.step - 1)

@@ -80,7 +80,7 @@
         <label for="estado">Estado</label>
 
         <select v-model="imovel.uf" class="form-control input-grey" :disabled="disableInput">
-          <option v-for="uf in imovel.estados.UF">{{ uf.sigla }}</option>
+          <option v-for="uf in UF">{{ uf.sigla }}</option>
         </select>
       </div>
     </div>
@@ -90,7 +90,9 @@
 
 <script>
 import stepNavigation from "./StepNavigation";
+import cloneDeep from 'lodash.clonedeep'
 export default {
+  props: ['imovelProp'],
   components: {
     "step-navigation": stepNavigation
   },
@@ -104,43 +106,48 @@ export default {
         complementoEndereco: "",
         cidade: "",
         uf: "",
-        estados: {
-          UF: [
-            { nome: "Acre", sigla: "AC" },
-            { nome: "Alagoas", sigla: "AL" },
-            { nome: "Amapá", sigla: "AP" },
-            { nome: "Amazonas", sigla: "AM" },
-            { nome: "Bahia", sigla: "BA" },
-            { nome: "Ceará", sigla: "CE" },
-            { nome: "Distrito Federal", sigla: "DF" },
-            { nome: "Espírito Santo", sigla: "ES" },
-            { nome: "Goiás", sigla: "GO" },
-            { nome: "Maranhão", sigla: "MA" },
-            { nome: "Mato Grosso", sigla: "MT" },
-            { nome: "Mato Grosso do Sul", sigla: "MS" },
-            { nome: "Minas Gerais", sigla: "MG" },
-            { nome: "Pará", sigla: "PA" },
-            { nome: "Paraíba", sigla: "PB" },
-            { nome: "Paraná", sigla: "PR" },
-            { nome: "Pernambuco", sigla: "PE" },
-            { nome: "Piauí", sigla: "PI" },
-            { nome: "Rio de Janeiro", sigla: "RJ" },
-            { nome: "Rio Grande do Norte", sigla: "RN" },
-            { nome: "Rio Grande do Sul", sigla: "RS" },
-            { nome: "Rondônia", sigla: "RO" },
-            { nome: "Roraima", sigla: "RR" },
-            { nome: "Santa Catarina", sigla: "SC" },
-            { nome: "São Paulo", sigla: "SP" },
-            { nome: "Sergipe", sigla: "SE" },
-            { nome: "Tocantins", sigla: "TO" }
-          ]
-        },
+        estados:"",
         bairro: "",
         cep: ""
-      }
+      },
+    UF: [
+        { nome: "Acre", sigla: "AC" },
+        { nome: "Alagoas", sigla: "AL" },
+        { nome: "Amapá", sigla: "AP" },
+        { nome: "Amazonas", sigla: "AM" },
+        { nome: "Bahia", sigla: "BA" },
+        { nome: "Ceará", sigla: "CE" },
+        { nome: "Distrito Federal", sigla: "DF" },
+        { nome: "Espírito Santo", sigla: "ES" },
+        { nome: "Goiás", sigla: "GO" },
+        { nome: "Maranhão", sigla: "MA" },
+        { nome: "Mato Grosso", sigla: "MT" },
+        { nome: "Mato Grosso do Sul", sigla: "MS" },
+        { nome: "Minas Gerais", sigla: "MG" },
+        { nome: "Pará", sigla: "PA" },
+        { nome: "Paraíba", sigla: "PB" },
+        { nome: "Paraná", sigla: "PR" },
+        { nome: "Pernambuco", sigla: "PE" },
+        { nome: "Piauí", sigla: "PI" },
+        { nome: "Rio de Janeiro", sigla: "RJ" },
+        { nome: "Rio Grande do Norte", sigla: "RN" },
+        { nome: "Rio Grande do Sul", sigla: "RS" },
+        { nome: "Rondônia", sigla: "RO" },
+        { nome: "Roraima", sigla: "RR" },
+        { nome: "Santa Catarina", sigla: "SC" },
+        { nome: "São Paulo", sigla: "SP" },
+        { nome: "Sergipe", sigla: "SE" },
+        { nome: "Tocantins", sigla: "TO" }
+        ]
     };
   },
+    watch: {
+        ImovelProp(newVal, oldVal) {
+        this.setup()
+        }
+    },
   methods: {
+    cloneDeep,
     buscarCEP() {
       var self = this;
       self.disableInput = false;
@@ -157,7 +164,7 @@ export default {
               return;
             }
             self.disableInput = true;
-            self.imovel.endereco = endereco;
+            // self.imovel.endereco = endereco;
             self.imovel.cidade = endereco.localidade;
             self.imovel.uf = endereco.uf;
             self.imovel.bairro = endereco.bairro;
@@ -172,7 +179,17 @@ export default {
     },
     goBack() {
         this.$emit("back");
+    },
+    setup(){
+        console.log(this.imovel.cep)
+        if(this.imovelProp){
+            this.imovel = this.cloneDeep(this.imovelProp)
+        }
+        
     }
+  },
+  mounted() {
+    this.setup()
   }
 };
 </script>
