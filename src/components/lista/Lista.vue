@@ -53,7 +53,7 @@
             </div>
             <div class="text-list">
                
-              <h4 class="list-preco">R${{imovel.preco}}</h4>
+              <h4 class="list-preco">R${{imovel.valorImovel}}</h4>
               <h6 class="list-titulo">{{imovel.status}} : {{imovel.titulo}}</h6>
               <p class="list-endereco">
                 Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
@@ -154,12 +154,12 @@ export default {
   },
   computed: {
     imoveisFiltro() {
-      let exp = new RegExp(this.filtro.trim(), "gi");
+      let exp = new RegExp(this.filtro.trim(),"gi");
       if (this.filtro) {
         
         // this.load();
         this.totalImoveis = this.imoveis.filter(imovel => exp.test(imovel.cidade)).length;
-        console.log(this.imoveis.filter(imovel => exp.test(imovel.cidade)))
+        console.log(this.imoveis.filter(imovel => exp.test(imovel.cidade || imovel.rua)))
         if(this.imoveis.filter(imovel => exp.test(imovel.cidade)) == ""){
           this.listaVazia = true;
         }else{
