@@ -2,7 +2,7 @@
   <div class="container-fluid">
       <br>
       <h1 align="center">Minha Conta</h1>
-      <h5 class="title-name">Bem-vindo {{user.firstName}} </h5>
+      <h5 class="title-name">Bem-vindo {{userName}} </h5>
       <hr>
     <div class="row">
     <router-link
@@ -85,7 +85,7 @@ export default {
   data() {
     return {
       imoveis: [],
-      user: '',
+      userName: '',
       id: "",
       idDel:"",
       imoveisCadastrado: "",
@@ -106,8 +106,8 @@ export default {
         },
         async getToken(){
           try{
-            const id = this.returnToken(localStorage.getItem("acess_token"))
-            console.log(id)
+            const id = this.returnToken(localStorage.getItem("acess_token")).idUser
+            this.userName = this.returnToken(localStorage.getItem("acess_token")).username
             this.id = id;
             this.getImoveis(id)
           }catch(e){
@@ -115,19 +115,17 @@ export default {
           }
         },
         async getImoveis(id){
-              console.log("getimovei")
             try{
                 const res = await this.getUserImoveis(id);
                 this.favoritosVisible = false
               
                 if(res.body.message == ""){
-                  console.log("vazio")
                   this.imoveisCadastrado = true
                 }else{
                   this.imoveisCadastrado = false
                 }
                 this.imoveis = res.body.data
-                console.log(this.imoveis[2].valorImovel)
+                console.log( this.imoveis[0].valorImovel)
                 this.visibleDelete = this.imoveis
             }catch(e){
 
@@ -138,7 +136,7 @@ export default {
         async showFavoritos(){
             try{
               const res = await this.getFavImoveis(this.id)
-              console.log(res.body)
+
               this.imoveis = res.body
               this.favoritosVisible = true
               this.imoveisCadastrado = false
@@ -153,7 +151,6 @@ export default {
             const res = await this.deleteImovelId(this.idDel);
             $("#modal-delete").modal("hide");
             this.getToken(this.id)
-            console.log(res)
           }catch(e){
             console.log(e)
           }

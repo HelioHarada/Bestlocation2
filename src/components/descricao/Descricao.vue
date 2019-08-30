@@ -141,7 +141,7 @@ export default {
 
     async getToken(){
       try{
-        const id = this.returnToken(localStorage.getItem("acess_token"))
+        const id = this.returnToken(localStorage.getItem("acess_token")).idUser
         console.log(id)
         this.idUser = id;
         return this.idUser
@@ -155,7 +155,7 @@ export default {
     async load(){
       try{
           const idUser = await this.getToken()
-
+          console.log(this.idImovel, idUser)
           const res = await this.getImovelID(this.idImovel, idUser)
           this.imovel = res.body.data[1];
           console.log(this.imovel)
