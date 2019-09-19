@@ -49,7 +49,8 @@
             :key="index"
           >
             <div>
-              <img class="img-list img-fluid" src="/../src/img/casa.jpg" alt="Card image cap" />
+              <img v-if="imovel.images[0]" :src="imovel.images[0]" alt="Card image cap" class="card-img-top">
+              <img v-else class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
             </div>
             <div class="text-list">
                
@@ -72,7 +73,10 @@
         <div v-else-if="view == 'card'" key="2" class="row">
           <div class="col-md-4 card-house" v-for="(imovel, index) in imoveisFiltro" :key="index">
             <div class="card">
-              <img class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap" />
+              <div>
+                <img v-if="imovel.images[0]" :src="imovel.images[0]" alt="Card image cap" class="card-img-top">
+                <img v-else class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
+              </div>
               <div class="card-body card-imovel">
                 <h4 class="card-title">R${{imovel.valorImovel}}</h4>
                 <h6 class="card-title">{{imovel.status}} : {{imovel.titulo}}</h6>

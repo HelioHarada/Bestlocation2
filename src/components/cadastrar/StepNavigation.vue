@@ -1,7 +1,10 @@
 <template>
   <div>
-    <button v-if="showBack" class="btn" @click="$emit('back')">Back</button>
-    <button class="btn" @click="$emit('goNext')"><slot>Próximo</slot></button>
+    <hr>
+    <div class="row d-flex justify-content-end step-navigation" v-bind:class="{ 'justify-content-between': showBack }">
+      <button v-if="showBack" class="btn button-erro" @click="$emit('back')">Voltar</button>
+      <button class="btn button-sucesso" @click="$emit('goNext')"><slot>Próximo</slot></button>
+    </div>
   </div>
 </template>
 <script>
@@ -22,3 +25,20 @@ export default {
     },
 }
 </script>
+
+<style>
+
+.step-navigation{
+  margin-top : 20px;
+}
+
+.button-sucesso{
+  background-color: #2ECC71;
+  color: white;
+}
+
+.button-erro{
+  background-color: #E74C3C;
+  color: white;
+}
+</style>

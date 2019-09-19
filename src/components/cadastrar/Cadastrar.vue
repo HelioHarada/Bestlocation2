@@ -186,7 +186,7 @@ export default {
   height: 45px;
   border-radius: 5px;
   border: 0;
-  color: #1a212f;
+  color: #bdc3c7;
   background: #ccc;
   transition: 0.3s ease;
 }
@@ -197,7 +197,7 @@ export default {
   border-radius: 5px;
   border: 0;
   color: #1a212f;
-  background: #ccc;
+  background: #bdc3c7;
 }
 
 .fade-enter-active,

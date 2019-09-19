@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Onde fica seu imóvel?</h2>
-    <hr />
+    <hr/>
     <div class="row">
       <div class="form-group col-sm-3">
         <label for="cep">CEP</label>
@@ -174,16 +174,16 @@ export default {
       }
     },
     updateImovel() {
-      console.log(this.imovel);
       this.$emit("next", this.imovel);
     },
     goBack() {
+
         this.$emit("back");
     },
     setup(){
         console.log(this.imovel.cep)
         if(this.imovelProp){
-            this.imovel = this.cloneDeep(this.imovelProp)
+            this.imovel = {...this.imovel, ...this.cloneDeep(this.imovelProp)};
         }
         
     }

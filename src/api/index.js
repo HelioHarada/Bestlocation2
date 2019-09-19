@@ -67,7 +67,7 @@ export function getUserImoveis (id) {
 }
 
 export function cadastrarImovel (imovel) {
-
+  console.log(imovel.imageData);
   return this.$http.post(url+"/api/imovel/usuario/"+this.id, {
     titulo: imovel.titulo,
     status: imovel.status,
@@ -83,7 +83,8 @@ export function cadastrarImovel (imovel) {
     valorImovel : imovel.preco,
     area: imovel.area,
     cep: imovel.cep,
-    tipoImovel: imovel.tipo
+    tipoImovel: imovel.tipo,
+    images: imovel.imageData
   });
 }
 
