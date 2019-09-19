@@ -18,8 +18,8 @@
         </div>
         <label for="numQuartos" class="ml">Números de quartos</label>
         <div class="row ml">
-          <button class="button-control" @click="imovel.numQuartos++">+</button>
-         
+
+          <button class="button-control" @click="less('quartos')">-</button>     
             <input
               type="number"
               class="form-control input-sm input-number"
@@ -30,14 +30,15 @@
               min="0"
               max="5"
             />
-     
-          <button class="button-control" @click="imovel.numQuartos--">-</button>
+          <button class="button-control" @click="imovel.numQuartos++">+</button>    
+
         </div>
 
         <label for="numBanheiros" class="ml">Números de banheiro</label>
         <div class="row ml">
-          <button class="button-control" @click="imovel.numBanheiros++">+</button>
-         
+        
+          <button class="button-control" @click="less('banheiros')">-</button>
+
           <input
             type="number"
             class="form-control input-sm input-number"
@@ -47,10 +48,10 @@
             min="0"
             max="5"
             step="1" 
-           
+   
           />
-     
-          <button class="button-control" @click="imovel.numBanheiros--">-</button>
+          <button class="button-control" @click="imovel.numBanheiros++">+</button>
+      
         </div>
 
 
@@ -132,6 +133,20 @@ export default {
   },
   methods: {
     cloneDeep,
+    less(type){
+        if(type == 'quartos'){
+          this.imovel.numQuartos --
+          if(this.imovel.numQuartos < 0){
+            this.imovel.numQuartos = 0
+          }
+        }else if(type == 'banheiros'){
+          this.imovel.numBanheiros --
+          if(this.imovel.numBanheiros < 0){
+            this.imovel.numBanheiros = 0
+          }
+        }
+        
+    },
             pickImage(){
               this.$refs.fileInput.click();
             },
@@ -247,6 +262,8 @@ export default {
 .preview{
   max-width: 300px;
   max-height: 200px;
+  width: 100%;
+  height: 200px;
 }
 
 .ml{
