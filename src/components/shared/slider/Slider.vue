@@ -2,7 +2,10 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="/../src/img/casa.jpg" alt="First slide">
+        <div>
+          <img v-if="imovel.images[0]" :src="imovel.images[0]" alt="Card image cap" class="card-img-top">
+          <img v-else class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
+        </div>
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="/../src/img/casa.jpg" alt="Second slide">
@@ -21,3 +24,8 @@
   </a>
 </div>
 </template>
+<script>
+export default {
+     props: ['imovel'],
+}
+</script>

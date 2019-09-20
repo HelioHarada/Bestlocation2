@@ -4,7 +4,7 @@
     <div class="row">
       <contato-modal :imovel="imovel"></contato-modal>
       <div class="col-md-6 slide">
-        <slide></slide>
+        <slide :imovel="imovel" ></slide>
       </div>
       <div class="col-md-6">
         <div class="card-body card-imovel">
@@ -57,24 +57,30 @@
         <h3 align="center">Maps</h3>
 
         <div class="place-button-desc">
-            <button class="btn button-plus" @click="markerHospital()">
-              <i class="fas fa-hospital"></i> Hospital
-            </button>
-            <button class="btn button-plus" @click="markerFood()">
-              <i class="fas fa-utensils"></i> Restaurante
-            </button>
-            <button class="btn button-plus" @click="markerSchool()">
-              <i class="fas fa-school"></i> Escola
-            </button>
-            <button class="btn button-plus" @click="markerMarket()">
-              <i class="fas fa-cart-plus"></i> Mercado
-            </button>
-            <button class="btn button-plus" @click="markerFarmacia()">
-              <i class="fas fa-pills"></i> Farmácia
-            </button>
-            <button class="btn button-plus" @click="markerBus()">
-              <i class="fas fa-bus"></i> Ponto de ônibus
-            </button>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn button-plus" @click="markerHospital()">
+                  <i class="fas fa-hospital"></i> Hospital
+                </button>
+                <button class="btn button-plus" @click="markerFood()">
+                  <i class="fas fa-utensils"></i> Restaurante
+                </button>  
+                <button class="btn button-plus" @click="markerSchool()">
+                  <i class="fas fa-school"></i> Escola
+                </button>
+                <button class="btn button-plus" @click="markerMarket()">
+                  <i class="fas fa-cart-plus"></i> Mercado
+                </button>
+                <button class="btn button-plus" @click="markerFarmacia()">
+                  <i class="fas fa-pills"></i> Farmácia
+                </button>
+                <button class="btn button-plus" @click="markerBus()">
+                  <i class="fas fa-bus"></i> ônibus
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="google-map" :id="mapName"></div>
       </div>
