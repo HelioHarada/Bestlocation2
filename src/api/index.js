@@ -80,7 +80,7 @@ export function cadastrarImovel (imovel) {
     descricao: imovel.descricao,
     numBanheiros: imovel.numBanheiros,
     numQuartos:imovel.numQuartos,
-    valorImovel : imovel.preco,
+    valorImovel : imovel.valorImovel,
     area: imovel.area,
     cep: imovel.cep,
     tipoImovel: imovel.tipo,
