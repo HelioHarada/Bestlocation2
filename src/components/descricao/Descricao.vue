@@ -8,7 +8,7 @@
       </div>
       <div class="col-md-6">
         <div class="card-body card-imovel">
-          <h2 class="card-title">R${{imovel.preco}}</h2>
+          <h2 class="card-title">R${{formatPrice(imovel.valorImovel)}}</h2>
           <h6 class="card-title">{{imovel.status}} : {{imovel.titulo}}</h6>
           <p class="card-text">Descrição: {{imovel.descricao}}</p>
           <p class="card-text">
@@ -287,6 +287,10 @@ export default {
       });
       this.markers.push(marker);
     },
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
   },
   created() {
     this.setID();

@@ -54,7 +54,7 @@
             </div>
             <div class="text-list">
                
-              <h4 class="list-preco">R${{imovel.valorImovel}}</h4>
+              <h4 class="list-preco">R${{formatPrice(imovel.valorImovel)}}</h4>
               <h6 class="list-titulo">{{imovel.status}} : {{imovel.titulo}}</h6>
               <p class="list-endereco">
                 Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
@@ -78,7 +78,7 @@
                 <img v-else class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
               </div>
               <div class="card-body card-imovel">
-                <h4 class="card-title">R${{imovel.valorImovel}}</h4>
+                <h4 class="card-title">R${{formatPrice(imovel.valorImovel)}}</h4>
                 <h6 class="card-title">{{imovel.status}} : {{imovel.titulo}}</h6>
                 <p class="card-text">Descrição: {{imovel.descricao}}</p>
                 <p class="card-text">
@@ -249,7 +249,11 @@ export default {
     },
     changeView: function(type) {
       this.view = type;
-    }
+    },
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
   },
 
   created() {

@@ -1,198 +1,225 @@
 <template>
   <div class="container-fluid">
-      <br>
-      <h1 align="center">Minha Conta</h1>
-      <h5 class="title-name">Bem-vindo {{userName}} </h5>
-      <hr>
+    <br />
+    <h1 align="center">Minha Conta</h1>
+    <h5 class="title-name">Bem-vindo {{userName}}</h5>
+    <hr />
     <div class="row">
-    <router-link
+      <router-link
         @click.native="closeMenu()"
         class="btn button-plus"
         :to="{ name: 'cadastrar', params: { id: id }}"
-        >Anuncie!
-    </router-link>
+      >Anuncie!</router-link>
 
-    <a @click="getImoveis(id)" class="btn button-plus" href="#">Meus imóveis</a>
-    <button @click="showFavoritos()" class="btn button-plus">Favoritos</button>
+      <a @click="getImoveis(id)" class="btn button-plus" href="#">Meus imóveis</a>
+      <button @click="showFavoritos()" class="btn button-plus">Favoritos</button>
     </div>
 
     <transition name="fade" mode="out-in">
       <h2 key="1" v-if="favoritosVisible" align="center">Favoritos</h2>
-      <h2  key="2" v-else align="center">Meus imóveis</h2>
+      <h2 key="2" v-else align="center">Meus imóveis</h2>
     </transition>
     <div class="noneImovel" v-show="imoveisCadastrado">
-      <br>
-        <h4 align="center">Você não tem nenhum imóvel anunciado</h4>
-        <br>
-        <br>
-        <router-link
-            @click.native="closeMenu()"
-            class="btn button-plus"
-            :to="{ name: 'cadastrar', params: { id: id }}"
-            >Anuncie agora é Grátis!
-        </router-link>  
-    </div> 
+      <br />
+      <h4 align="center">Você não tem nenhum imóvel anunciado</h4>
+      <br />
+      <br />
+      <router-link
+        @click.native="closeMenu()"
+        class="btn button-plus"
+        :to="{ name: 'cadastrar', params: { id: id }}"
+      >Anuncie agora é Grátis!</router-link>
+    </div>
     <div class="row content-lista">
       <div class="col-md-4 card-house" v-for="(imovel, index) in imoveis" :key="index">
-      <div class="card">
-        <div>
-          <img v-if="imovel.images[0]" :src="imovel.images[0]" alt="Card image cap" class="card-img-top">
-          <img v-else class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
-        </div>
-        <div class="card-body card-imovel">
-          <h4 class="card-title" > R${{imovel.valorImovel}}</h4>
-          <h6 class="card-title" >{{imovel.status}} : {{imovel.titulo}}</h6>
-          <p class="card-text">Descrição: {{imovel.descricao}} </p>
-          <p class="card-text">
-          <img src="/../src/img/bed.png">   {{imovel.numQuartos}}
-          -
-          <img src="/../src/img/banheiro.png"> {{imovel.numBanheiros}}
-          -
-          <img src="/../src/img/size.png"> {{imovel.area}}m²</p>
-          <p class="card-text">Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
-              {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}</p>
+        <div class="card">
+          <div>
+            <img
+              v-if="imovel.images[0]"
+              :src="imovel.images[0]"
+              alt="Card image cap"
+              class="card-img-top"
+            />
+            <img v-else class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap" />
+          </div>
+          <div class="card-body card-imovel">
+            <h4 class="card-title">R${{formatPrice(imovel.valorImovel)}}</h4>
+            <h6 class="card-title">{{imovel.status}} : {{imovel.titulo}}</h6>
+            <p class="card-text">Descrição: {{imovel.descricao}}</p>
+            <p class="card-text">
+              <img src="/../src/img/bed.png" />
+              {{imovel.numQuartos}}
+              -
+              <img src="/../src/img/banheiro.png" />
+              {{imovel.numBanheiros}}
+              -
+              <img src="/../src/img/size.png" />
+              {{imovel.area}}m²
+            </p>
+            <p class="card-text">
+              Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
+              {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}
+            </p>
 
-          <div class="flex-align">
-              <router-link class="btn button-plus" :to="{ name: 'desc', params: { id: imovel._id} }">Mais detalhes</router-link>
-                <button data-toggle="modal" data-target="#delete-modal" @click="checkDelete(imovel._id)" class="icon-delete btn btn-danger"><i class="far fa-trash-alt"></i></button>
-          </div>
-          </div>
-      </div>
-      <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Confrimação</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+            <div class="flex-align">
+              <router-link
+                class="btn button-plus"
+                :to="{ name: 'desc', params: { id: imovel._id} }"
+              >Mais detalhes</router-link>
+              <button
+                data-toggle="modal"
+                data-target="#delete-modal"
+                @click="checkDelete(imovel._id)"
+                class="icon-delete btn btn-danger"
+              >
+                <i class="far fa-trash-alt"></i>
               </button>
             </div>
-            <div class="modal-body">
-              <p>Deseja Deletar o imóvel?</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" @click="deletarImovel()" class="btn btn-danger">Deletar</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+        <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Confrimação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Deseja Deletar o imóvel?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" @click="deletarImovel()" class="btn btn-danger">Deletar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {  returnToken,getUserID, closeMenu, getUserImoveis, getFavImoveis, deleteImovelId} from "../../api/";
+import {
+  returnToken,
+  getUserID,
+  closeMenu,
+  getUserImoveis,
+  getFavImoveis,
+  deleteImovelId
+} from "../../api/";
 export default {
   data() {
     return {
       imoveis: [],
-      userName: '',
+      userName: "",
       id: "",
-      idDel:"",
+      idDel: "",
       imoveisCadastrado: "",
-      favoritosVisible: "",
+      favoritosVisible: ""
     };
   },
-    methods:{
-        getUserID,
-        closeMenu,
-        returnToken,
-        getUserImoveis,
-        getFavImoveis,
-        deleteImovelId,
-        checkDelete(id){
-          console.log(id)
-          this.idDel = id
-          $("#modal-delete").modal("show");
-        },
-        async getToken(){
-          try{
-            const id = this.returnToken(localStorage.getItem("acess_token")).idUser
-            this.userName = this.returnToken(localStorage.getItem("acess_token")).username
-            this.id = id;
-            this.getImoveis(id)
-          }catch(e){
-            console.log(e)
-          }
-        },
-        async getImoveis(id){
-            try{
-                const res = await this.getUserImoveis(id);
-                this.favoritosVisible = false
-              
-                if(res.body.message == ""){
-                  this.imoveisCadastrado = true
-                }else{
-                  this.imoveisCadastrado = false
-                }
-                this.imoveis = res.body.data
-                console.log( this.imoveis)
-                this.visibleDelete = this.imoveis
-            }catch(e){
-
-                console.log(e)
-            }
-        },
-
-        async showFavoritos(){
-            try{
-              const res = await this.getFavImoveis(this.id)
-
-              this.imoveis = res.body
-              this.favoritosVisible = true
-              this.imoveisCadastrado = false
-            }catch(e){
-              console.log(e)
-            }
-        },
-
-        async deletarImovel(){
-          try{
-          
-            const res = await this.deleteImovelId(this.idDel);
-            $("#modal-delete").modal("hide");
-            this.getToken(this.id)
-          }catch(e){
-            console.log(e)
-          }
-        },
-
+  methods: {
+    getUserID,
+    closeMenu,
+    returnToken,
+    getUserImoveis,
+    getFavImoveis,
+    deleteImovelId,
+    checkDelete(id) {
+      console.log(id);
+      this.idDel = id;
+      $("#modal-delete").modal("show");
     },
-    created() {
-  
-        if (localStorage.getItem("acess_token") == null) {
-            this.$router.push('home')
-            $('#login-modal').modal()
-                setTimeout(function(){
-                    $('#login-modal').modal()
-            },4000)
-        }else{
-            this.getToken();
+    async getToken() {
+      try {
+        const id = this.returnToken(localStorage.getItem("acess_token")).idUser;
+        this.userName = this.returnToken(
+          localStorage.getItem("acess_token")
+        ).username;
+        this.id = id;
+        this.getImoveis(id);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async getImoveis(id) {
+      try {
+        const res = await this.getUserImoveis(id);
+        this.favoritosVisible = false;
+
+        if (res.body.message == "") {
+          this.imoveisCadastrado = true;
+        } else {
+          this.imoveisCadastrado = false;
         }
-       
+        this.imoveis = res.body.data;
+        console.log(this.imoveis);
+        this.visibleDelete = this.imoveis;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+
+    async showFavoritos() {
+      try {
+        const res = await this.getFavImoveis(this.id);
+
+        this.imoveis = res.body;
+        this.favoritosVisible = true;
+        this.imoveisCadastrado = false;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+
+    async deletarImovel() {
+      try {
+        const res = await this.deleteImovelId(this.idDel);
+        $("#modal-delete").modal("hide");
+        this.getToken(this.id);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+  },
+  created() {
+    if (localStorage.getItem("acess_token") == null) {
+      this.$router.push("home");
+      $("#login-modal").modal();
+      setTimeout(function() {
+        $("#login-modal").modal();
+      }, 4000);
+    } else {
+      this.getToken();
+    }
   }
 };
 </script>
 
 <style scoped>
-.button-plus{
+.button-plus {
   margin-bottom: 0px;
 }
-.flex-align{
+.flex-align {
   display: flex;
   justify-content: space-between;
 }
 
-.noneImovel{
+.noneImovel {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
-   align-items: center;
+  align-items: center;
 }
 
-.noneImovel .button-plus{
+.noneImovel .button-plus {
   width: 300px;
 }
 </style>
