@@ -3,8 +3,8 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
         <div>
-          <img v-if="imovel.images[0]" :src="imovel.images[0]" alt="Card image cap" class="card-img-top">
-          <img v-else class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
+          <img v-if="imovel.images[0]" :src="imovel.images[0]" alt="Card image cap" class="card-img-top img-slider">
+          <img v-else class="card-img-top img-slider" src="/../src/img/casa.jpg" alt="Card image cap">
         </div>
     </div>
     <div class="carousel-item">
@@ -29,3 +29,11 @@ export default {
      props: ['imovel'],
 }
 </script>
+
+<style scoped>
+#carouselExampleControls{
+  min-height: 400px;
+  height: 400px;
+}
+
+</style>
