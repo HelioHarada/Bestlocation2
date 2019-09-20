@@ -49,8 +49,8 @@
             :key="index"
           >
             <div>
-              <img v-if="imovel.images[0]" :src="imovel.images[0]" alt="Card image cap" class="card-img-top">
-              <img v-else class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
+              <img v-if="imovel.images[0]" class="card-img-top list-img" :src="imovel.images[0]" alt="Card image cap" >
+              <img v-else class="card-img-top list-img" src="/../src/img/casa.jpg" alt="Card image cap">
             </div>
             <div class="text-list">
                
@@ -394,4 +394,22 @@ export default {
   background-color: #ff7f00;
   border-color: #ccc
 }
+.list-img{
+  max-width: 450px;
+  max-height: 350px;
+  width: 100%;
+  height: 300px;
+}
+
+@media screen and (max-width: 990px) {
+
+.list-img{
+  max-width: 450px;
+  max-height: 1500px;
+  width: 100%;
+  height: 150px;
+}
+  
+}
+
 </style>
