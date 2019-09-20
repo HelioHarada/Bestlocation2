@@ -42,7 +42,7 @@
       </nav>
       <transition name="fade">
         <!-- Lista -->
-        <div class="row" style="min-height : 500px" v-if="view == 'list'" key="1">
+        <div class="row"  v-if="view == 'list'" key="1">
           <div
             class="list offset-md-1 col-md-10"
             v-for="(imovel, index) in imoveisFiltro"
@@ -107,7 +107,7 @@
         </div>
       </transition>
       <!-- Paginação -->
-      <nav aria-label="Navegação de página exemplo">
+      <nav class="topnav" aria-label="Navegação de página exemplo">
         <ul class="pagination pagination-lg justify-content-center">
           <!-- <li class="page-item disabled">
           <a class="page-link" href="#" aria-label="Anterior">
@@ -284,7 +284,7 @@ export default {
   }
 
   .button-plus {
-    width: 120px;
+    width: 130px;
     font-size: 12px;
   }
 }
