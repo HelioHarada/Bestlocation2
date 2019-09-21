@@ -48,8 +48,8 @@
             v-for="(imovel, index) in imoveisFiltro"
             :key="index"
           >
-            <div>
-              <img v-if="imovel.images[0]" class="card-img-top list-img" :src="imovel.images[0]" alt="Card image cap" >
+            <div class="list-img">
+              <img v-if="imovel.images[0]" class="card-img-top " :src="imovel.images[0]" alt="Card image cap" >
               <img v-else class="card-img-top list-img" src="/../src/img/casa.jpg" alt="Card image cap">
             </div>
             <div class="text-list">
@@ -73,7 +73,7 @@
         <div v-else-if="view == 'card'" key="2" class="row">
           <div class="col-md-4 card-house" v-for="(imovel, index) in imoveisFiltro" :key="index">
             <div class="card">
-              <div>
+              <div class="place-card-image">
                 <img v-if="imovel.images[0]" :src="imovel.images[0]" alt="Card image cap" class="card-img-top">
                 <img v-else class="card-img-top" src="/../src/img/casa.jpg" alt="Card image cap">
               </div>
@@ -398,20 +398,32 @@ export default {
   background-color: #ff7f00;
   border-color: #ccc
 }
-.list-img{
-  max-width: 450px;
-  max-height: 350px;
-  width: 100%;
-  height: 300px;
-}
+@media screen and (min-width: 990px) {
+  .list-img{
+    max-width: 450px;
+    min-width: 450px;
+    max-height: 350px;
+    width: 100%;
+    height: 300px;
+    border: #ccc 1px solid;
+  }
 
+  .card-img-top {
+    height: 100%;
+  }
+
+  .place-card-image{
+    height: 280px;
+  }
+}
 @media screen and (max-width: 990px) {
 
 .list-img{
-  max-width: 450px;
+
+  max-width: 270px;
   max-height: 1500px;
   width: 100%;
-  height: 150px;
+  height: 130px;
 }
   
 }
