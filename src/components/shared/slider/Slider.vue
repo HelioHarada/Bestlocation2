@@ -1,17 +1,17 @@
 <template>
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-        <div>
-          <img v-if="imovel.images[0]" :src="imovel.images[0]" alt="Card image cap" class="card-img-top img-slider">
-          <img v-else class="card-img-top img-slider" src="/../src/img/casa.jpg" alt="Card image cap">
-        </div>
+  <div >
+    <div v-if="imovel.images[0]" class="carousel-inner">
+      
+      <div v-for="item in imovel.images" :key="item" class="carousel-item" v-bind:class="{'active': imovel.images[0] == item}">
+            <img class="d-block w-100 card-img-top img-slider" :src="item" alt="Card image cap">
+      </div>
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="/../src/img/casa.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="/../src/img/casa.jpg" alt="Third slide">
+ 
+    <div v-else class="carousel-inner">
+         <div  class="carousel-item active">
+           <img  class="card-img-top img-slider" src="/../src/img/casa.jpg" alt="Card image cap">
+         </div>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -35,5 +35,10 @@ export default {
   min-height: 400px;
   height: 400px;
 }
-
+@media screen and (max-width: 990px) {
+ #carouselExampleControls{
+  min-height: 200px;
+  height: 200px;
+} 
+}
 </style>
