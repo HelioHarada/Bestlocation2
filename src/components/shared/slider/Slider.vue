@@ -31,14 +31,18 @@ export default {
 </script>
 
 <style scoped>
-#carouselExampleControls{
-  min-height: 400px;
-  height: 400px;
-}
-@media screen and (max-width: 990px) {
- #carouselExampleControls{
-  min-height: 200px;
-  height: 200px;
-} 
-}
+  .img-slider, .carousel-inner, .carousel-item{
+    min-height: 400px;
+    height: 400px;
+  }
+  #carouselExampleControls{
+    min-height: 400px;
+    height: 400px;
+  }
+  @media screen and (max-width: 990px) {
+    #carouselExampleControls{
+      min-height: 200px;
+      height: 200px;
+    } 
+  }
 </style>
