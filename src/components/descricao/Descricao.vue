@@ -94,8 +94,8 @@
   import routes from "../../routes";
   import Slider from "../shared/slider/Slider.vue";
   import Contato from "../shared/contato/Contato.vue";
-  import { getImovelID, returnToken, favoritarImovel } from "../../api/";
-  import { markerFood, markerHospital, markerFarmacia, markerSchool, markerMarket, markerBus, closeMenu} from "../../api/marker";  
+  import { getImovelID, returnToken, favoritarImovel, getImovelIDbyUser, closeMenu} from "../../api/";
+  import { markerFood, markerHospital, markerFarmacia, markerSchool, markerMarket, markerBus} from "../../api/marker";  
 
 export default {
   methods: {
@@ -131,6 +131,7 @@ export default {
 
   methods: {
     closeMenu,
+    getImovelIDbyUser,
     getImovelID,
     returnToken,
     favoritarImovel,
@@ -147,9 +148,7 @@ export default {
 
     async getToken(){
       try{
-        const id = this.returnToken(localStorage.getItem("acess_token")).idUser
-        console.log(id)
-        this.idUser = id;
+        this.idUser = this.returnToken(localStorage.getItem("acess_token")).idUser
         return this.idUser
       
       }catch(e){
@@ -161,13 +160,18 @@ export default {
     async load(){
       try{
           const idUser = await this.getToken()
-          console.log(this.idImovel, idUser)
-          const res = await this.getImovelID(this.idImovel, idUser)
-          this.imovel = res.body.data[1];
-          console.log(this.imovel)
-          this.statusFav = res.body.data[0].isFavorite
-
-          console.log(this.statusFav);
+         
+          if(idUser == "undefined" || idUser == null){
+            const res = await this.getImovelID(this.idImovel)
+            this.imovel = res.body.data[1];
+            console.log(this.imovel)
+          }else{
+     
+            const res = await this.getImovelIDbyUser(this.idImovel, idUser)
+            this.imovel = res.body.data[1];
+            console.log(this.imovel)
+            this.statusFav = res.body.data[0].isFavorite
+          }
           this.getLocation(
             this.imovel.endereco + this.imovel.cidade + this.imovel.numEndereco
           );

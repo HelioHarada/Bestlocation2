@@ -41,8 +41,12 @@ export function getQuery (query) {
   return this.$http.get(url+'/api/imovel/searchimovel/?query='+query);
 }
 
-export function getImovelID (idImovel, idUsuario) {
+export function getImovelIDbyUser (idImovel, idUsuario) {
   return this.$http.get(url+'/api/imovel/buscar/'+idImovel+"/"+idUsuario);
+}
+
+export function getImovelID (idImovel) {
+  return this.$http.get(url+'/api/imovel/buscar/'+idImovel);
 }
 
 export function returnToken(token){
