@@ -40,7 +40,12 @@ export default {
     height: 400px;
   }
   @media screen and (max-width: 990px) {
-    #carouselExampleControls{
+      #carouselExampleControls{
+        min-height: 250px;
+        height: 250px;
+      }
+
+    .img-slider, .carousel-inner, .carousel-item{
       min-height: 200px;
       height: 200px;
     } 

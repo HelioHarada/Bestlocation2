@@ -55,7 +55,7 @@
             <div class="text-list">
                
               <h4 class="list-preco">R${{formatPrice(imovel.valorImovel)}}</h4>
-              <h6 class="list-titulo">{{imovel.status}} : {{imovel.titulo}}</h6>
+              <h6 class="list-titulo">{{imovel.status}}: {{imovel.titulo}}</h6>
               <p class="list-endereco">
                 Endereço: {{imovel.endereco}}, {{imovel.numEndereco}} {{imovel.complementoEndereco}} - {{imovel.bairro}},
                 {{imovel.cidade}} - {{imovel.uf}}, {{imovel.cep}}
@@ -79,7 +79,7 @@
               </div>
               <div class="card-body card-imovel">
                 <h4 class="card-title">R${{formatPrice(imovel.valorImovel)}}</h4>
-                <h6 class="card-title">{{imovel.status}} : {{imovel.titulo}}</h6>
+                <h6 class="card-title">{{imovel.status}}: {{imovel.titulo}}</h6>
                 <p class="card-text">Descrição: {{imovel.descricao}}</p>
                 <p class="card-text">
                   <img src="/../src/img/bed.png" />

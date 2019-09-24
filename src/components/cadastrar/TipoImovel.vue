@@ -27,8 +27,8 @@
             <div class="form-group col-sm-2">
                 <label for="">Transação</label>
                 <select name="transação" id="status" v-model="imovel.status" class="form-control input-grey transacao">
-                    <option value="venda" selected>Venda</option>
-                    <option value="aluguel">Aluguel</option>
+                    <option value="Venda" selected>Venda</option>
+                    <option value="Aluguel">Aluguel</option>
                 </select>   
             </div>
         </div>
