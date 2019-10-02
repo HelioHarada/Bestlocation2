@@ -247,6 +247,14 @@ export default {
           console.log(res.body);
           $("#login-modal").modal("hide");
           return true;
+        }, function(e){
+          var error = JSON.parse(e.bodyText)
+          this.$notify({
+            group: 'foo',
+            type : 'error',
+            title: "Erro!",
+            text : error.message,
+          });
         });
         // Post
       }
