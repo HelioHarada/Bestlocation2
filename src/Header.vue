@@ -18,7 +18,7 @@
       <li class="nav-item">
         
         
-        <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'lista'}"><a class="nav-link" >Compre seu imóvel</a></router-link>
+        <router-link class="router" @click.native="closeMenu()"  :to="{ name: 'lista'}"><a class="nav-link" >Encontre seu imóvel</a></router-link>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto navbar-right">
