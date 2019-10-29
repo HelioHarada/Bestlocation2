@@ -21,7 +21,7 @@
     "express": "^4.17.1",
     "express-session": "^1.16.1",
     "lodash.clonedeep": "^4.5.0",
-    "mongoose": "^5.5.0",
+    "mongoose": "^5.7.5",
     "negotiator": "^0.6.2",
     "nodemailer": "^6.1.0",
     "v-money": "^0.8.1",
