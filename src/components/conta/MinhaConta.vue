@@ -66,6 +66,14 @@
                 class="btn button-plus"
                 :to="{ name: 'desc', params: { id: imovel._id} }"
               >Mais detalhes</router-link>
+            <div>
+              
+                <router-link
+                  class="btn button-plus"
+                  :to="{ name: 'cadastrar', params: { id: imovel._id} }"
+                >Editar
+                </router-link>
+        
               <button
                 data-toggle="modal"
                 data-target="#delete-modal"
@@ -74,6 +82,7 @@
               >
                 <i class="far fa-trash-alt"></i>
               </button>
+            </div>
             </div>
           </div>
         </div>

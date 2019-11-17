@@ -2,7 +2,6 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div >
     <div v-if="imovel.images[0]" class="carousel-inner">
-      
       <div v-for="item in imovel.images" :key="item" class="carousel-item" v-bind:class="{'active': imovel.images[0] == item}">
             <img class="d-block w-100 card-img-top img-slider" :src="item" alt="Card image cap">
       </div>

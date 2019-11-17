@@ -58,7 +58,7 @@ import tipoImovel from "./TipoImovel";
 import localImovel from "./LocalizacaoImovel";
 import descricaoImovel from "./DescricaoImovel";
 import { Money } from "./v-money.js";
-import { closeMenu, cadastrarImovel } from "../../api/";
+import { closeMenu, cadastrarImovel, getImovelID} from "../../api/";
 export default {
   components: {
      Money,
@@ -86,37 +86,39 @@ export default {
   methods: {
     closeMenu,
     cadastrarImovel,
-    async load(){
-      try{
-        const res = await this.setQuery();
-        console.log(res)
+    getImovelID,
+    load(){
+        const res =  this.$route.params.id;;
+       
         this.id = res
         if(res == undefined || res == '')
         {
             this.$router.push('account')
-        }
-      }catch(e){
-        console.log(e)
-      }
+        }    
     },
 
     async cadastrar(imovel){
       console.log(imovel)
       try{
         const res = await this.cadastrarImovel(imovel);
-        console.log(res);
+      
         this.$router.push('account')
       }catch(err){
         console.log(err);
         // $("html, body").animate({ scrollTop: 0 }, "slow");
       }
     },
-
+    async getImovel(){
+      const res = await this.getImovelID(this.$route.params.id);
+      this.imovel = res.body.data[1];
+      console.log(this.imovel)
+    },
     setQuery: function() {
       this.query = this.$route.params.id;
       console.log(this.query)
       return this.query;
     },
+
     validate() {
       this.errors = [];
       console.log("foi")
@@ -172,7 +174,7 @@ export default {
   },
   created(){
     this.load();
-    this.setQuery();
+    this.getImovel();
     // console.log(req)
   }
 };

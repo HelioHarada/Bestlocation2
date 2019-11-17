@@ -79,6 +79,9 @@ props: ['imovelProp'],
     },
   mounted() {
     this.setup()
+  },
+  created(){
+      console.log(this.imovel)
   }
 
 }
