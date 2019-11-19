@@ -40,6 +40,7 @@
           @back="goBack"
           @next="syncImovel"
           @persist="cadastrar"
+          @update="update"
           key="3"
         ></descricao-imovel>
       </div>
@@ -59,7 +60,7 @@ import tipoImovel from "./TipoImovel";
 import localImovel from "./LocalizacaoImovel";
 import descricaoImovel from "./DescricaoImovel";
 import { Money } from "./v-money.js";
-import { closeMenu, cadastrarImovel, getImovelID} from "../../api/";
+import { closeMenu, cadastrarImovel, getImovelID, updateImovel} from "../../api/";
 export default {
   components: {
      Money,
@@ -87,14 +88,14 @@ export default {
     closeMenu,
     cadastrarImovel,
     getImovelID,
+    updateImovel,
     load(){
         const res =  this.$route.params.id;
-       
         this.id = res
         if(res == undefined || res == '')
         {
             this.$router.push('account')
-        }    
+        }
     },
 
     async cadastrar(imovel){
@@ -108,18 +109,27 @@ export default {
         // $("html, body").animate({ scrollTop: 0 }, "slow");
       }
     },
-    async getImovel(){
-      if(this.$route.params.id){
-          const res = await this.getImovelID(this.$route.params.id);
-          this.imovel = { ...this.imovel, ...res.body.data[1]}
+    async update(imovel){
+      console.log("update")
+      try{
+        const res = await this.updateImovel(imovel,this.$route.params.idUser, this.$route.params.id);
+        this.$router.push('account')
+      }catch(err){
+        console.log(err);
       }
     },
-    setQuery: function() {
-      this.query = this.$route.params.id;
-      console.log(this.query)
-      return this.query;
+    async getImovel(){
+      try{
+        if(!this.$route.params.id){
+          console.log(this.$route.params.id)
+            const res = await this.getImovelID(this.$route.params.id);
+            this.imovel = { ...this.imovel, ...res.body.data[1]}
+        }
+      }catch(e){
+        console.log(e);
+      }
+      
     },
-
     validate() {
       this.errors = [];
       console.log("foi")
@@ -176,12 +186,18 @@ export default {
     }
   },
   mounted(){
-    this.getImovel();
+    console.log(this.$route.params.id)
+    console.log(this.$route.params.idUser)
+    // verificação editar ou criar
+    if(this.$route.params.type == "editar")
+    {
+      console.log("é para editar")
+      this.getImovel();
+    }
   },
   created(){
     this.load();
 
-    // console.log(req)
   }
 };
 </script>

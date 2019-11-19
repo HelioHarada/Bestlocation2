@@ -42,11 +42,22 @@ export function getQuery (query) {
 }
 
 export function getImovelIDbyUser (idImovel, idUsuario) {
+  console.log(idImovel)
   return this.$http.get(url+'/api/imovel/buscar/'+idImovel+"/"+idUsuario);
 }
 
 export function getImovelID (idImovel) {
   return this.$http.get(url+'/api/imovel/buscar/'+idImovel);
+}
+
+export function getUserID (id) {
+  console.log(id)
+  return this.$http.get(url+'/api/users/crud/'+id);
+}
+
+export function getUserImoveis (id) {
+  console.log(id)
+  return this.$http.get(url+'/api/imovel/usuario/'+id);
 }
 
 export function returnToken(token){
@@ -60,18 +71,32 @@ export function returnToken(token){
 
 }
 
-export function getUserID (id) {
-  console.log(id)
-  return this.$http.get(url+'/api/users/crud/'+id);
+export function updateImovel(imovel,idUsuario,idImovel) {
+  console.log(imovel);
+  console.log(idUsuario);
+  console.log(idImovel);
+  return this.$http.put(url+"/api/imovel/usuario/"+idUsuario+"/"+idImovel, {
+    titulo: imovel.titulo,
+    status: imovel.status,
+    endereco: imovel.endereco,
+    numEndereco: imovel.numEndereco,
+    complementoEndereco: imovel.complementoEndereco,
+    cidade: imovel.cidade,
+    bairro: imovel.bairro,
+    uf: imovel.uf,
+    descricao: imovel.descricao,
+    numBanheiros: imovel.numBanheiros,
+    numQuartos:imovel.numQuartos,
+    valorImovel : imovel.valorImovel,
+    area: imovel.area,
+    cep: imovel.cep,
+    tipoImovel: imovel.tipoImovel,
+    images: imovel.images
+  });
 }
 
-export function getUserImoveis (id) {
-  console.log(id)
-  return this.$http.get(url+'/api/imovel/usuario/'+id);
-}
 
 export function cadastrarImovel (imovel) {
-  console.log(imovel.imageData);
   return this.$http.post(url+"/api/imovel/usuario/"+this.id, {
     titulo: imovel.titulo,
     status: imovel.status,
@@ -87,8 +112,8 @@ export function cadastrarImovel (imovel) {
     valorImovel : imovel.valorImovel,
     area: imovel.area,
     cep: imovel.cep,
-    tipoImovel: imovel.tipo,
-    images: imovel.imageData
+    tipoImovel: imovel.tipoImovel,
+    images: imovel.images
   });
 }
 

@@ -3,7 +3,8 @@
     <hr>
     <div class="row d-flex justify-content-end step-navigation" v-bind:class="{ 'justify-content-between': showBack }">
       <button v-if="showBack" class="btn button-erro" @click="$emit('back')">Voltar</button>
-      <button class="btn button-sucesso" @click="$emit('goNext')"><slot>Próximo</slot></button>
+      <button v-if="!update" class="btn button-sucesso" @click="$emit('goNext')"><slot>Próximo</slot></button>
+      <button v-if="update" class="btn button-sucesso" @click="$emit('update')"><slot>Salvar</slot></button>
     </div>
   </div>
 </template>
@@ -12,6 +13,9 @@ export default {
     props: {
       showBack: {
         default: true,
+      },
+      update: {
+        default: false,
       },
       showNext: {
         default: true,

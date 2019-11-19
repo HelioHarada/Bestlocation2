@@ -8,7 +8,7 @@
       <router-link
         @click.native="closeMenu()"
         class="btn button-plus"
-        :to="{ name: 'cadastrar', params: { id: id }}"
+        :to="{ name: 'cadastrar', params: { id: id, type : 'criar' }}"
       >Anuncie!</router-link>
 
       <a @click="getImoveis(id)" class="btn button-plus" href="#">Meus imóveis</a>
@@ -70,7 +70,7 @@
               
                 <router-link
                   class="btn button-plus"
-                  :to="{ name: 'cadastrar', params: { id: imovel._id} }"
+                  :to="{ name: 'cadastrar', params: { id: imovel._id, idUser : id, type : 'editar'} }"
                 >Editar
                 </router-link>
         

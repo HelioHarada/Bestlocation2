@@ -77,22 +77,33 @@
           rows="10"
         ></textarea>
       </div>
-
+  
+     
         <div>
             <div class="file-upload-form">
                 <button class="btn button-sucesso" @click="pickImage">Enviar Imagens</button>
                 <input style="display:none" type="file" ref="fileInput" accept="image/*" @change="previewImage" multiple>
             </div>
+            <div class="image-preview row" v-if="imovel.images.length > 0">
+                <div v-for="(urlImg, index) in imovel.images" :key="index">               
+                    <img class="img-fluid img-thumbnail preview" :src="urlImg">
+              </div>
+            </div>
             <div class="image-preview row" v-if="imovel.imageData.length > 0">
                 <div v-for="(urlImg, index) in imovel.imageData" :key="index">               
                     <img class="img-fluid img-thumbnail preview" :src="urlImg">
-                </div>
-                
+              </div>
             </div>
         </div>
     </div>
 
-    <step-navigation @goNext="save" @back="goBack">Cadastrar</step-navigation>
+    <step-navigation 
+      @goNext="cadastrar" 
+      @update="updateImovel"
+      @back="goBack"
+      :update="true"
+      >Cadastrar
+      </step-navigation>
   </div>
 </template>
 
@@ -115,6 +126,7 @@ export default {
         numQuartos: 1,
         area: "",
         imageData: [],
+        images:""
       },
       money: {
         decimal: ",",
@@ -151,52 +163,52 @@ export default {
               this.$refs.fileInput.click();
             },
             previewImage: function(event) {
-            // Reference to the DOM input element
-            var input = event.target;
-            var files = event.target.files;
-            var base = [];
-            // console.log(input.files.length)
-            // Ensure that you have a file before attempting to read it
-            if (input.files && input.files[0]) {
-                // create a new FileReader to read this image and convert to base64 format            
-                for(var i = 0; i < input.files.length; i++){
-                   var file = files[i];
-                (function(file) {
-                        var name = file.name;
-                        let self = this;
+              // Reference to the DOM input element
+              var input = event.target;
+              var files = event.target.files;
+              var base = [];
+              // console.log(input.files.length)
+              // Ensure that you have a file before attempting to read it
+              if (input.files && input.files[0]) {
+                  // create a new FileReader to read this image and convert to base64 format            
+                  for(var i = 0; i < input.files.length; i++){
+                    var file = files[i];
+                  (function(file) {
+                          var name = file.name;
+                          let self = this;
+                          
+                          var reader = new FileReader();  
                         
-                        var reader = new FileReader();  
-                       
-                        reader.onload = function(e) {  
+                          reader.onload = function(e) {  
 
-                            // get file content  
+                              // get file content  
+                              
+                              base.push(e.target.result);
+                          
+                          }
                             
-                            base.push(e.target.result);
-                         
-                        }
-                           
-                        reader.readAsDataURL(file);
-                      
-                    })(files[i]);
+                          reader.readAsDataURL(file);
+                        
+                      })(files[i]);
+                    
+              
+                  }
+                  this.imovel.imageData = base;
                   
-            
-                }
-                this.imovel.imageData = base;
-                
-                console.log(this.imovel)
-                // Start the reader job - read file as a data url (base64 format)
-                
-            }
+                  console.log(this.imovel.imageData)
+                  // Start the reader job - read file as a data url (base64 format)
+                  
+              }
         },
 
     updateImovel() {
-      this.$emit("next", this.imovel);
+      this.$emit("update", this.imovel);
     },
     goBack() {
       this.$emit("next", this.imovel);
       this.$emit("back");
     },
-    async save() {
+    async cadastrar() {
       try {
         console.log(typeof(this.imovel.valorImovel))
         await this.$emit("next", this.imovel);

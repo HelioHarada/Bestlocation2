@@ -72,10 +72,16 @@ props: ['imovelProp'],
             this.$emit('next', this.imovel)
         },
         async getImovel(){
-            if(this.$route.params.id){
-                const res = await this.getImovelID(this.$route.params.id);
-                this.imovel = { ...this.imovel, ...res.body.data[1]}
-                console.log(this.imovel)
+            try{
+                // Verificação de editar
+                if(this.$route.params.id && (this.$route.params.type == "editar")){
+                    console.log(this.$route.params.type)
+                    const res = await this.getImovelID(this.$route.params.id);
+                    this.imovel = { ...this.imovel, ...res.body.data[1]}
+                    console.log(this.imovel)
+                }
+            }catch(e){
+                console.log(e)
             }
         },
         setup(){
