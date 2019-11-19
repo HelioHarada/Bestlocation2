@@ -21,6 +21,7 @@
           :imovelProp="imovel"  
           @back="goBack"
           @next="goNext"
+          @sync="syncImovel"
         ></tipo-imovel>
 
         <!-- step 2 localização imovel-->
@@ -72,7 +73,6 @@ export default {
       query:"",
       step: 1,
       imovel:'',
-      imoveis: [],
       errors: [],
 
       id:"",
@@ -88,7 +88,7 @@ export default {
     cadastrarImovel,
     getImovelID,
     load(){
-        const res =  this.$route.params.id;;
+        const res =  this.$route.params.id;
        
         this.id = res
         if(res == undefined || res == '')
@@ -109,9 +109,10 @@ export default {
       }
     },
     async getImovel(){
-      const res = await this.getImovelID(this.$route.params.id);
-      this.imovel = res.body.data[1];
-      console.log(this.imovel)
+      if(this.$route.params.id){
+          const res = await this.getImovelID(this.$route.params.id);
+          this.imovel = { ...this.imovel, ...res.body.data[1]}
+      }
     },
     setQuery: function() {
       this.query = this.$route.params.id;
@@ -159,10 +160,12 @@ export default {
     openCard(index) {
         this.step = index 
     },
-    syncImovel(newPartImovel){
-      this.imovel = { ...this.imovel, ...newPartImovel }
-      console.log(this.imovel)
+    //  adição de objetos no imovel
+    syncImovel(newPartImovel){ 
+        this.imovel = { ...this.imovel, ...newPartImovel }
+        console.log(this.imovel)
     },
+    // next step. 
     goNext(imovel) {
       this.syncImovel(imovel)
       this.openCard(this.step + 1)
@@ -172,13 +175,17 @@ export default {
       this.openCard(this.step - 1)
     }
   },
+  mounted(){
+    this.getImovel();
+  },
   created(){
     this.load();
-    this.getImovel();
+
     // console.log(req)
   }
 };
 </script>
+
 <style>
 
 .input-grey {
@@ -188,7 +195,7 @@ export default {
   height: 45px;
   border-radius: 5px;
   border: 0;
-  color: #bdc3c7;
+  color: #050505;
   background: #ccc;
   transition: 0.3s ease;
 }

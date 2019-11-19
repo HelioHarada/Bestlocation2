@@ -158,9 +158,7 @@ export default {
             // console.log(input.files.length)
             // Ensure that you have a file before attempting to read it
             if (input.files && input.files[0]) {
-                // create a new FileReader to read this image and convert to base64 format
-           
-                
+                // create a new FileReader to read this image and convert to base64 format            
                 for(var i = 0; i < input.files.length; i++){
                    var file = files[i];
                 (function(file) {
@@ -184,7 +182,8 @@ export default {
             
                 }
                 this.imovel.imageData = base;
-                console.log(this.imovel.imageData)
+                
+                console.log(this.imovel)
                 // Start the reader job - read file as a data url (base64 format)
                 
             }

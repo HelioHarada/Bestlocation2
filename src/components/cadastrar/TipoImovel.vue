@@ -17,7 +17,7 @@
 
             <div class=" col-sm-2">
                 <label for="">Tipo do imóvel</label>
-                <select  autocomplete="off" name="tipo" id="tipo" v-model="imovel.tipo" class="form-control input-grey tipo ">
+                <select name="tipo" id="tipo" v-model="imovel.tipoImovel" class="form-control input-grey tipo ">
                     <option value="Casa">Casa</option>
                     <option value="Apartamento" selected>Apartamento</option>
                     <option value="Chacara">Chacara</option>
@@ -43,6 +43,7 @@
 <script>
 import stepNavigation from "./StepNavigation";
 import cloneDeep from 'lodash.clonedeep'
+import {getImovelID} from "../../api/";
 export default {
 props: ['imovelProp'],
   components: {
@@ -51,39 +52,43 @@ props: ['imovelProp'],
     data(){
         return{
             imovel:{
-                titulo: "",
-                tipo:"Casa",
-                status: "venda",
+                // titulo: "",
+                // tipo:"Casa",
+                // status: "Venda",
             }
 
         }
     },
     watch: {
         ImovelProp(newVal, oldVal) {
+         console.log('Prop changed: ', newVal, ' | was: ', oldVal)
         this.setup()
         }
     },
     methods:{
+        getImovelID,
         cloneDeep,
         updateImovel(){
-            console.log(this.imovel)
             this.$emit('next', this.imovel)
+        },
+        async getImovel(){
+            if(this.$route.params.id){
+                const res = await this.getImovelID(this.$route.params.id);
+                this.imovel = { ...this.imovel, ...res.body.data[1]}
+                console.log(this.imovel)
+            }
         },
         setup(){
             if(this.imovelProp){
-                console.log("clone")
                 this.imovel = this.cloneDeep(this.imovelProp)
+            }else{         
+                this.getImovel()
             }
-           
         }
     },
   mounted() {
     this.setup()
   },
-  created(){
-      console.log(this.imovel)
-  }
-
 }
 </script>
 

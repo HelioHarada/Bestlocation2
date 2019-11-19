@@ -26,7 +26,7 @@
           type="text"
           class="form-control input-grey endereco"
           id="endereco"
-          v-model="imovel.rua"
+          v-model="imovel.endereco"
           placeholder="Endereço"
         />
       </div>
@@ -181,9 +181,9 @@ export default {
         this.$emit("back");
     },
     setup(){
-        console.log(this.imovel.cep)
         if(this.imovelProp){
             this.imovel = {...this.imovel, ...this.cloneDeep(this.imovelProp)};
+            console.log(this.imovel)
         }
         
     }

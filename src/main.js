@@ -9,6 +9,7 @@ import Notifications from 'vue-notification'
 require("babel-core/register");
 require("babel-polyfill");
 
+
 Vue.config.productionTip = false;
 
 import { routes } from './routes'

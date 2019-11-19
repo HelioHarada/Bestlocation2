@@ -75,7 +75,7 @@ export function cadastrarImovel (imovel) {
   return this.$http.post(url+"/api/imovel/usuario/"+this.id, {
     titulo: imovel.titulo,
     status: imovel.status,
-    endereco: imovel.rua,
+    endereco: imovel.endereco,
     numEndereco: imovel.numEndereco,
     complementoEndereco: imovel.complementoEndereco,
     cidade: imovel.cidade,
