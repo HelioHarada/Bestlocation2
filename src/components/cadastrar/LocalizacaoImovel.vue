@@ -17,6 +17,7 @@
           placeholder="CEP"
           @keyup="buscarCEP"
         />
+          {{/^[0-9]{5}-[0-9]{3}$/.test(this.imovel.cep)}}
       </div>
 
       <div class="form-group col-sm-6">
@@ -26,7 +27,7 @@
           type="text"
           class="form-control input-grey endereco"
           id="endereco"
-          v-model="imovel.endereco"
+          v-model="imovel.rua"
           placeholder="Endereço"
         />
       </div>
@@ -146,9 +147,11 @@ export default {
         this.setup()
         }
     },
+
   methods: {
     cloneDeep,
     buscarCEP() {
+      $("#cep").mask("00000-000");
       var self = this;
       self.disableInput = false;
       self.naoLocalizado = false;

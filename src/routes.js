@@ -6,7 +6,7 @@ import Usuario from './components/usuario/Usuario.vue'
 import Deletar from './components/deletar/Deletar.vue'
 import Descricao from './components/descricao/Descricao.vue'
 import Minha_conta from './components/conta/MinhaConta.vue'
-
+import LadingPage from './components/ladingpage/LadingPage.vue'
 
 export const routes  = [
     {path: '*', name:'home' ,component : Home},
@@ -17,5 +17,6 @@ export const routes  = [
     {path : '/find', name : 'find', component : Find, },
     {path : '/Descricao/:id', name:'desc',component : Descricao},
     {path : '/account', name:'account',component : Minha_conta},
+    {path : '/sobre', name:'about',component : LadingPage},
 ];
 

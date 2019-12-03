@@ -78,8 +78,9 @@
         ></textarea>
       </div>
   
-     
+
         <div>
+             
             <div class="file-upload-form">
                 <button class="btn button-sucesso" @click="pickImage">Enviar Imagens</button>
                 <input style="display:none" type="file" ref="fileInput" accept="image/*" @change="previewImage" multiple>
@@ -90,7 +91,8 @@
               </div>
             </div>
             <div class="image-preview row" v-if="imovel.imageData.length > 0">
-                <div v-for="(urlImg, index) in imovel.imageData" :key="index">               
+                <div v-for="(urlImg, index) in imovel.imageData" :key="index">       
+               
                     <img class="img-fluid img-thumbnail preview" :src="urlImg">
               </div>
             </div>
