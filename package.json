@@ -13,7 +13,7 @@
     "debug": "node --nolazy --inspect-brk=9229 myProgram.js"
   },
   "dependencies": {
-    "bcrypt": "^3.0.5",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "botui": "^0.3.8",
     "consign": "^0.1.6",
