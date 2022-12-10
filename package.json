@@ -18,7 +18,7 @@
     "botui": "^0.3.8",
     "consign": "^0.1.6",
     "dotenv": "^7.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.16.1",
     "lodash.clonedeep": "^4.5.0",
     "mongoose": "^5.5.0",
